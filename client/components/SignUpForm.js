@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { signUpUser } from '../services/user-utils.js';
 
 export default function SignUpForm() {
   const handleSignUp = async (e) => {
@@ -12,7 +13,7 @@ export default function SignUpForm() {
       password: formData.get('password'),
     };
     console.log('newUser', newUser);
-    // await signUpUser(newUser);
+    await signUpUser(newUser);
   };
 
   return (
