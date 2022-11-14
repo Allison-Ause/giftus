@@ -13,4 +13,5 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (first_name, last_name, email, password_hash) VALUES
-('Baba', 'Yaga', 'russian@witch.com', '$2b$10$ZWlOhOhipXorMYe07NlbyOqXR74MsTrEZZoanLXD5hgMvII4/BkOa');
+('Baba', 'Yaga', 'russian@witch.com', '$2b$10$ZWlOhOhipXorMYe07NlbyOqXR74MsTrEZZoanLXD5hgMvII4/BkOa'),
+('Lyla', 'Birch', 'cultist@blades.com', 'fakePasswordHash');
