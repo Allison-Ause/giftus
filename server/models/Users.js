@@ -1,6 +1,6 @@
-import pool from '..database.js';
+import pool from '../database.js';
 
-module.exports = class Users {
+export default class Users {
   id;
   firstName;
   lastName;
@@ -26,4 +26,4 @@ module.exports = class Users {
     );
     return new Users(rows[0]);
   }
-};
+}

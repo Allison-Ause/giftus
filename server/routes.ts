@@ -18,6 +18,7 @@ export default (): Router => {
   // Think of the poor foos.
   prefixRouter.use('/foos', fooController)
   prefixRouter.use('/cats', catsController)
+  
   prefixRouter.use('/users', usersController)
 
   return prefixRouter
