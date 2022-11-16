@@ -26,4 +26,14 @@ export default class Users {
     );
     return new Users(rows[0]);
   }
+
+  static async getByEmail(email) {
+    const { rows } = await pool.query(
+      `
+      SELECT * FROM users
+      WHERE email = $1
+      `,
+      [email]
+    );
+  }
 }

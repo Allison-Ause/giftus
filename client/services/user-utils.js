@@ -1,7 +1,7 @@
-// BACKEND /USERS for signing IN
-// BACKEND /USERS/SESSIONS for signing UP
+// BACKEND /USERS for signing UP
+// BACKEND /USERS/SESSIONS for signing IN
 
-const BASE_URL = 'http://localhost:7891';
+const BASE_URL = 'http://localhost:7890';
 
 export async function signUpUser(userInfo) {
   console.log('userInfo in fetch', userInfo);
