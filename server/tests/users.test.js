@@ -3,11 +3,16 @@ import { describe, expect, it } from '@jest/globals';
 import setupDb from '../setup-data';
 import app from '../app';
 
-const testUser = {
+const newUser = {
   firstName: 'Hopeful',
   lastName: 'Optimist',
   email: 'nice@work.com',
   password: 'goodtimes',
+};
+
+const existingUser = {
+  email: 'new@test.com',
+  password: 'password',
 };
 
 describe('user routes', () => {
@@ -16,11 +21,20 @@ describe('user routes', () => {
   });
 
   it('#POST /users route successfully sign ups a new user & signs them in', async () => {
-    const res = await request(app).post('/users').send(testUser);
+    const res = await request(app).post('/users').send(newUser);
 
     expect(res.status).toBe(200);
     expect(res.body.message).toBe(
       'Successfully logged in with new account!'
     );
+  });
+
+  it('#POST /users/session', async () => {
+    const res = await request(app)
+      .post('/users/session')
+      .send(existingUser);
+
+    expect(res.status).toBe(200);
+    expect(res.body.message).toBe('Successfully signed in!');
   });
 });
