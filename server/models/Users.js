@@ -35,5 +35,6 @@ export default class Users {
       `,
       [email]
     );
+    console.log('getbyemail rows', rows);
   }
 }
