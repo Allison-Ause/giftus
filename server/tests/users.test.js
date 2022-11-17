@@ -29,9 +29,9 @@ describe('user routes', () => {
     );
   });
 
-  it('#POST /users/session', async () => {
+  it('#POST /users/sessions', async () => {
     const res = await request(app)
-      .post('/users/session')
+      .post('/users/sessions')
       .send(existingUser);
 
     expect(res.status).toBe(200);

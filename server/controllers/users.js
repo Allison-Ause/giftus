@@ -6,9 +6,8 @@ const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
 export default Router()
   .post('/', async (req, res, next) => {
     try {
-      console.log('controller req.body', req.body);
       const token = await UserService.signUp(req.body);
-      console.log('controller: token', token);
+
       res
         .cookie(process.env.COOKIE_NAME, token, {
           httpOnly: true,
@@ -26,7 +25,9 @@ export default Router()
   })
   .post('/sessions', async (req, res, next) => {
     try {
+      console.log('controller req.body', req.body);
       const sessionToken = await UserService.signIn(req.body);
+      console.log('sessionToken from controller:', sessionToken);
       res
         .cookie(process.env.COOKIE_NAME, sessionToken, {
           httpOnly: true,

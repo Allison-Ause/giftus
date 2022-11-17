@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import SignInForm from './SignInForm.js';
 import SignUpForm from './SignUpForm.js';
 
 export default function AuthPage() {
@@ -7,7 +8,7 @@ export default function AuthPage() {
   return (
     <div>
       <p>Nice work, sweetheart!</p>
-      <SignUpForm />
+      {authMethod === 'sign-in' ? <SignInForm /> : <SignUpForm />}
     </div>
   );
 }
