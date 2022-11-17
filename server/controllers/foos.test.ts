@@ -7,7 +7,7 @@ import setupDb from '../setup-data.js';
 
 describe('foos controller', () => {
   beforeEach(() => {
-    setupDb();
+    return setupDb();
   });
 
   it.skip('successfully gets /foos', () => {

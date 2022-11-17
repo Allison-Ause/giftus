@@ -1,11 +1,11 @@
 // BACKEND /USERS for signing UP
 // BACKEND /USERS/SESSIONS for signing IN
 
-const BASE_URL = 'http://localhost:7891';
+const BASE_URL = 'http://localhost:7891/api/v1';
 
 export async function signUpUser(userInfo) {
   console.log('userInfo in fetch', userInfo);
-  const res = await fetch(`${BASE_URL}/api/v1/users`, {
+  const res = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
