@@ -4,7 +4,6 @@
 const BASE_URL = 'http://localhost:7891/api/v1';
 
 export async function signUpUser(userInfo) {
-  console.log('userInfo in fetch', userInfo);
   const res = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {
@@ -20,4 +19,8 @@ export async function signUpUser(userInfo) {
   } else {
     console.error(data.message);
   }
+}
+
+export async function signInUser(userInfo) {
+  console.log('userInfo in fetch', userInfo);
 }
