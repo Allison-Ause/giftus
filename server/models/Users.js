@@ -36,5 +36,10 @@ export default class Users {
       [email]
     );
     console.log('getbyemail rows', rows);
+    return new Users(rows[0]);
+  }
+
+  get passwordHash() {
+    return this.#passwordHash;
   }
 }
