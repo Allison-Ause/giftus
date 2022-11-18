@@ -8,8 +8,13 @@ const testUser = {
   password: 'password',
 };
 
+const existingUser = {
+  email: 'dog@dog.com',
+  password: 'password',
+};
+
 const newGift = {
-  user_id: '1',
+  userId: '3',
   idea: 'rainbow glitter',
   link: 'url.link',
   price: 30,
@@ -26,14 +31,14 @@ describe('gift routes', () => {
     await agent.post('/users').send(testUser); // users route is successful
 
     const res = await agent.post('/gifts').send(newGift);
-    console.log('res in test', res);
+    console.log('res.body in test', res.body);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
       id: expect.any(String),
       ...newGift,
-      is_purchased: expect.toBe('false'),
-      created_at: expect.any(String),
+      isPurchased: expect.any(Boolean),
+      createdAt: expect.any(String),
     });
   });
 });

@@ -6,8 +6,8 @@ const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
 export default Router()
   .post('/', async (req, res, next) => {
     try {
-      const token = await UserService.signUp(req.body);
-
+      await UserService.signUp(req.body);
+      const token = await UserService.signIn(req.body);
       res
         .cookie(process.env.COOKIE_NAME, token, {
           httpOnly: true,
