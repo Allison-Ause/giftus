@@ -28,7 +28,7 @@ describe('gift routes', () => {
 
   it.skip('#POST /gifts route', async () => {
     const agent = request.agent(app);
-    await agent.post('/users').send(testUser); // users route is successful
+    await agent.post('/users').send(testUser);
 
     const res = await agent.post('/gifts').send(newGift);
     console.log('res.body in test', res.body);
