@@ -11,7 +11,7 @@ const newUser = {
 };
 
 const existingUser = {
-  email: 'new@test.com',
+  email: 'dog@dog.com',
   password: 'password',
 };
 

@@ -26,7 +26,7 @@ describe('gift routes', () => {
     return setupDb();
   });
 
-  it.only('#POST /gifts route', async () => {
+  it.skip('#POST /gifts route', async () => {
     const agent = request.agent(app);
     await agent.post('/users').send(testUser); // users route is successful
 
