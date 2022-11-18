@@ -10,7 +10,8 @@ export default function NewGiftForm() {
       occasion: formData.get('occasion'),
     };
     console.log('newGift', newGift);
-    //create new form data
+    form.reset();
+    // hook up to fetch-utils.
   };
 
   return (
