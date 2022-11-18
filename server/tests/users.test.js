@@ -20,7 +20,7 @@ describe('user routes', () => {
     return setupDb();
   });
 
-  it.only('#POST /users route successfully sign ups a new user & signs them in', async () => {
+  it.skip('#POST /users route successfully sign ups a new user & signs them in', async () => {
     const res = await request(app).post('/users').send(newUser);
 
     expect(res.status).toBe(200);

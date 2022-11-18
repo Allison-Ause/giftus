@@ -22,15 +22,16 @@ export default class Gifts {
     this.createdAt = row.created_at;
   }
 
-  static async addGift({ idea, link, price, occasion, userId }) {
+  static async addGift({ userId, idea, link, price, occasion }) {
     const { rows } = await pool.query(
       `
-    INSERT INTO gifts (idea, link, price, occasion, userId)
+    INSERT INTO gifts (userId, idea, link, price, occasion)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *
     `,
       [idea, link, price, occasion, userId]
     );
+    console.log('rows from addGift model', rows);
     return new Gifts(rows[0]);
   }
 }
