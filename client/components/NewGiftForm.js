@@ -13,6 +13,7 @@ export default function NewGiftForm() {
     };
     console.log('newGift', newGift);
     await addGift(newGift);
+    e.target.reset();
   };
 
   return (
