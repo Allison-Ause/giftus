@@ -25,9 +25,7 @@ export default Router()
   })
   .post('/sessions', async (req, res, next) => {
     try {
-      console.log('controller req.body', req.body);
       const sessionToken = await UserService.signIn(req.body);
-      console.log('sessionToken from controller:', sessionToken);
       res
         .cookie(process.env.COOKIE_NAME, sessionToken, {
           httpOnly: true,

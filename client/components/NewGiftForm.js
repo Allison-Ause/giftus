@@ -11,7 +11,6 @@ export default function NewGiftForm() {
       price: formData.get('price'),
       occasion: formData.get('occasion'),
     };
-    console.log('newGift', newGift);
     await addGift(newGift);
     e.target.reset();
   };

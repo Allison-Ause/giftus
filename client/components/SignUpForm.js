@@ -12,7 +12,6 @@ export default function SignUpForm() {
       email: formData.get('email'),
       password: formData.get('password'),
     };
-    console.log('newUser', newUser);
     await signUpUser(newUser);
   };
 

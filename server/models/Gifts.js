@@ -31,7 +31,6 @@ export default class Gifts {
     `,
       [userId, idea, link, price, occasion]
     );
-    console.log('rows from addGift model', rows);
     return new Gifts(rows[0]);
   }
 }

@@ -13,8 +13,6 @@ export async function addGift(newGift) {
 
   if (res.ok) {
     const newGift = await res.json();
-    console.log('newGift from utils', newGift);
-
     return newGift;
   }
 }

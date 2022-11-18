@@ -31,7 +31,6 @@ describe('gift routes', () => {
     await agent.post('/users').send(testUser);
 
     const res = await agent.post('/gifts').send(newGift);
-    console.log('res.body in test', res.body);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
