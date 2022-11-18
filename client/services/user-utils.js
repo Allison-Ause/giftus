@@ -4,7 +4,6 @@
 const BASE_URL = 'http://localhost:7891/api/v1';
 
 export async function signUpUser(userInfo) {
-  console.log('userInfo in fetch', userInfo);
   const res = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {
@@ -16,7 +15,28 @@ export async function signUpUser(userInfo) {
   });
   const data = await res.json();
   if (res.ok) {
+    location.replace('/');
     console.log('data', data);
+  } else {
+    console.error(data.message);
+  }
+}
+
+export async function signInUser(userInfo) {
+  console.log('userInfo in fetch', userInfo);
+  const res = await fetch(`${BASE_URL}/users/sessions`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify(userInfo),
+  });
+  const data = await res.json();
+
+  if (res.ok) {
+    location.replace('/');
   } else {
     console.error(data.message);
   }

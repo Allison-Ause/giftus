@@ -24,9 +24,15 @@ export default class UserService {
   static async signIn({ email, password = '' }) {
     try {
       const user = await Users.getByEmail(email);
-      console.log('user from signIn', user);
+      console.log('user from signIn', user); //confirmed
 
       if (!user) throw new Error('Invalid Email. Please try again.');
+      console.log(
+        'password:',
+        password,
+        'user.passwordHash',
+        user.passwordHash
+      );
       if (!bcrypt.compareSync(password, user.passwordHash))
         throw new Error('Invalid password. Please try again.');
 

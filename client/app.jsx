@@ -1,10 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './reset.css';
-import './light-theme.css';
-import './dark-theme.css';
 import './global.css';
-import fooListFn from './components/foo-list';
 import catListFn from './components/cat-list';
 import dashboardFn from './components/dashboard';
 import Layout from './layout';
