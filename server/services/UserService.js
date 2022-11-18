@@ -39,6 +39,7 @@ export default class UserService {
       const token = jwt.sign({ ...user }, process.env.JWT_SECRET, {
         expiresIn: '1 day',
       });
+      console.log('token include jwt secret:', token);
       return token;
     } catch (error) {
       error.status = 401;

@@ -1,14 +1,14 @@
-import pool from '../database';
+import pool from '../database.js';
 
 export default class Gifts {
   id;
-  user_id;
+  userId;
   idea;
   link;
   price;
   occasion;
-  is_purchased;
-  created_at;
+  isPurchased;
+  createdAt;
 
   // left hand is key (can be renamed) and right hand is value (coming from table)
   constructor(row) {
@@ -25,11 +25,11 @@ export default class Gifts {
   static async addGift({ userId, idea, link, price, occasion }) {
     const { rows } = await pool.query(
       `
-    INSERT INTO gifts (userId, idea, link, price, occasion)
+    INSERT INTO gifts (user_id, idea, link, price, occasion)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *
     `,
-      [idea, link, price, occasion, userId]
+      [userId, idea, link, price, occasion]
     );
     console.log('rows from addGift model', rows);
     return new Gifts(rows[0]);

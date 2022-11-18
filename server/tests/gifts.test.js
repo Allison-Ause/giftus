@@ -9,7 +9,11 @@ const testUser = {
 };
 
 const newGift = {
+  user_id: '1',
   idea: 'rainbow glitter',
+  link: 'url.link',
+  price: 30,
+  occasion: 'Christmas',
 };
 
 describe('gift routes', () => {
@@ -19,9 +23,10 @@ describe('gift routes', () => {
 
   it.only('#POST /gifts route', async () => {
     const agent = request.agent(app);
-    await agent.post('/gifts').send(testUser);
+    await agent.post('/users').send(testUser); // users route is successful
 
     const res = await agent.post('/gifts').send(newGift);
+    console.log('res in test', res);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
