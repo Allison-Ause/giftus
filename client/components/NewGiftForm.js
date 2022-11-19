@@ -1,5 +1,7 @@
+import { addGift } from '../services/gift-utils.js';
+
 export default function NewGiftForm() {
-  const handleAddGift = (e) => {
+  const handleAddGift = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newGift = {
@@ -9,8 +11,8 @@ export default function NewGiftForm() {
       price: formData.get('price'),
       occasion: formData.get('occasion'),
     };
-    console.log('newGift', newGift);
-    //create new form data
+    await addGift(newGift);
+    e.target.reset();
   };
 
   return (

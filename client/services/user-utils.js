@@ -16,14 +16,12 @@ export async function signUpUser(userInfo) {
   const data = await res.json();
   if (res.ok) {
     location.replace('/');
-    console.log('data', data);
   } else {
     console.error(data.message);
   }
 }
 
 export async function signInUser(userInfo) {
-  console.log('userInfo in fetch', userInfo);
   const res = await fetch(`${BASE_URL}/users/sessions`, {
     method: 'POST',
     headers: {
