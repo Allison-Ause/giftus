@@ -34,10 +34,13 @@ describe('gift routes', () => {
     expect(res.body.length).toBe(3);
     expect(res.body[0]).toEqual({
       id: '1',
+      userId: '1',
       idea: 'Ice Skates',
       link: 'url.link/buy',
-      price: '45',
+      price: 45,
       occasion: 'Christmas',
+      isPurchased: false,
+      createdAt: expect.any(String),
     });
   });
 
