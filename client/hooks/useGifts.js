@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllGifts } from '../services/gift-utils';
+import { getAllGifts } from '../services/gift-utils.js';
 
 export default function useGifts() {
   const [gifts, setGifts] = useState([]);

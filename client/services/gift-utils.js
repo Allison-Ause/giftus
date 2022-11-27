@@ -12,6 +12,7 @@ export async function getAllGifts() {
 
   if (res.ok) {
     const giftList = await res.json();
+    console.log('data from fetch', giftList);
     return giftList;
   }
 }
