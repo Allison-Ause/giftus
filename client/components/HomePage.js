@@ -4,7 +4,6 @@ import NewGiftForm from './NewGiftForm.js';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
-  console.log('react gifts', gifts);
   return (
     <>
       <NewGiftForm />

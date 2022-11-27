@@ -23,7 +23,6 @@ export default class Gifts {
   }
 
   static async getAllGifts(userId) {
-    console.log('userId', userId);
     const { rows } = await pool.query(
       `
     SELECT * FROM gifts
@@ -32,7 +31,6 @@ export default class Gifts {
     `,
       [userId]
     );
-    console.log('rows from model', rows);
     return rows.map((gift) => new Gifts(gift));
   }
 

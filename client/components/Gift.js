@@ -1,6 +1,4 @@
 export default function Gift(gift) {
-  console.log('gift', gift);
-
   // make this flex box with column of individual gift rows
   return (
     <div>

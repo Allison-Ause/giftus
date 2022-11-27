@@ -9,10 +9,8 @@ export async function getAllGifts() {
     },
     credentials: 'include',
   });
-
   if (res.ok) {
     const giftList = await res.json();
-    console.log('data from fetch', giftList);
     return giftList;
   }
 }

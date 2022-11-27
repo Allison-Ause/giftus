@@ -7,7 +7,6 @@ export default function useGifts() {
   useEffect(() => {
     const fetchData = async () => {
       const giftList = await getAllGifts();
-      console.log('giftList', giftList);
       setGifts(giftList);
     };
     fetchData();
