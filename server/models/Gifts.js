@@ -22,6 +22,18 @@ export default class Gifts {
     this.createdAt = row.created_at;
   }
 
+  static async getAllGifts(userId) {
+    const { rows } = await pool.query(
+      `
+    SELECT * FROM gifts
+    WHERE user_id = $1
+    ORDER BY created_at DESC
+    `,
+      [userId]
+    );
+    return rows.map((gift) => new Gifts(gift));
+  }
+
   static async addGift({ userId, idea, link, price, occasion }) {
     const { rows } = await pool.query(
       `

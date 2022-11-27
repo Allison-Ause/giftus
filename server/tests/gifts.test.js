@@ -25,6 +25,24 @@ describe('gift routes', () => {
   beforeEach(() => {
     return setupDb();
   });
+  it.only('#GET /gifts route', async () => {
+    const agent = request.agent(app);
+    await agent.post('/users/sessions').send(existingUser);
+
+    const res = await agent.get('/gifts');
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(3);
+    expect(res.body[0]).toEqual({
+      id: '1',
+      userId: '1',
+      idea: 'Ice Skates',
+      link: 'url.link/buy',
+      price: 45,
+      occasion: 'Christmas',
+      isPurchased: false,
+      createdAt: expect.any(String),
+    });
+  });
 
   it.skip('#POST /gifts route', async () => {
     const agent = request.agent(app);
