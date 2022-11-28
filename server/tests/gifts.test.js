@@ -1,3 +1,7 @@
+// @jest-environment node
+// if I get "setImmediate is not defined"
+// I need to activate that override variable above
+
 import request from 'supertest';
 import { describe, expect, it } from '@jest/globals';
 import setupDb from '../setup-data';

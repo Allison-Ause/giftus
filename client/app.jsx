@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 import AuthPage from './components/AuthPage';
 import HomePage from './components/HomePage';
+import { UserProvider } from './context/userContext';
 
 const CatList = catListFn();
 const container =
@@ -19,13 +20,15 @@ container.id = 'app';
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/auth/:type" element={<AuthPage />} />
-        </Route>
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/auth/:type" element={<AuthPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </UserProvider>
   </React.StrictMode>
 );
