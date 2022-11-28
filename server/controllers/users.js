@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import authenticate from '../middleware/authenticate.js';
 import UserService from '../services/UserService.js';
 
 const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -35,6 +36,13 @@ export default Router()
           maxAge: ONE_DAY_IN_MS,
         })
         .json({ message: 'Successfully signed in!' });
+    } catch (e) {
+      next(e);
+    }
+  })
+  .get('/me', authenticate, async (req, res, next) => {
+    try {
+      res.json(req.user);
     } catch (e) {
       next(e);
     }
