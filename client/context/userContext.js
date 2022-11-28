@@ -16,7 +16,7 @@ const UserProvider = ({ children }) => {
   );
 };
 
-const useUserContext = () => {
+const useUser = () => {
   const context = useContext(UserContext);
   if (context === undefined) {
     throw new Error(
@@ -26,4 +26,4 @@ const useUserContext = () => {
   return context;
 };
 
-export { UserProvider, UserContext, useUserContext };
+export { UserProvider, useUser };
