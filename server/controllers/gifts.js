@@ -22,4 +22,13 @@ export default Router()
     } catch (e) {
       next(e);
     }
+  })
+  .delete('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = await Gifts.deleteGift(req.params.id);
+      console.log('deleted gift from controller', data);
+      res.json(data);
+    } catch (e) {
+      next(e);
+    }
   });
