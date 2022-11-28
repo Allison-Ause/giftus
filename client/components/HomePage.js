@@ -1,9 +1,15 @@
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
 import Gift from './Gift.js';
 import NewGiftForm from './NewGiftForm.js';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
+  const { user } = useUser();
+
+  if (!user) return <Navigate to="/auth/sign-in" replace />;
+
   return (
     <>
       <NewGiftForm />
