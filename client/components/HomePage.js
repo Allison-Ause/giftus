@@ -7,7 +7,7 @@ import NewGiftForm from './NewGiftForm.js';
 export default function HomePage() {
   const { gifts } = useGifts();
   const { user } = useUser();
-
+  console.log(user);
   if (!user) return <Navigate to="/auth/sign-in" replace />;
 
   return (
