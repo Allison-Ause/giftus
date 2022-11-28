@@ -1,13 +1,25 @@
 // userContext and Provider will go here.
 
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { getUser } from '../services/user-utils.js';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const currentUser = getUser();
-  const [user, setUser] = useState(currentUser);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const currentUser = await getUser();
+      setUser(currentUser);
+    };
+    fetchUser();
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

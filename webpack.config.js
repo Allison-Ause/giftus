@@ -94,7 +94,7 @@ export default {
     // completely work, see the resolve.alias section as well as the
     // ProvidePlugin in this plugin section, and finally the environment
     // processing code above this configuration in this file.
-    new webpack.EnvironmentPlugin(env),
+    // new webpack.EnvironmentPlugin(env),
     // Typically we don't need to copy files manually from Webpack. If we
     // statically refer to the file correctly (such as an import in a .js/ts
     // file, or an <img src="...">, Webpack will detect that properly and ensure
@@ -113,17 +113,17 @@ export default {
     // resolve -> alias setting in this file, dotenv usage in this file, and
     // the added process package.
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      // process: 'process/browser',
       React: 'react',
     }),
   ],
   resolve: {
-    alias: {
-      // Use this to allow use of process.env in the web. See also the
-      // ProvidePlugin usage in this file, dotenv usage in this file, and the
-      // added process package.
-      process: 'process/browser',
-    },
+    // alias: {
+    //   // Use this to allow use of process.env in the web. See also the
+    //   // ProvidePlugin usage in this file, dotenv usage in this file, and the
+    //   // added process package.
+    //   process: 'process/browser',
+    // },
     extensions: ['.js', '.jsx'],
   },
   module: {

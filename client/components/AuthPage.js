@@ -6,7 +6,7 @@ import SignUpForm from './SignUpForm.js';
 export default function AuthPage() {
   const { type: authMethod } = useParams();
   const { user } = useUser();
-
+  console.log('user from auth', user);
   if (user) return <Navigate to="/" replace />;
 
   return (
