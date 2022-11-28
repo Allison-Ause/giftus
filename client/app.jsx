@@ -12,6 +12,7 @@ import {
 import AuthPage from './components/AuthPage';
 import HomePage from './components/HomePage';
 import { UserProvider } from './context/userContext';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const CatList = catListFn();
 const container =
@@ -20,15 +21,17 @@ container.id = 'app';
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <Router>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/auth/:type" element={<AuthPage />} />
-          </Route>
-        </Routes>
-      </Router>
-    </UserProvider>
+    <ChakraProvider>
+      <UserProvider>
+        <Router>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/auth/:type" element={<AuthPage />} />
+            </Route>
+          </Routes>
+        </Router>
+      </UserProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
