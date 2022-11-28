@@ -49,10 +49,8 @@ export async function getUser() {
     },
     credentials: 'include',
   });
-  console.log('FE res from getUser utils', res.body);
   if (res.ok) {
     const user = await res.json();
-    console.log('FE user from getUser utils', user);
     return user;
   }
 }
