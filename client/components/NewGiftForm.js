@@ -53,6 +53,9 @@ export default function NewGiftForm({ setGifts }) {
     setLink('');
     setCost('');
     setOccasion('');
+    setIsIdeaError(false);
+    setIsRecipientError(false);
+    isFormInvalid = false;
   };
 
   // const handleAddGift = async (e) => {
@@ -69,6 +72,7 @@ export default function NewGiftForm({ setGifts }) {
   //   e.target.reset();
   // };
 
+  // reset form error messages after proper submit
   return (
     <>
       <Flex

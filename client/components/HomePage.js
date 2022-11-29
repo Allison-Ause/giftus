@@ -22,6 +22,7 @@ export default function HomePage() {
         backgroundSize="cover"
         h="calc(100vh)"
         padding="30px"
+        justifyContent="space-around"
       >
         <Box
           boxShadow="md"
