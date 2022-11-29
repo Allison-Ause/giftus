@@ -1,5 +1,5 @@
 import { DeleteIcon } from '@chakra-ui/icons';
-import { Flex, IconButton } from '@chakra-ui/react';
+import { Flex, IconButton, Text } from '@chakra-ui/react';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
 
 export default function Gift({
@@ -26,10 +26,10 @@ export default function Gift({
       ) : (
         <h1>{gift.idea}</h1>
       )} */}
-        <h2>{idea}</h2>
-        <h2>{`for ${recipient}`}</h2>
-        {price != 0 && <h2>{`$${price}`}</h2>}
-        <h2>{occasion}</h2>
+        <Text fontWeight="bold">{idea}</Text>
+        <Text>{`for ${recipient}`}</Text>
+        {price != 0 && <Text>{`$${price}`}</Text>}
+        <Text>{occasion}</Text>
         <IconButton
           aria-label="delete gift"
           icon={<DeleteIcon />}
