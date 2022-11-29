@@ -1,3 +1,5 @@
+import { DeleteIcon } from '@chakra-ui/icons';
+import { Flex, IconButton, Text } from '@chakra-ui/react';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
 
 export default function Gift({
@@ -17,17 +19,25 @@ export default function Gift({
 
   return (
     <div>
-      {/* conditional rendering not displaying as Link. Why? */}
-      {/* {gift.url ? (
+      <Flex direction="row" gap="3.7px" alignItems="center">
+        {/* conditional rendering not displaying as Link. Why? */}
+        {/* {gift.url ? (
         <Link to={gift.url}>{gift.idea}</Link>
       ) : (
         <h1>{gift.idea}</h1>
       )} */}
-      <h2>{idea}</h2>
-      <h2>{`for ${recipient}`}</h2>
-      <h2>{`$${price}`}</h2>
-      <h2>{occasion}</h2>
-      <button onClick={handleDelete}>x</button>
+        <Text fontWeight="bold">{idea}</Text>
+        <Text>{`for ${recipient}`}</Text>
+        {price != 0 && <Text>{`$${price}`}</Text>}
+        <Text>{occasion}</Text>
+        <IconButton
+          aria-label="delete gift"
+          icon={<DeleteIcon />}
+          variant="ghost"
+          colorScheme="purple"
+          onClick={handleDelete}
+        />
+      </Flex>
     </div>
   );
 }
