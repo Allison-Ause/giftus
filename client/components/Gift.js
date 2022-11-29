@@ -9,10 +9,8 @@ export default function Gift({
 }) {
   // make this flex box with column of individual gift rows
   const handleDelete = async () => {
-    console.log('delete is firing!');
     await deleteGift(id);
     const giftList = await getAllGifts();
-    console.log('giftList from handleDelete', giftList);
     setGifts(giftList);
   };
 

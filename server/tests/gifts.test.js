@@ -71,7 +71,6 @@ describe('gift routes', () => {
 
     expect(res.status).toBe(200);
     const checkRes = await agent.get('/gifts');
-    console.log('post delete response', checkRes);
     expect(checkRes).to.not.include(id === 1);
   });
 });
