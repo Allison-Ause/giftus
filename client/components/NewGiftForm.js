@@ -7,9 +7,9 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { addGift } from '../services/gift-utils.js';
+import { addGift, getAllGifts } from '../services/gift-utils.js';
 
-export default function NewGiftForm() {
+export default function NewGiftForm({ setGifts }) {
   const [idea, setIdea] = useState('');
   const [recipient, setRecipient] = useState('');
   const [link, setLink] = useState('');
@@ -27,6 +27,11 @@ export default function NewGiftForm() {
     console.log('newGift', newGift);
 
     await addGift(newGift);
+    const newList = await getAllGifts();
+    setGifts(newList);
+    // had issues with this because I don't have an id to use in the key. Must refetch.
+    // setGifts((prevState) => [newGift, ...prevState]);
+
     setIdea('');
     setRecipient('');
     setLink('');
