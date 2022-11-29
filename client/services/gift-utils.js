@@ -1,3 +1,5 @@
+import { ids } from 'webpack';
+
 const BASE_URL = 'http://localhost:7891/api/v1';
 
 export async function getAllGifts() {
@@ -29,5 +31,22 @@ export async function addGift(newGift) {
   if (res.ok) {
     const newGift = await res.json();
     return newGift;
+  }
+}
+
+export async function deleteGift(id) {
+  const res = await fetch(`${BASE_URL}/gifts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(id),
+    credentials: 'include',
+  });
+
+  if (res.ok) {
+    const deletedGift = await res.json();
+    return deletedGift;
   }
 }
