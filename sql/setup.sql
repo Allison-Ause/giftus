@@ -16,6 +16,7 @@ CREATE TABLE gifts (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   user_id BIGINT,
   idea VARCHAR NOT NULL,
+  recipient VARCHAT NOT NULL,
   link VARCHAR,
   price int,
   occasion VARCHAR,
