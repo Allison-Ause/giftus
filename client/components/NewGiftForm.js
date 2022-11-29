@@ -32,6 +32,7 @@ export default function NewGiftForm({ setGifts }) {
       setIsRecipientError(true);
       isFormInvalid = true;
     }
+    if (isFormInvalid) return;
 
     let price;
     cost === '' ? (price = 0) : (price = cost);
@@ -111,7 +112,7 @@ export default function NewGiftForm({ setGifts }) {
               size="md"
               fontWeight="bold"
             >
-              For:
+              Recipient:
               <Input
                 type="text"
                 id="recipient"
@@ -123,7 +124,7 @@ export default function NewGiftForm({ setGifts }) {
             </FormLabel>
             {isRecipientError ? (
               <FormErrorMessage>
-                Who is the intended recipient?
+                Who would love to receive this gift?
               </FormErrorMessage>
             ) : (
               <FormHelperText visibility="hidden">
