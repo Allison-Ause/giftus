@@ -2,6 +2,8 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
+  FormHelperText,
   FormLabel,
   Input,
   Stack,
@@ -13,10 +15,27 @@ export default function NewGiftForm({ setGifts }) {
   const [idea, setIdea] = useState('');
   const [recipient, setRecipient] = useState('');
   const [link, setLink] = useState('');
-  const [price, setPrice] = useState('');
+  const [cost, setCost] = useState('');
   const [occasion, setOccasion] = useState('');
+  const [isIdeaError, setIsIdeaError] = useState(false);
+  const [isRecipientError, setIsRecipientError] = useState(false);
 
   const handleAddGift = async (e) => {
+    let isFormInvalid = false;
+
+    if (idea === '') {
+      setIsIdeaError(true);
+      isFormInvalid = true;
+    }
+
+    if (recipient === '') {
+      setIsRecipientError(true);
+      isFormInvalid = true;
+    }
+
+    let price;
+    cost === '' ? (price = 0) : (price = cost);
+
     const newGift = {
       idea,
       recipient,
@@ -24,18 +43,14 @@ export default function NewGiftForm({ setGifts }) {
       price,
       occasion,
     };
-    console.log('newGift', newGift);
 
     await addGift(newGift);
     const newList = await getAllGifts();
     setGifts(newList);
-    // had issues with this because I don't have an id to use in the key. Must refetch.
-    // setGifts((prevState) => [newGift, ...prevState]);
-
     setIdea('');
     setRecipient('');
     setLink('');
-    setPrice('');
+    setCost('');
     setOccasion('');
   };
 
@@ -60,9 +75,9 @@ export default function NewGiftForm({ setGifts }) {
         justifyContent="center"
         alignItems="center"
       >
-        <Stack spacing={4}>
+        <Stack spacing={2}>
           <h1>Cache Your Clever Idea!</h1>
-          <FormControl isRequired>
+          <FormControl isRequired isInvalid={isIdeaError}>
             <FormLabel
               requiredIndicator
               htmlFor="idea"
@@ -79,8 +94,17 @@ export default function NewGiftForm({ setGifts }) {
               value={idea}
               onChange={(e) => setIdea(e.target.value)}
             />
+            {isIdeaError ? (
+              <FormErrorMessage>
+                You forgot to enter your genius gift idea!
+              </FormErrorMessage>
+            ) : (
+              <FormHelperText visibility="hidden">
+                &nbsp;
+              </FormHelperText>
+            )}
           </FormControl>
-          <FormControl isRequired>
+          <FormControl isRequired isInvalid={isRecipientError}>
             <FormLabel
               requiredIndicator
               htmlFor="recipient"
@@ -97,40 +121,59 @@ export default function NewGiftForm({ setGifts }) {
                 onChange={(e) => setRecipient(e.target.value)}
               />
             </FormLabel>
+            {isRecipientError ? (
+              <FormErrorMessage>
+                Who is the intended recipient?
+              </FormErrorMessage>
+            ) : (
+              <FormHelperText visibility="hidden">
+                &nbsp;
+              </FormHelperText>
+            )}
           </FormControl>
-          <FormLabel htmlFor="link" size="md" fontWeight="bold">
-            Link:
-            <Input
-              type="text"
-              id="link"
-              variant="outline"
-              bg="white"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-            />
-          </FormLabel>
-          <FormLabel htmlFor="price" size="md" fontWeight="bold">
-            Price:
-            <Input
-              type="number"
-              id="price"
-              variant="outline"
-              bg="white"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </FormLabel>
-          <FormLabel htmlFor="occasion" size="md" fontWeight="bold">
-            Occasion:
-            <Input
-              type="text"
-              id="occasion"
-              variant="outline"
-              bg="white"
-              value={occasion}
-              onChange={(e) => setOccasion(e.target.value)}
-            />
-          </FormLabel>
+          <FormControl>
+            <FormLabel htmlFor="link" size="md" fontWeight="bold">
+              Link:
+              <Input
+                type="text"
+                id="link"
+                variant="outline"
+                bg="white"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+              />
+            </FormLabel>
+            <FormHelperText>Enter complete url.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="cost" size="md" fontWeight="bold">
+              Price:
+              <Input
+                type="number"
+                id="cost"
+                variant="outline"
+                bg="white"
+                value={cost}
+                onChange={(e) => setCost(e.target.value)}
+              />
+            </FormLabel>
+            <FormHelperText>
+              Enter numeric value with no symbols.
+            </FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="occasion" size="md" fontWeight="bold">
+              Occasion:
+              <Input
+                type="text"
+                id="occasion"
+                variant="outline"
+                bg="white"
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
+              />
+            </FormLabel>
+          </FormControl>
           <Button
             onClick={handleAddGift}
             size="md"

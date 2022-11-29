@@ -25,7 +25,7 @@ export default function Gift({
       )} */}
       <h2>{idea}</h2>
       <h2>{`for ${recipient}`}</h2>
-      <h2>{`$${price}`}</h2>
+      {price != 0 && <h2>{`$${price}`}</h2>}
       <h2>{occasion}</h2>
       <button onClick={handleDelete}>x</button>
     </div>
