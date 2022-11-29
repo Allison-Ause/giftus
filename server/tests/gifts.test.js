@@ -29,7 +29,7 @@ describe('gift routes', () => {
   beforeEach(() => {
     return setupDb();
   });
-  it.only('#GET /gifts returns all gifts', async () => {
+  it('#GET /gifts returns all gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -40,6 +40,7 @@ describe('gift routes', () => {
       id: '1',
       userId: '1',
       idea: 'Ice Skates',
+      recipient: 'Jenny',
       link: 'url.link/buy',
       price: 45,
       occasion: 'Christmas',
@@ -63,7 +64,7 @@ describe('gift routes', () => {
     });
   });
 
-  it('#DELETE /gifts/:id deletes specific gift', async () => {
+  it.skip('#DELETE /gifts/:id deletes specific gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
