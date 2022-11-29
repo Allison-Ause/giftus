@@ -6,11 +6,12 @@ export default function NewGiftForm({ setGifts }) {
     const formData = new FormData(e.target);
     const newGift = {
       idea: formData.get('idea'),
-      for: formData.get('for'),
+      recipient: formData.get('recipient'),
       link: formData.get('link'),
       price: formData.get('price'),
       occasion: formData.get('occasion'),
     };
+    console.log('newGift', newGift);
     await addGift(newGift);
     const giftList = await getAllGifts();
     setGifts(giftList);
@@ -26,7 +27,7 @@ export default function NewGiftForm({ setGifts }) {
         </label>
         <label>
           For:
-          <input type="text" name="for" />
+          <input type="text" name="recipient" />
         </label>
         <label>
           Link:

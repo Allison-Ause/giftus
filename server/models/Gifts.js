@@ -4,6 +4,7 @@ export default class Gifts {
   id;
   userId;
   idea;
+  recipient;
   link;
   price;
   occasion;
@@ -15,6 +16,7 @@ export default class Gifts {
     this.id = row.id;
     this.userId = row.user_id;
     this.idea = row.idea;
+    this.recipient = row.recipient;
     this.link = row.link;
     this.price = row.price;
     this.occasion = row.occasion;
@@ -34,14 +36,21 @@ export default class Gifts {
     return rows.map((gift) => new Gifts(gift));
   }
 
-  static async addGift({ userId, idea, link, price, occasion }) {
+  static async addGift({
+    userId,
+    idea,
+    recipient,
+    link,
+    price,
+    occasion,
+  }) {
     const { rows } = await pool.query(
       `
-    INSERT INTO gifts (user_id, idea, link, price, occasion)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO gifts (user_id, idea, recipient, link, price, occasion)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *
     `,
-      [userId, idea, link, price, occasion]
+      [userId, idea, recipient, link, price, occasion]
     );
     return new Gifts(rows[0]);
   }
