@@ -1,3 +1,4 @@
+import { Box, Flex } from '@chakra-ui/react';
 import { Navigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
@@ -12,15 +13,20 @@ export default function HomePage() {
 
   return (
     <>
-      <NewGiftForm setGifts={setGifts} />
-      <div>
-        <h1>This is where the data is!</h1>
-        <div>
-          {gifts.map((gift) => (
-            <Gift key={gift.id} {...gift} setGifts={setGifts} />
-          ))}
-        </div>
-      </div>
+      <Flex direction="row" gap="50px">
+        <Box boxShadow="md" p="6" rounded="md" bg="white">
+          <NewGiftForm setGifts={setGifts} />
+        </Box>
+
+        <Box boxShadow="md" p="6" rounded="md" bg="white">
+          <h1>This is where the data is!</h1>
+          <div>
+            {gifts.map((gift) => (
+              <Gift key={gift.id} {...gift} setGifts={setGifts} />
+            ))}
+          </div>
+        </Box>
+      </Flex>
     </>
   );
 }
