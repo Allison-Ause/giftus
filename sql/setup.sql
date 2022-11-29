@@ -16,7 +16,11 @@ CREATE TABLE gifts (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   user_id BIGINT,
   idea VARCHAR NOT NULL,
+<<<<<<< HEAD
   recipient VARCHAT NOT NULL,
+=======
+  recipient VARCHAR NOT NULL,
+>>>>>>> 881155d771fdd32645a7d2a1d2511e505bb5a8aa
   link VARCHAR,
   price int,
   occasion VARCHAR,
@@ -31,10 +35,10 @@ INSERT INTO users (first_name, last_name, email, password_hash) VALUES
 ('Bjorn', 'Doodle', 'dog@dog.com', '$2b$10$WL1aFvdcAtv6gSfqNtAjbeanOg0d8NED1FczWR4UOnZL86uj1U8DG'), --  password is password
 ('Lyla', 'Birch', 'cultist@blades.com', 'fakePasswordHash');
 
-INSERT INTO gifts (user_id, idea, link, price, occasion) VALUES
-(1, 'Ice Skates', 'url.link/buy', 45, 'Christmas'),
-(1, 'Toadstool Lamp', 'url.link/shop', 25, 'Birthday'),
-(1, 'Sword Umbrella', 'url.link/merchant', 70, 'Christmas');
+INSERT INTO gifts (user_id, idea, recipient, link, price, occasion) VALUES
+(1, 'Ice Skates', 'Jenny', 'url.link/buy', 45, 'Christmas'),
+(1, 'Toadstool Lamp', 'Katie', 'url.link/shop', 25, 'Birthday'),
+(1, 'Sword Umbrella', 'Jeremy', 'url.link/merchant', 70, 'Christmas');
 
 
 

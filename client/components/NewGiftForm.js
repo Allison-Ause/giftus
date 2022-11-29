@@ -12,7 +12,7 @@ import { addGift } from '../services/gift-utils.js';
 export default function NewGiftForm() {
   const [idea, setIdea] = useState('');
   const [recipient, setRecipient] = useState('');
-  const [url, setUrl] = useState('');
+  const [link, setLink] = useState('');
   const [price, setPrice] = useState('');
   const [occasion, setOccasion] = useState('');
 
@@ -20,14 +20,16 @@ export default function NewGiftForm() {
     const newGift = {
       idea,
       recipient,
-      url,
+      link,
       price,
       occasion,
     };
+    console.log('newGift', newGift);
+
     await addGift(newGift);
     setIdea('');
     setRecipient('');
-    setUrl('');
+    setLink('');
     setPrice('');
     setOccasion('');
   };
@@ -56,7 +58,12 @@ export default function NewGiftForm() {
         <Stack spacing={4}>
           <h1>Cache Your Clever Idea!</h1>
           <FormControl isRequired>
-            <FormLabel requiredIndicator size="md" fontWeight="bold">
+            <FormLabel
+              requiredIndicator
+              htmlFor="idea"
+              size="md"
+              fontWeight="bold"
+            >
               Gift:
             </FormLabel>
             <Input
@@ -69,11 +76,16 @@ export default function NewGiftForm() {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel requiredIndicator size="md" fontWeight="bold">
+            <FormLabel
+              requiredIndicator
+              htmlFor="recipient"
+              size="md"
+              fontWeight="bold"
+            >
               For:
               <Input
                 type="text"
-                id="for"
+                id="recipient"
                 variant="outline"
                 bg="white"
                 value={recipient}
@@ -81,18 +93,18 @@ export default function NewGiftForm() {
               />
             </FormLabel>
           </FormControl>
-          <FormLabel size="md" fontWeight="bold">
+          <FormLabel htmlFor="link" size="md" fontWeight="bold">
             Link:
             <Input
               type="text"
-              id="url"
+              id="link"
               variant="outline"
               bg="white"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
             />
           </FormLabel>
-          <FormLabel size="md" fontWeight="bold">
+          <FormLabel htmlFor="price" size="md" fontWeight="bold">
             Price:
             <Input
               type="number"
@@ -103,7 +115,7 @@ export default function NewGiftForm() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </FormLabel>
-          <FormLabel size="md" fontWeight="bold">
+          <FormLabel htmlFor="occasion" size="md" fontWeight="bold">
             Occasion:
             <Input
               type="text"
