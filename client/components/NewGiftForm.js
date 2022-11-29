@@ -18,7 +18,11 @@ export default function NewGiftForm() {
 
   return (
     <>
-      <Flex direction="column" alignItems="center">
+      <Flex
+        direction="column"
+        alignItems="flex-end"
+        justifyContent="center"
+      >
         <form onSubmit={handleAddGift}>
           <label>
             Gift Idea:
