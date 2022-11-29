@@ -29,7 +29,7 @@ describe('gift routes', () => {
   beforeEach(() => {
     return setupDb();
   });
-  it.only('#GET /gifts route', async () => {
+  it.only('#GET /gifts returns all gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -48,7 +48,7 @@ describe('gift routes', () => {
     });
   });
 
-  it.skip('#POST /gifts route', async () => {
+  it.skip('#POST /gifts adds new gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users').send(testUser);
 
@@ -61,5 +61,17 @@ describe('gift routes', () => {
       isPurchased: expect.any(Boolean),
       createdAt: expect.any(String),
     });
+  });
+
+  it('#DELETE /gifts/:id deletes specific gift', async () => {
+    const agent = request.agent(app);
+    await agent.post('/users/sessions').send(existingUser);
+
+    const res = await agent.delete('/gifts/1');
+
+    expect(res.status).toBe(200);
+    const checkRes = await agent.get('/gifts');
+    console.log('post delete response', checkRes);
+    expect(checkRes).to.not.include(id === 1);
   });
 });

@@ -31,3 +31,22 @@ export async function addGift(newGift) {
     return newGift;
   }
 }
+
+// are these the right headers and stuff?
+
+export async function deleteGift(id) {
+  const res = await fetch(`${BASE_URL}/gifts/${id}`, {
+    method: 'DELETE',
+    // headers: {
+    //   Accept: 'application/json',
+    //   'Content-Type': 'application/json',
+    // },
+    // body: JSON.stringify(id),
+    credentials: 'include',
+  });
+
+  // if (res.ok) {
+  //   const deletedGift = await res.json();
+  //   return deletedGift;
+  // }
+}

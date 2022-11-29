@@ -12,6 +12,10 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // create a check for ensuring we've gotten the user and then change the loading state to false
+  // when calling userContext, add conditional to check that we have a user AND the loading state is false
 
   useEffect(() => {
     const fetchUser = async () => {

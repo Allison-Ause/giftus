@@ -45,4 +45,16 @@ export default class Gifts {
     );
     return new Gifts(rows[0]);
   }
+
+  static async deleteGift(id) {
+    const { rows } = await pool.query(
+      `
+    DELETE FROM gifts
+    WHERE id = $1
+    RETURNING *
+    `,
+      [id]
+    );
+    return new Gifts(rows[0]);
+  }
 }

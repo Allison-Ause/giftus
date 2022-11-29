@@ -5,7 +5,7 @@ import Gift from './Gift.js';
 import NewGiftForm from './NewGiftForm.js';
 
 export default function HomePage() {
-  const { gifts } = useGifts();
+  const { gifts, setGifts } = useGifts();
   const { user } = useUser();
   console.log(user);
   if (!user) return <Navigate to="/auth/sign-in" replace />;
@@ -17,7 +17,7 @@ export default function HomePage() {
         <h1>This is where the data is!</h1>
         <div>
           {gifts.map((gift) => (
-            <Gift key={gift.id} {...gift} />
+            <Gift key={gift.id} {...gift} setGifts={setGifts} />
           ))}
         </div>
       </div>
