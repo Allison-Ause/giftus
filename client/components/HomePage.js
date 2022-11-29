@@ -4,7 +4,7 @@ import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
 import Gift from './Gift.js';
 import NewGiftForm from './NewGiftForm.js';
-import styles from './Homepage.css';
+import styles from '../global.css';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
@@ -47,8 +47,9 @@ export default function HomePage() {
             direction="column"
             alignItems="center"
             justifyContent="center"
+            gap="10px"
           >
-            <h1>Recently Stashed Gifts</h1>
+            <h1 className={styles.title}>Recent Gift Ideas</h1>
             <div>
               {gifts.map((gift) => (
                 <Gift key={gift.id} {...gift} setGifts={setGifts} />

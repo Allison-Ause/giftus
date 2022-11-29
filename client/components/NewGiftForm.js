@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { addGift, getAllGifts } from '../services/gift-utils.js';
+import styles from '../global.css';
 
 export default function NewGiftForm({ setGifts }) {
   const [idea, setIdea] = useState('');
@@ -80,8 +81,8 @@ export default function NewGiftForm({ setGifts }) {
         justifyContent="center"
         alignItems="center"
       >
-        <Stack spacing={2}>
-          <h1>Cache Your Clever Idea!</h1>
+        <Stack spacing={1}>
+          <h1 className={styles.title}>Cache Your Clever Idea!</h1>
           <FormControl isRequired isInvalid={isIdeaError}>
             <FormLabel
               requiredIndicator
@@ -117,15 +118,16 @@ export default function NewGiftForm({ setGifts }) {
               fontWeight="bold"
             >
               Recipient:
-              <Input
-                type="text"
-                id="recipient"
-                variant="outline"
-                bg="white"
-                value={recipient}
-                onChange={(e) => setRecipient(e.target.value)}
-              />
             </FormLabel>
+            <Input
+              type="text"
+              id="recipient"
+              variant="outline"
+              bg="white"
+              value={recipient}
+              onChange={(e) => setRecipient(e.target.value)}
+            />
+
             {isRecipientError ? (
               <FormErrorMessage>
                 Who would love to receive this gift?
@@ -139,29 +141,31 @@ export default function NewGiftForm({ setGifts }) {
           <FormControl>
             <FormLabel htmlFor="link" size="md" fontWeight="bold">
               Link:
-              <Input
-                type="text"
-                id="link"
-                variant="outline"
-                bg="white"
-                value={link}
-                onChange={(e) => setLink(e.target.value)}
-              />
             </FormLabel>
+            <Input
+              type="text"
+              id="link"
+              variant="outline"
+              bg="white"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+            />
+
             <FormHelperText>Enter complete url.</FormHelperText>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="cost" size="md" fontWeight="bold">
               Price:
-              <Input
-                type="number"
-                id="cost"
-                variant="outline"
-                bg="white"
-                value={cost}
-                onChange={(e) => setCost(e.target.value)}
-              />
             </FormLabel>
+            <Input
+              type="number"
+              id="cost"
+              variant="outline"
+              bg="white"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+            />
+
             <FormHelperText>
               Enter numeric value with no symbols.
             </FormHelperText>
@@ -169,15 +173,18 @@ export default function NewGiftForm({ setGifts }) {
           <FormControl>
             <FormLabel htmlFor="occasion" size="md" fontWeight="bold">
               Occasion:
-              <Input
-                type="text"
-                id="occasion"
-                variant="outline"
-                bg="white"
-                value={occasion}
-                onChange={(e) => setOccasion(e.target.value)}
-              />
             </FormLabel>
+            <Input
+              type="text"
+              id="occasion"
+              variant="outline"
+              bg="white"
+              value={occasion}
+              onChange={(e) => setOccasion(e.target.value)}
+            />
+            <FormHelperText visibility="hidden">
+              &nbsp;
+            </FormHelperText>
           </FormControl>
           <Button
             onClick={handleAddGift}

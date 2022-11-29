@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+
+#homepage {
+  background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+}
+
+.title {
+  font-family: 'Coiny', cursive;
+  font-size: 30px;
+  color: #6b46c1;
+}
