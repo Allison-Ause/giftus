@@ -3,6 +3,7 @@ import { deleteGift, getAllGifts } from '../services/gift-utils.js';
 export default function Gift({
   id,
   idea,
+  recipient,
   price,
   occasion,
   setGifts,
@@ -23,6 +24,7 @@ export default function Gift({
         <h1>{gift.idea}</h1>
       )} */}
       <h2>{idea}</h2>
+      <h2>{`for ${recipient}`}</h2>
       <h2>{`$${price}`}</h2>
       <h2>{occasion}</h2>
       <button onClick={handleDelete}>x</button>
