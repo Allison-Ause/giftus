@@ -11,7 +11,7 @@ export default function NewGiftForm({ setGifts }) {
       price: formData.get('price'),
       occasion: formData.get('occasion'),
     };
-    console.log('newGift', newGift);
+
     await addGift(newGift);
     const giftList = await getAllGifts();
     setGifts(giftList);
