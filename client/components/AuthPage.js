@@ -7,7 +7,7 @@ export default function AuthPage() {
   const { type: authMethod } = useParams();
   const { user, loading } = useUser();
 
-  if (user) return <Navigate to="/" replace />;
+  if (!loading && user) return <Navigate to="/" replace />;
 
   return (
     <div>
