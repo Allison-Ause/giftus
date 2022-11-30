@@ -34,8 +34,8 @@ export default Router()
   .put('/:id', authenticate, async (req, res, next) => {
     try {
       const data = {
-        ...req.body,
         id: req.params.id,
+        ...req.body,
       };
       console.log('data sent from controller', data);
       const updatedGift = await Gifts.updateGift(data);

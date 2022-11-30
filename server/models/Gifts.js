@@ -1,4 +1,4 @@
-import Gift from '../../client/components/Gift.js';
+// import Gift from '../../client/components/Gift.js';
 import pool from '../database.js';
 
 export default class Gifts {
@@ -76,18 +76,22 @@ export default class Gifts {
     `,
       [id]
     );
+    console.log('rows from getById:', rows);
     if (rows.length === 0) {
       return null;
     }
     return new Gifts(rows[0]);
   }
 
-  static async updateGift(id, newProps) {
-    const originalGift = await Gifts.getGiftById(id);
+  static async updateGift(props) {
+    console.log('id parameter from updateGift model:', props.id);
+    console.log('newProps parameter from updateGift model:', props);
+    const originalGift = await Gifts.getGiftById(props.id);
     console.log('originalGift', originalGift);
-    const updatedGift = { ...originalGift, ...newProps };
+    const updatedGift = { ...originalGift, ...props };
     console.log('updatedGift post mush:', updatedGift);
 
+    // getById is fine; making it to here then timing out.
     const { rows } = await pool.query(
       `
     UPDATE gifts
