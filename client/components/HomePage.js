@@ -10,10 +10,9 @@ export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
 
+  if (loading) return <div>Loading...</div>;
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
-
-  if (loading) return <div>Loading!</div>;
 
   return (
     <>

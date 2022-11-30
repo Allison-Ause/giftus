@@ -1,4 +1,3 @@
-// import Gift from '../../client/components/Gift.js';
 import pool from '../database.js';
 
 export default class Gifts {
