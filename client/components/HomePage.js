@@ -13,6 +13,8 @@ export default function HomePage() {
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
+  if (loading) return <div>Loading!</div>;
+
   return (
     <>
       <Flex

@@ -7,7 +7,6 @@ const authenticate = (req, res, next) => {
     if (!cookie) throw new Error('Sign in to view.');
     const user = jwt.verify(cookie, process.env.JWT_SECRET);
     req.user = user;
-
     next();
   } catch (e) {
     next(e);

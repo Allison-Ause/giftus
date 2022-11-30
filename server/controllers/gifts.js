@@ -37,12 +37,7 @@ export default Router()
         id: req.params.id,
         ...req.body,
       };
-      console.log('data sent from controller', data);
       const updatedGift = await Gifts.updateGift(data);
-      console.log(
-        'updatedGift returned from controller',
-        updatedGift
-      );
       res.json(updatedGift);
     } catch (e) {
       next(e);

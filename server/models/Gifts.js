@@ -76,7 +76,6 @@ export default class Gifts {
     `,
       [id]
     );
-    console.log('rows from getById:', rows);
     if (rows.length === 0) {
       return null;
     }
@@ -84,15 +83,9 @@ export default class Gifts {
   }
 
   static async updateGift(props) {
-    console.log('id parameter from updateGift model:', props.id);
-    console.log('newProps parameter from updateGift model:', props);
     const originalGift = await Gifts.getGiftById(props.id);
-    console.log('originalGift:', originalGift);
     const updatedGift = { ...originalGift, ...props };
-    console.log('updatedGift post mush:', updatedGift);
 
-    // getById is fine; making it to here then timing out.
-    // the following query passes inside beekeeper
     const { rows } = await pool.query(
       `
     UPDATE gifts
@@ -109,7 +102,6 @@ export default class Gifts {
         updatedGift.occasion,
       ]
     );
-    console.log('rows from model', rows);
     return new Gifts(rows[0]);
   }
 }
