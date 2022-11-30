@@ -5,8 +5,9 @@ import SignUpForm from './SignUpForm.js';
 
 export default function AuthPage() {
   const { type: authMethod } = useParams();
-  const { user } = useUser();
-  if (user) return <Navigate to="/" replace />;
+  const { user, loading } = useUser();
+
+  if (!loading && user) return <Navigate to="/" replace />;
 
   return (
     <div>
