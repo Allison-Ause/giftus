@@ -1,5 +1,6 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Flex, IconButton, Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
 
 export default function Gift({

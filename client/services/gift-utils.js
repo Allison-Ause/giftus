@@ -32,6 +32,23 @@ export async function addGift(newGift) {
   }
 }
 
+export default async function editGift(gift) {
+  const res = await fetch(`${BASE_URL}/gifts/${gift.id}`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(gift),
+    credentials: 'include',
+  });
+
+  if (res.ok) {
+    const updatedGift = await res.json();
+    return updatedGift;
+  }
+}
+
 export async function deleteGift(id) {
   const res = await fetch(`${BASE_URL}/gifts/${id}`, {
     method: 'DELETE',
