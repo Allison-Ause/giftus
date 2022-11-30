@@ -18,26 +18,24 @@ export default function Gift({
   };
 
   return (
-    <div>
-      <Flex direction="row" gap="3.7px" alignItems="center">
-        {/* conditional rendering not displaying as Link. Why? */}
-        {/* {gift.url ? (
+    <Flex direction="row" gap="3.7px" alignItems="center">
+      {/* conditional rendering not displaying as Link. Why? */}
+      {/* {gift.url ? (
         <Link to={gift.url}>{gift.idea}</Link>
       ) : (
         <h1>{gift.idea}</h1>
       )} */}
-        <Text fontWeight="bold">{idea}</Text>
-        <Text>{`for ${recipient}`}</Text>
-        {price != 0 && <Text>{`$${price}`}</Text>}
-        <Text>{occasion}</Text>
-        <IconButton
-          aria-label="delete gift"
-          icon={<DeleteIcon />}
-          variant="ghost"
-          colorScheme="purple"
-          onClick={handleDelete}
-        />
-      </Flex>
-    </div>
+      <Text fontWeight="bold">{idea}</Text>
+      <Text>{`for ${recipient}`}</Text>
+      {price != 0 && <Text>{`$${price}`}</Text>}
+      <Text>{occasion}</Text>
+      <IconButton
+        aria-label="delete gift"
+        icon={<DeleteIcon />}
+        variant="ghost"
+        colorScheme="purple"
+        onClick={handleDelete}
+      />
+    </Flex>
   );
 }

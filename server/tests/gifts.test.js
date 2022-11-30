@@ -79,8 +79,6 @@ describe('gift routes', () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
     const updatedGift = {
-      id: '2',
-      userId: '1',
       idea: 'Salt Lamp',
       price: 23,
     };

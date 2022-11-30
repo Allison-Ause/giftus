@@ -1,3 +1,4 @@
+import Gift from '../../client/components/Gift.js';
 import pool from '../database.js';
 
 export default class Gifts {
@@ -63,6 +64,45 @@ export default class Gifts {
     RETURNING *
     `,
       [id]
+    );
+    return new Gifts(rows[0]);
+  }
+
+  static async getGiftById(id) {
+    const { rows } = await pool.query(
+      `
+    SELECT * FROM gifts
+    WHERE id = $1
+    `,
+      [id]
+    );
+    if (rows.length === 0) {
+      return null;
+    }
+    return new Gifts(rows[0]);
+  }
+
+  static async updateGift(id, newProps) {
+    const originalGift = await Gifts.getGiftById(id);
+    console.log('originalGift', originalGift);
+    const updatedGift = { ...originalGift, ...newProps };
+    console.log('updatedGift post mush:', updatedGift);
+
+    const { rows } = await pool.query(
+      `
+    UPDATE gifts
+    SET idea = $2, recipient = $3, link = $4, price = $5, occasion = $6
+    WHERE id = $1
+    RETURNING *
+    `,
+      [
+        id,
+        updatedGift.idea,
+        updatedGift.recipient,
+        updatedGift.link,
+        updatedGift.price,
+        updatedGift.occasion,
+      ]
     );
     return new Gifts(rows[0]);
   }
