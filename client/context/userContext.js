@@ -14,19 +14,21 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // create a check for ensuring we've gotten the user and then change the loading state to false
-  // when calling userContext, add conditional to check that we have a user AND the loading state is false
-
   useEffect(() => {
     const fetchUser = async () => {
-      const currentUser = await getUser();
-      setUser(currentUser);
+      try {
+        const currentUser = await getUser();
+        setUser(currentUser);
+        setLoading(false);
+      } catch (e) {
+        setLoading(false);
+      }
     };
     fetchUser();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, loading }}>
       {children}
     </UserContext.Provider>
   );

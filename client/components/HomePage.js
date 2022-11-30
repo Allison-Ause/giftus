@@ -8,9 +8,10 @@ import styles from '../global.css';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
-  const { user } = useUser();
+  const { user, loading } = useUser();
 
-  if (!user) return <Navigate to="/auth/sign-in" replace />;
+  if (!loading && !user)
+    return <Navigate to="/auth/sign-in" replace />;
 
   return (
     <>
