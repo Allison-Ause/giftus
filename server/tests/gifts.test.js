@@ -64,6 +64,17 @@ describe('gift routes', () => {
     });
   });
 
+  it('#GET /gifts/:id returns a single gift', async () => {
+    const agent = request.agent(app);
+    await agent.post('/users/sessions').send(existingUser);
+
+    const res = await agent.get('/gifts/1');
+
+    expect(res.status).toBe(200);
+    expect(res.body.idea).toBe('Ice Skates');
+    expect(res.body.recipient).toBe('Jenny');
+  });
+
   it.skip('#DELETE /gifts/:id deletes specific gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);

@@ -23,6 +23,14 @@ export default Router()
       next(e);
     }
   })
+  .get('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = await Gifts.getGiftById(req.params.id);
+      res.json(data);
+    } catch (e) {
+      next(e);
+    }
+  })
   .delete('/:id', authenticate, async (req, res, next) => {
     try {
       const data = await Gifts.deleteGift(req.params.id);

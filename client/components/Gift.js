@@ -1,6 +1,7 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Flex, IconButton, Link, Text } from '@chakra-ui/react';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
+import { Link as RLink } from 'react-router-dom';
 
 export default function Gift({
   id,
@@ -25,7 +26,9 @@ export default function Gift({
       ) : (
         <h1>{gift.idea}</h1>
       )} */}
-      <Link fontWeight="bold">{idea}</Link>
+      <Link as={RLink} to={`gifts/${id}`} fontWeight="bold">
+        {idea}
+      </Link>
       <Text>{`for ${recipient}`}</Text>
       {price != 0 && <Text>{`$${price}`}</Text>}
       <Text>{occasion}</Text>

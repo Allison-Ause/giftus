@@ -13,6 +13,7 @@ import AuthPage from './components/AuthPage';
 import HomePage from './components/HomePage';
 import { UserProvider } from './context/userContext';
 import { ChakraProvider } from '@chakra-ui/react';
+import GiftDetailPage from './components/GiftDetailPage';
 
 const CatList = catListFn();
 const container =
@@ -28,6 +29,7 @@ root.render(
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/auth/:type" element={<AuthPage />} />
+              <Route path="/gifts/:id" element={<GiftDetailPage />} />
             </Route>
           </Routes>
         </Router>
