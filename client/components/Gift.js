@@ -30,8 +30,6 @@ export default function Gift({
         {idea}
       </Link>
       <Text>{`for ${recipient}`}</Text>
-      {price != 0 && <Text>{`$${price}`}</Text>}
-      <Text>{occasion}</Text>
       <IconButton
         aria-label="delete gift"
         icon={<DeleteIcon />}

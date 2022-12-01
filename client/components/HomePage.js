@@ -19,7 +19,7 @@ export default function HomePage() {
       <Flex
         direction="row"
         gap="50px"
-        id={styles.homepage}
+        className={styles.bg}
         backgroundPosition="bottom-left"
         backgroundSize="cover"
         h="calc(100vh)"

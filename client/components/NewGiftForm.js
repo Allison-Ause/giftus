@@ -59,21 +59,6 @@ export default function NewGiftForm({ setGifts }) {
     isFormInvalid = false;
   };
 
-  // const handleAddGift = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const newGift = {
-  //     idea: formData.get('idea'),
-  //     for: formData.get('for'),
-  //     link: formData.get('link'),
-  //     price: formData.get('price'),
-  //     occasion: formData.get('occasion'),
-  //   };
-  //   await addGift(newGift);
-  //   e.target.reset();
-  // };
-
-  // reset form error messages after proper submit
   return (
     <>
       <Flex
