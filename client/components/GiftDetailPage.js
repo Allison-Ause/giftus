@@ -1,8 +1,8 @@
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
+import { Box, Flex, Text, Link, IconButton } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import useGifts from '../hooks/useGifts.js';
 import styles from '../global.css';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 
 export default function GiftDetailPage() {
   // Edit Button = onClick load form?
@@ -18,16 +18,54 @@ export default function GiftDetailPage() {
       backgroundPosition="bottom-left"
       backgroundSize="cover"
       h="calc(100vh)"
+      justifyContent="center"
+      alignItems="center"
     >
-      <Box boxShadow="md" p="6" rounded="lg" bg="#fff9ec">
-        <h1 className={styles.title}>Gift Idea</h1>
-        <Text>{idea}</Text>
-        <Text>{recipient}</Text>
-        <Link href={link} isExternal>
-          Buy Online <ExternalLinkIcon color="#6b46c1" />
-        </Link>
-        {price != 0 && <Text>{`$${price}`}</Text>}
-        <Text>{occasion}</Text>
+      <Box
+        boxShadow="md"
+        p="6"
+        rounded="lg"
+        bg="#fff9ec"
+        h="400px"
+        w="350px"
+      >
+        <Flex justifyContent="flex-end" m="-15px">
+          <IconButton
+            aria-label="edit-gift"
+            size="md"
+            colorScheme="purple"
+            variant="ghost"
+            icon={<EditIcon />}
+          >
+            Update
+          </IconButton>
+        </Flex>
+        <Flex direction="column" alignItems="center">
+          <h1 className={styles.title} id={styles.drop}>
+            Gift Idea
+          </h1>
+          <Text
+            fontWeight="bold"
+            textTransform="uppercase"
+            fontSize="lg"
+            letterSpacing="wide"
+            mt="15px"
+          >
+            {idea}
+          </Text>
+          <Text
+            fontSize="md"
+            fontWeight="bold"
+            mb="15px"
+          >{`for ${recipient}`}</Text>
+          <Text mb="20px">{`A great gift for ${occasion}!`}</Text>
+          {price != 0 && <Text>{`$${price}`}</Text>}
+          {link != '' && (
+            <Link href={link} isExternal>
+              Buy Online <ExternalLinkIcon color="#6b46c1" />
+            </Link>
+          )}
+        </Flex>
       </Box>
     </Flex>
   );
