@@ -34,7 +34,7 @@ export default function HomePage() {
           w="500px"
           h="600px"
         >
-          <NewGiftForm setGifts={setGifts} />
+          <NewGiftForm gift={{}} setGifts={setGifts} />
         </Box>
 
         <Box

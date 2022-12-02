@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getAllGifts, getById } from '../services/gift-utils.js';
 
-export default function useGifts(id) {
+// add loading state for gifts and pass out
+export default function useGifts(id, user) {
   const [gifts, setGifts] = useState([]);
   const [gift, setGift] = useState({});
 
@@ -14,12 +15,13 @@ export default function useGifts(id) {
   }, []);
 
   useEffect(() => {
+    if (!user) return;
     const fetchData = async () => {
       const gift = await getById(id);
       setGift(gift);
     };
     fetchData();
-  }, []);
+  }, [user]);
 
   return { gifts, setGifts, gift, setGift };
 }

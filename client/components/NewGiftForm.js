@@ -12,31 +12,30 @@ import { useState } from 'react';
 import { addGift, getAllGifts } from '../services/gift-utils.js';
 import styles from '../global.css';
 
-export default function NewGiftForm({ setGifts }) {
-  const [idea, setIdea] = useState('');
-  const [recipient, setRecipient] = useState('');
-  const [link, setLink] = useState('');
-  const [cost, setCost] = useState('');
-  const [occasion, setOccasion] = useState('');
+export default function NewGiftForm({ gift, setGift, setGifts }) {
+  const [idea, setIdea] = useState(gift.idea);
+  const [recipient, setRecipient] = useState(gift.recipient);
+  const [link, setLink] = useState(gift.link);
+  const [cost, setCost] = useState(gift.price);
+  const [occasion, setOccasion] = useState(gift.occasion);
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
+
+  const price = !cost ? 0 : cost;
 
   const handleAddGift = async (e) => {
     let isFormInvalid = false;
 
-    if (idea === '') {
+    if (!idea) {
       setIsIdeaError(true);
       isFormInvalid = true;
     }
 
-    if (recipient === '') {
+    if (!recipient) {
       setIsRecipientError(true);
       isFormInvalid = true;
     }
     if (isFormInvalid) return;
-
-    let price;
-    cost === '' ? (price = 0) : (price = cost);
 
     const newGift = {
       idea,
@@ -147,7 +146,7 @@ export default function NewGiftForm({ setGifts }) {
               id="cost"
               variant="outline"
               bg="white"
-              value={cost}
+              value={price}
               onChange={(e) => setCost(e.target.value)}
             />
 
