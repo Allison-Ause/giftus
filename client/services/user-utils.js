@@ -52,5 +52,7 @@ export async function getUser() {
   if (res.ok) {
     const user = await res.json();
     return user;
+  } else {
+    console.error(data.message);
   }
 }

@@ -10,6 +10,7 @@ export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
 
+  if (loading) return <div>Loading...</div>;
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
@@ -18,24 +19,14 @@ export default function HomePage() {
       <Flex
         direction="row"
         gap="50px"
-        id={styles.homepage}
+        className={styles.bg}
         backgroundPosition="bottom-left"
         backgroundSize="cover"
         h="calc(100vh)"
         padding="30px"
         justifyContent="space-around"
       >
-        <Box
-          boxShadow="md"
-          p="6"
-          rounded="lg"
-          bg="#fff9ec"
-          w="500px"
-          h="600px"
-        >
-          <NewGiftForm setGifts={setGifts} />
-        </Box>
-
+        <NewGiftForm gift={{}} setGifts={setGifts} />
         <Box
           boxShadow="md"
           p="6"

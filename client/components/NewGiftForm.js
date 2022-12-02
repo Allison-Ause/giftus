@@ -7,36 +7,49 @@ import {
   FormLabel,
   Input,
   Stack,
+  Box,
+  IconButton,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { addGift, getAllGifts } from '../services/gift-utils.js';
+import {
+  addGift,
+  editGift,
+  getAllGifts,
+  getById,
+} from '../services/gift-utils.js';
 import styles from '../global.css';
 
-export default function NewGiftForm({ setGifts }) {
-  const [idea, setIdea] = useState('');
-  const [recipient, setRecipient] = useState('');
-  const [link, setLink] = useState('');
-  const [cost, setCost] = useState('');
-  const [occasion, setOccasion] = useState('');
+export default function NewGiftForm({
+  gift,
+  setGift,
+  setGifts,
+  isEditing,
+  setIsEditing,
+}) {
+  const [idea, setIdea] = useState(gift.idea || '');
+  const [recipient, setRecipient] = useState(gift.recipient || '');
+  const [link, setLink] = useState(gift.link || '');
+  const [cost, setCost] = useState(gift.price || 0);
+  const [occasion, setOccasion] = useState(gift.occasion || '');
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
 
-  const handleAddGift = async (e) => {
-    let isFormInvalid = false;
+  // this might be redundant now that I've set the state default to 0
+  const price = !cost ? 0 : cost;
+  let isFormInvalid = false;
+  // do I need this e parameter?
 
-    if (idea === '') {
+  const handleAddGift = async (e) => {
+    if (!idea) {
       setIsIdeaError(true);
       isFormInvalid = true;
     }
 
-    if (recipient === '') {
+    if (!recipient) {
       setIsRecipientError(true);
       isFormInvalid = true;
     }
     if (isFormInvalid) return;
-
-    let price;
-    cost === '' ? (price = 0) : (price = cost);
 
     const newGift = {
       idea,
@@ -59,143 +72,169 @@ export default function NewGiftForm({ setGifts }) {
     isFormInvalid = false;
   };
 
-  // const handleAddGift = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const newGift = {
-  //     idea: formData.get('idea'),
-  //     for: formData.get('for'),
-  //     link: formData.get('link'),
-  //     price: formData.get('price'),
-  //     occasion: formData.get('occasion'),
-  //   };
-  //   await addGift(newGift);
-  //   e.target.reset();
-  // };
+  const handleEditGift = async () => {
+    if (!idea) {
+      setIsIdeaError(true);
+      isFormInvalid = true;
+    }
 
-  // reset form error messages after proper submit
+    if (!recipient) {
+      setIsRecipientError(true);
+      isFormInvalid = true;
+    }
+    if (isFormInvalid) return;
+
+    const id = gift.id;
+    const newValues = {
+      id,
+      idea,
+      recipient,
+      link,
+      price,
+      occasion,
+    };
+    const updatedGift = await editGift({ ...gift, ...newValues });
+    setGift(updatedGift);
+    setIsEditing(false);
+  };
+
   return (
     <>
-      <Flex
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
+      <Box
+        boxShadow="md"
+        p="6"
+        rounded="lg"
+        bg="#fff9ec"
+        w="500px"
+        h="600px"
       >
-        <Stack spacing={1}>
-          <h1 className={styles.title}>Cache Your Clever Idea!</h1>
-          <FormControl isRequired isInvalid={isIdeaError}>
-            <FormLabel
-              requiredIndicator
-              htmlFor="idea"
-              size="md"
-              fontWeight="bold"
-            >
-              Gift:
-            </FormLabel>
-            <Input
-              type="text"
-              id="idea"
-              variant="outline"
-              bg="white"
-              value={idea}
-              onChange={(e) => setIdea(e.target.value)}
-            />
-            {isIdeaError ? (
-              <FormErrorMessage>
-                You forgot to enter your genius gift idea!
-              </FormErrorMessage>
-            ) : (
+        <Flex
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Stack spacing={1}>
+            <h1 className={styles.title} id={styles.drop}>
+              Cache Your Clever Idea!
+            </h1>
+            <FormControl isRequired isInvalid={isIdeaError}>
+              <FormLabel
+                requiredIndicator
+                htmlFor="idea"
+                size="md"
+                fontWeight="bold"
+              >
+                Gift:
+              </FormLabel>
+              <Input
+                type="text"
+                id="idea"
+                variant="outline"
+                bg="white"
+                value={idea}
+                onChange={(e) => setIdea(e.target.value)}
+              />
+              {isIdeaError ? (
+                <FormErrorMessage>
+                  You forgot to enter your genius gift idea!
+                </FormErrorMessage>
+              ) : (
+                <FormHelperText visibility="hidden">
+                  &nbsp;
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl isRequired isInvalid={isRecipientError}>
+              <FormLabel
+                requiredIndicator
+                htmlFor="recipient"
+                size="md"
+                fontWeight="bold"
+              >
+                Recipient:
+              </FormLabel>
+              <Input
+                type="text"
+                id="recipient"
+                variant="outline"
+                bg="white"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+              />
+
+              {isRecipientError ? (
+                <FormErrorMessage>
+                  Who would love to receive this gift?
+                </FormErrorMessage>
+              ) : (
+                <FormHelperText visibility="hidden">
+                  &nbsp;
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="link" size="md" fontWeight="bold">
+                Link:
+              </FormLabel>
+              <Input
+                type="text"
+                id="link"
+                variant="outline"
+                bg="white"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+              />
+
+              <FormHelperText>Enter complete url.</FormHelperText>
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="cost" size="md" fontWeight="bold">
+                Price:
+              </FormLabel>
+              <Input
+                type="number"
+                id="cost"
+                variant="outline"
+                bg="white"
+                value={price}
+                onChange={(e) => setCost(e.target.value)}
+              />
+
+              <FormHelperText>
+                Enter numeric value with no symbols.
+              </FormHelperText>
+            </FormControl>
+            <FormControl>
+              <FormLabel
+                htmlFor="occasion"
+                size="md"
+                fontWeight="bold"
+              >
+                Occasion:
+              </FormLabel>
+              <Input
+                type="text"
+                id="occasion"
+                variant="outline"
+                bg="white"
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
+              />
               <FormHelperText visibility="hidden">
                 &nbsp;
               </FormHelperText>
-            )}
-          </FormControl>
-          <FormControl isRequired isInvalid={isRecipientError}>
-            <FormLabel
-              requiredIndicator
-              htmlFor="recipient"
+            </FormControl>
+            <Button
+              onClick={isEditing ? handleEditGift : handleAddGift}
               size="md"
-              fontWeight="bold"
+              w="75px"
+              colorScheme="purple"
             >
-              Recipient:
-            </FormLabel>
-            <Input
-              type="text"
-              id="recipient"
-              variant="outline"
-              bg="white"
-              value={recipient}
-              onChange={(e) => setRecipient(e.target.value)}
-            />
-
-            {isRecipientError ? (
-              <FormErrorMessage>
-                Who would love to receive this gift?
-              </FormErrorMessage>
-            ) : (
-              <FormHelperText visibility="hidden">
-                &nbsp;
-              </FormHelperText>
-            )}
-          </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="link" size="md" fontWeight="bold">
-              Link:
-            </FormLabel>
-            <Input
-              type="text"
-              id="link"
-              variant="outline"
-              bg="white"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-            />
-
-            <FormHelperText>Enter complete url.</FormHelperText>
-          </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="cost" size="md" fontWeight="bold">
-              Price:
-            </FormLabel>
-            <Input
-              type="number"
-              id="cost"
-              variant="outline"
-              bg="white"
-              value={cost}
-              onChange={(e) => setCost(e.target.value)}
-            />
-
-            <FormHelperText>
-              Enter numeric value with no symbols.
-            </FormHelperText>
-          </FormControl>
-          <FormControl>
-            <FormLabel htmlFor="occasion" size="md" fontWeight="bold">
-              Occasion:
-            </FormLabel>
-            <Input
-              type="text"
-              id="occasion"
-              variant="outline"
-              bg="white"
-              value={occasion}
-              onChange={(e) => setOccasion(e.target.value)}
-            />
-            <FormHelperText visibility="hidden">
-              &nbsp;
-            </FormHelperText>
-          </FormControl>
-          <Button
-            onClick={handleAddGift}
-            size="md"
-            w="75px"
-            colorScheme="purple"
-          >
-            Save
-          </Button>
-        </Stack>
-      </Flex>
+              Save
+            </Button>
+          </Stack>
+        </Flex>
+      </Box>
     </>
   );
 }

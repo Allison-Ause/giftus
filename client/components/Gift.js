@@ -1,15 +1,9 @@
 import { DeleteIcon } from '@chakra-ui/icons';
-import { Flex, IconButton, Text } from '@chakra-ui/react';
+import { Flex, IconButton, Link, Text } from '@chakra-ui/react';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
+import { Link as RLink } from 'react-router-dom';
 
-export default function Gift({
-  id,
-  idea,
-  recipient,
-  price,
-  occasion,
-  setGifts,
-}) {
+export default function Gift({ id, idea, recipient, setGifts }) {
   // make this flex box with column of individual gift rows
   const handleDelete = async () => {
     await deleteGift(id);
@@ -18,26 +12,24 @@ export default function Gift({
   };
 
   return (
-    <div>
-      <Flex direction="row" gap="3.7px" alignItems="center">
-        {/* conditional rendering not displaying as Link. Why? */}
-        {/* {gift.url ? (
+    <Flex direction="row" gap="3.7px" alignItems="center">
+      {/* conditional rendering not displaying as Link. Why? */}
+      {/* {gift.url ? (
         <Link to={gift.url}>{gift.idea}</Link>
       ) : (
         <h1>{gift.idea}</h1>
       )} */}
-        <Text fontWeight="bold">{idea}</Text>
-        <Text>{`for ${recipient}`}</Text>
-        {price != 0 && <Text>{`$${price}`}</Text>}
-        <Text>{occasion}</Text>
-        <IconButton
-          aria-label="delete gift"
-          icon={<DeleteIcon />}
-          variant="ghost"
-          colorScheme="purple"
-          onClick={handleDelete}
-        />
-      </Flex>
-    </div>
+      <Link as={RLink} to={`gifts/${id}`} fontWeight="bold">
+        {idea}
+      </Link>
+      <Text>{`for ${recipient}`}</Text>
+      <IconButton
+        aria-label="delete gift"
+        icon={<DeleteIcon />}
+        variant="ghost"
+        colorScheme="purple"
+        onClick={handleDelete}
+      />
+    </Flex>
   );
 }

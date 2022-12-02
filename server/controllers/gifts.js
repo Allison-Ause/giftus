@@ -23,10 +23,30 @@ export default Router()
       next(e);
     }
   })
+  .get('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = await Gifts.getGiftById(req.params.id);
+      res.json(data);
+    } catch (e) {
+      next(e);
+    }
+  })
   .delete('/:id', authenticate, async (req, res, next) => {
     try {
       const data = await Gifts.deleteGift(req.params.id);
       res.json(data);
+    } catch (e) {
+      next(e);
+    }
+  })
+  .put('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = {
+        id: req.params.id,
+        ...req.body,
+      };
+      const updatedGift = await Gifts.updateGift(data);
+      res.json(updatedGift);
     } catch (e) {
       next(e);
     }

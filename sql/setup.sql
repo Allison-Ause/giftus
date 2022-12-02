@@ -32,7 +32,7 @@ INSERT INTO users (first_name, last_name, email, password_hash) VALUES
 ('Lyla', 'Birch', 'cultist@blades.com', 'fakePasswordHash');
 
 INSERT INTO gifts (user_id, idea, recipient, link, price, occasion) VALUES
-(1, 'Ice Skates', 'Jenny', 'url.link/buy', 45, 'Christmas'),
+(1, 'Ice Skates', 'Jenny', 'https://www.powells.com/book/conditioning-for-figure-skating-9781570282201', 45, 'Christmas'),
 (1, 'Toadstool Lamp', 'Katie', 'url.link/shop', 25, 'Birthday'),
 (1, 'Sword Umbrella', 'Jeremy', 'url.link/merchant', 70, 'Christmas');
 

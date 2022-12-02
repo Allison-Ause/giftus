@@ -66,4 +66,41 @@ export default class Gifts {
     );
     return new Gifts(rows[0]);
   }
+
+  static async getGiftById(id) {
+    const { rows } = await pool.query(
+      `
+    SELECT * FROM gifts
+    WHERE id = $1
+    `,
+      [id]
+    );
+    if (rows.length === 0) {
+      return null;
+    }
+    return new Gifts(rows[0]);
+  }
+
+  static async updateGift(props) {
+    const originalGift = await Gifts.getGiftById(props.id);
+    const updatedGift = { ...originalGift, ...props };
+
+    const { rows } = await pool.query(
+      `
+    UPDATE gifts
+    SET idea = $2, recipient = $3, link = $4, price = $5, occasion = $6
+    WHERE id = $1
+    RETURNING *
+    `,
+      [
+        updatedGift.id,
+        updatedGift.idea,
+        updatedGift.recipient,
+        updatedGift.link,
+        updatedGift.price,
+        updatedGift.occasion,
+      ]
+    );
+    return new Gifts(rows[0]);
+  }
 }

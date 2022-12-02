@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import SignInForm from './SignInForm.js';
@@ -7,6 +8,7 @@ export default function AuthPage() {
   const { type: authMethod } = useParams();
   const { user, loading } = useUser();
 
+  if (loading) return <Text>Loading...</Text>;
   if (!loading && user) return <Navigate to="/" replace />;
 
   return (
