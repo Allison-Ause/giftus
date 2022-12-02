@@ -3,14 +3,7 @@ import { Flex, IconButton, Link, Text } from '@chakra-ui/react';
 import { deleteGift, getAllGifts } from '../services/gift-utils.js';
 import { Link as RLink } from 'react-router-dom';
 
-export default function Gift({
-  id,
-  idea,
-  recipient,
-  price,
-  occasion,
-  setGifts,
-}) {
+export default function Gift({ id, idea, recipient, setGifts }) {
   // make this flex box with column of individual gift rows
   const handleDelete = async () => {
     await deleteGift(id);

@@ -1,16 +1,32 @@
 import { Box, Flex, Text, Link, IconButton } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import useGifts from '../hooks/useGifts.js';
 import styles from '../global.css';
 import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { useUser } from '../context/userContext.js';
+import { useState } from 'react';
+import NewGiftForm from './NewGiftForm.js';
 
 export default function GiftDetailPage() {
   // Edit Button = onClick load form?
   // Save Button = onClick handleUpdateGift, render just display
+  const { user, loading } = useUser();
+  if (loading) return <div>Loading...</div>;
+  if (!loading && !user)
+    return <Navigate to="/auth/sign-in" replace />;
+
   const { id } = useParams();
   const {
     gift: { idea, recipient, link, price, occasion },
   } = useGifts(id);
+  const [isEditing, setIsEditing] = useState(false);
+  console.log('user on giftdetail, loading', user, loading);
+
+  if (isEditing) return <NewGiftForm {...gift} />;
+
+  const handleEditToggle = () => {
+    setIsEditing(true);
+  };
 
   return (
     <Flex
@@ -36,6 +52,7 @@ export default function GiftDetailPage() {
             colorScheme="purple"
             variant="ghost"
             icon={<EditIcon />}
+            onClick={{ handleEditToggle }}
           >
             Update
           </IconButton>
