@@ -26,17 +26,7 @@ export default function HomePage() {
         padding="30px"
         justifyContent="space-around"
       >
-        <Box
-          boxShadow="md"
-          p="6"
-          rounded="lg"
-          bg="#fff9ec"
-          w="500px"
-          h="600px"
-        >
-          <NewGiftForm gift={{}} setGifts={setGifts} />
-        </Box>
-
+        <NewGiftForm gift={{}} setGifts={setGifts} />
         <Box
           boxShadow="md"
           p="6"

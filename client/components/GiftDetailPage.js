@@ -25,7 +25,6 @@ export default function GiftDetailPage() {
 
   return (
     <>
-      {isEditing && <NewGiftForm gift={gift} setGift={setGift} />}
       <Flex
         className={styles.bg}
         backgroundPosition="bottom-left"
@@ -34,53 +33,62 @@ export default function GiftDetailPage() {
         justifyContent="center"
         alignItems="center"
       >
-        <Box
-          boxShadow="md"
-          p="6"
-          rounded="lg"
-          bg="#fff9ec"
-          h="400px"
-          w="350px"
-        >
-          <Flex justifyContent="flex-end" m="-15px">
-            <IconButton
-              aria-label="edit-gift"
-              size="md"
-              colorScheme="purple"
-              variant="ghost"
-              icon={<EditIcon />}
-              onClick={handleEditToggle}
-            >
-              Update
-            </IconButton>
-          </Flex>
-          <Flex direction="column" alignItems="center">
-            <h1 className={styles.title} id={styles.drop}>
-              Gift Idea
-            </h1>
-            <Text
-              fontWeight="bold"
-              textTransform="uppercase"
-              fontSize="lg"
-              letterSpacing="wide"
-              mt="15px"
-            >
-              {gift.idea}
-            </Text>
-            <Text
-              fontSize="md"
-              fontWeight="bold"
-              mb="15px"
-            >{`for ${gift.recipient}`}</Text>
-            <Text mb="20px">{`A great gift for ${gift.occasion}!`}</Text>
-            {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
-            {gift.link != '' && (
-              <Link href={gift.link} isExternal>
-                Buy Online <ExternalLinkIcon color="#6b46c1" />
-              </Link>
-            )}
-          </Flex>
-        </Box>
+        {isEditing ? (
+          <NewGiftForm
+            gift={gift}
+            setGift={setGift}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+          />
+        ) : (
+          <Box
+            boxShadow="md"
+            p="6"
+            rounded="lg"
+            bg="#fff9ec"
+            h="400px"
+            w="350px"
+          >
+            <Flex justifyContent="flex-end" m="-15px">
+              <IconButton
+                aria-label="edit-gift"
+                size="md"
+                colorScheme="purple"
+                variant="ghost"
+                icon={<EditIcon />}
+                onClick={handleEditToggle}
+              >
+                Update
+              </IconButton>
+            </Flex>
+            <Flex direction="column" alignItems="center">
+              <h1 className={styles.title} id={styles.drop}>
+                Gift Idea
+              </h1>
+              <Text
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize="lg"
+                letterSpacing="wide"
+                mt="15px"
+              >
+                {gift.idea}
+              </Text>
+              <Text
+                fontSize="md"
+                fontWeight="bold"
+                mb="15px"
+              >{`for ${gift.recipient}`}</Text>
+              <Text mb="20px">{`A great gift for ${gift.occasion}!`}</Text>
+              {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
+              {gift.link != '' && (
+                <Link href={gift.link} isExternal>
+                  Buy Online <ExternalLinkIcon color="#6b46c1" />
+                </Link>
+              )}
+            </Flex>
+          </Box>
+        )}
       </Flex>
     </>
   );
