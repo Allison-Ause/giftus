@@ -6,6 +6,7 @@ import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { useUser } from '../context/userContext.js';
 import { useState } from 'react';
 import NewGiftForm from './NewGiftForm.js';
+import Header from './Header.js';
 
 export default function GiftDetailPage() {
   // Edit Button = onClick load form?
@@ -26,6 +27,7 @@ export default function GiftDetailPage() {
 
   return (
     <>
+      <Header />
       <Flex
         className={styles.bg}
         backgroundPosition="bottom-left"

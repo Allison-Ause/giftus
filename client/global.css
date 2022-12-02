@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Modak&display=swap');
 
 .bg {
   background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
@@ -8,8 +8,17 @@
   font-family: 'Coiny', cursive;
   font-size: 30px;
   color: #6b46c1;
+  /* background-color: #ffeef2; */
 }
 
 #drop {
   margin-top: 25px;
+}
+
+#header {
+  font-family: 'Modak', cursive;
+  font-size: 40px;
+  color: #482698;
+  margin-left: 10px;
+  margin: 5px;
 }
