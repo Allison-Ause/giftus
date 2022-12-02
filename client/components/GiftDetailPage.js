@@ -18,6 +18,7 @@ export default function GiftDetailPage() {
   if (loading) return <div>Loading...</div>;
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
+  if (gift === null) return <Navigate to="/" />;
 
   const handleEditToggle = () => {
     setIsEditing(true);
