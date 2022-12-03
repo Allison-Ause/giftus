@@ -1,13 +1,13 @@
-import { HamburgerIcon, SearchIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Flex,
-  IconButton,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   Button,
 } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 
@@ -22,7 +22,7 @@ export default function Header() {
     <header>
       <Flex
         backgroundColor="#ffeef2"
-        justifyContent="space-between"
+        justifyContent={user ? 'space-between' : 'center'}
         p="5px"
         alignItems="center"
       >

@@ -1,5 +1,5 @@
-import { Text } from '@chakra-ui/react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Text, Flex } from '@chakra-ui/react';
+import { Navigate, useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import SignInForm from './SignInForm.js';
 import SignUpForm from './SignUpForm.js';
