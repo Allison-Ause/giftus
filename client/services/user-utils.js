@@ -40,13 +40,6 @@ export async function signInUser(userInfo) {
   }
 }
 
-export async function signOutUser() {
-  const res = await fetch(`${BASE_URL}/users/sessions`, {
-    method: 'DELETE',
-    credentials: 'include',
-  });
-}
-
 export async function getUser() {
   const res = await fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
@@ -62,4 +55,11 @@ export async function getUser() {
   } else {
     console.error(data.message);
   }
+}
+
+export async function signOutUser() {
+  const res = await fetch(`${BASE_URL}/users/sessions`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
 }

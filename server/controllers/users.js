@@ -40,21 +40,25 @@ export default Router()
       next(e);
     }
   })
-  .delete('/sessions', (req, res) => {
-    res
-      .clearCookie(process.env.COOKIE_NAME, {
-        httpOnly: true,
-        secure: process.env.SECURE_COOKIES === 'true',
-        sameSite:
-          process.env.SECURE_COOKIES === 'true' ? 'none' : 'strict',
-        maxAge: ONE_DAY_IN_MS,
-      })
-      .status(204)
-      .send();
-  })
   .get('/me', authenticate, async (req, res, next) => {
     try {
       res.json(req.user);
+    } catch (e) {
+      next(e);
+    }
+  })
+  .delete('/sessions', (req, res, next) => {
+    try {
+      res
+        .clearCookie(process.env.COOKIE_NAME, {
+          httpOnly: true,
+          secure: process.env.SECURE_COOKIES === 'true',
+          sameSite:
+            process.env.SECURE_COOKIES === 'true' ? 'none' : 'strict',
+          maxAge: ONE_DAY_IN_MS,
+        })
+        .status(204)
+        .send();
     } catch (e) {
       next(e);
     }
