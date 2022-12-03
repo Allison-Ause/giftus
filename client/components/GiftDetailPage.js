@@ -82,7 +82,7 @@ export default function GiftDetailPage() {
                 fontWeight="bold"
                 mb="15px"
               >{`for ${gift.recipient}`}</Text>
-              <Text mb="20px">{`A great gift for ${gift.occasion}!`}</Text>
+              <Text mb="20px">{`An ideal ${gift.occasion} present!`}</Text>
               {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
               {gift.link != '' && (
                 <Link href={gift.link} isExternal>
