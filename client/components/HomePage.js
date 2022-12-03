@@ -5,6 +5,7 @@ import useGifts from '../hooks/useGifts.js';
 import Gift from './Gift.js';
 import NewGiftForm from './NewGiftForm.js';
 import styles from '../global.css';
+import Header from './Header.js';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
@@ -16,6 +17,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Header />
       <Flex
         direction="row"
         gap="50px"

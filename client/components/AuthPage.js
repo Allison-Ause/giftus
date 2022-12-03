@@ -1,8 +1,9 @@
-import { Text } from '@chakra-ui/react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Text, Flex } from '@chakra-ui/react';
+import { Navigate, useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import SignInForm from './SignInForm.js';
 import SignUpForm from './SignUpForm.js';
+import Header from './Header.js';
 
 export default function AuthPage() {
   const { type: authMethod } = useParams();
@@ -12,9 +13,11 @@ export default function AuthPage() {
   if (!loading && user) return <Navigate to="/" replace />;
 
   return (
-    <div>
-      <p>Nice work, sweetheart!</p>
-      {authMethod === 'sign-in' ? <SignInForm /> : <SignUpForm />}
-    </div>
+    <>
+      <Header />
+      <Flex>
+        {authMethod === 'sign-in' ? <SignInForm /> : <SignUpForm />}
+      </Flex>
+    </>
   );
 }
