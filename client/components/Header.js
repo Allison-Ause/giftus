@@ -13,10 +13,8 @@ import { signOutUser } from '../services/user-utils.js';
 
 export default function Header() {
   const { user, setUser } = useUser();
-  console.log('user in header', user);
 
   const handleSignOut = async () => {
-    console.log('firing');
     await signOutUser();
     setUser(null);
   };

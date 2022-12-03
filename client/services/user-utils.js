@@ -62,5 +62,4 @@ export async function signOutUser() {
     method: 'DELETE',
     credentials: 'include',
   });
-  console.log('res from user services', res);
 }

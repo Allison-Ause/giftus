@@ -59,7 +59,6 @@ export default Router()
         })
         .status(204)
         .send();
-      console.log('res from backend controller', res);
     } catch (e) {
       next(e);
     }
