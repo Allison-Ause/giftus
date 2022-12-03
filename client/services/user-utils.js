@@ -56,3 +56,10 @@ export async function getUser() {
     console.error(data.message);
   }
 }
+
+export async function signOutUser() {
+  const res = await fetch(`${BASE_URL}/users/sessions`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
+}

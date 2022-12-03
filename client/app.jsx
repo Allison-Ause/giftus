@@ -2,7 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './reset.css';
 import './global.css';
-import catListFn from './components/cat-list';
 import Layout from './layout';
 import {
   Route,
@@ -15,7 +14,6 @@ import { UserProvider } from './context/userContext';
 import { ChakraProvider } from '@chakra-ui/react';
 import GiftDetailPage from './components/GiftDetailPage';
 
-const CatList = catListFn();
 const container =
   document.getElementById('app') || document.createElement('div');
 container.id = 'app';

@@ -9,12 +9,14 @@ import {
 } from '@chakra-ui/react';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
+import { signOutUser } from '../services/user-utils.js';
 
 export default function Header() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
-  const handleSignOut = () => {
-    //handle signOut functionality
+  const handleSignOut = async () => {
+    await signOutUser();
+    setUser(null);
   };
 
   return (
