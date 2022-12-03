@@ -7,7 +7,6 @@ import {
   MenuItem,
   Button,
 } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 
