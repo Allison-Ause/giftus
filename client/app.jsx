@@ -13,6 +13,7 @@ import HomePage from './components/HomePage';
 import { UserProvider } from './context/userContext';
 import { ChakraProvider } from '@chakra-ui/react';
 import GiftDetailPage from './components/GiftDetailPage';
+import GiftDisplayPage from './components/GiftDisplayPage';
 
 const container =
   document.getElementById('app') || document.createElement('div');
@@ -27,6 +28,7 @@ root.render(
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/auth/:type" element={<AuthPage />} />
+              <Route path="/gifts" element={<GiftDisplayPage />} />
               <Route path="/gifts/:id" element={<GiftDetailPage />} />
             </Route>
           </Routes>
