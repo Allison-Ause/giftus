@@ -7,12 +7,13 @@ export default function useGifts(id, user) {
   const [gift, setGift] = useState({});
 
   useEffect(() => {
+    if (!user) return;
     const fetchData = async () => {
       const giftList = await getAllGifts();
       setGifts(giftList);
     };
     fetchData();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (!user) return;

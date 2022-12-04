@@ -14,11 +14,13 @@ import useGifts from '../hooks/useGifts.js';
 import Header from './Header.js';
 import styles from '../global.css';
 import GiftTableRow from './GiftTableRow.js';
+import { Navigate } from 'react-router-dom';
 
 export default function GiftDisplayPage() {
   const { gifts } = useGifts();
   const { user, loading } = useUser();
   console.log('user:', user);
+  console.log('loading:', loading);
   console.log('gifts:', gifts);
 
   if (loading) return <div>Loading...</div>;
