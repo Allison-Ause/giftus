@@ -28,7 +28,7 @@ export default function Header() {
         alignItems="center"
       >
         <h1 id={styles.header}>Cadeau Caché</h1>
-        {/* <h1>Mise de Côté</h1> */}
+
         <Flex alignItems="center">
           {/* <IconButton
             aria-label="search-database"

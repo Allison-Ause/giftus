@@ -7,7 +7,6 @@ import {
   Tr,
   Th,
   Tbody,
-  Td,
 } from '@chakra-ui/react';
 import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
@@ -27,20 +26,20 @@ export default function GiftDisplayPage() {
   return (
     <>
       <Header />
-      <Flex
-        direction="column"
-        gap="50px"
-        className={styles.bg}
-        backgroundPosition="bottom-left"
-        backgroundSize="cover"
-        h="calc(100vh)"
-        padding="30px"
-        justifyContent="center"
-        alignItems="center"
-      >
-        {loading ? (
-          <Loader />
-        ) : (
+      {loading ? (
+        <Loader />
+      ) : (
+        <Flex
+          direction="column"
+          gap="50px"
+          className={styles.bg}
+          backgroundPosition="bottom-left"
+          backgroundSize="cover"
+          h="calc(100vh)"
+          padding="30px"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Box
             boxShadow="md"
             p="6"
@@ -76,8 +75,8 @@ export default function GiftDisplayPage() {
               </Table>
             </TableContainer>
           </Box>
-        )}
-      </Flex>
+        </Flex>
+      )}
     </>
   );
 }
