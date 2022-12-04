@@ -7,12 +7,14 @@ import {
   MenuItem,
   Button,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 import { signOutUser } from '../services/user-utils.js';
 
 export default function Header() {
   const { user, setUser } = useUser();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -27,8 +29,10 @@ export default function Header() {
         p="5px"
         alignItems="center"
       >
-        <h1 id={styles.header}>Cadeau Caché</h1>
-        {/* <h1>Mise de Côté</h1> */}
+        <a href="/">
+          <h1 id={styles.header}>Cadeau Caché</h1>
+        </a>
+
         <Flex alignItems="center">
           {/* <IconButton
             aria-label="search-database"
@@ -52,8 +56,18 @@ export default function Header() {
                   fontWeight="bold"
                   h="35px"
                   p="5px"
+                  onClick={() => navigate('/gifts')}
                 >
                   Gifts
+                </MenuItem>
+                <MenuItem
+                  color="#482698"
+                  fontWeight="bold"
+                  h="35px"
+                  p="5px"
+                  onClick={() => navigate('/')}
+                >
+                  Home
                 </MenuItem>
                 <MenuItem
                   color="#482698"

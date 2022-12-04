@@ -27,3 +27,7 @@
   margin-left: 10px;
   margin: 5px;
 }
+
+#header:hover {
+  color: #5f3ead;
+}
