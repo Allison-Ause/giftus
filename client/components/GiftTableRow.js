@@ -5,7 +5,7 @@ export default function GiftTableRow({ gift }) {
     <Tr>
       <Td>{gift.idea}</Td>
       <Td>{gift.recipient}</Td>
-      <Td>{gift.price}</Td>
+      <Td>{`${gift.price}`}</Td>
       <Td>{gift.occasion}</Td>
     </Tr>
   );
