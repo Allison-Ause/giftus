@@ -1,4 +1,4 @@
-import styles from '../global.css';
+import styles from '../loader.css';
 
 export default function Loader() {
   return (

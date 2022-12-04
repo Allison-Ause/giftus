@@ -15,12 +15,12 @@ import Header from './Header.js';
 import styles from '../global.css';
 import GiftTableRow from './GiftTableRow.js';
 import { Navigate } from 'react-router-dom';
+import Loader from './Loader.js';
 
 export default function GiftDisplayPage() {
   const { gifts } = useGifts();
   const { user, loading } = useUser();
 
-  if (loading) return <div>Loading...</div>;
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
@@ -38,41 +38,45 @@ export default function GiftDisplayPage() {
         justifyContent="center"
         alignItems="center"
       >
-        <h1 className={styles.title}>Cached Gifts</h1>
-        <Box
-          boxShadow="md"
-          p="6"
-          rounded="lg"
-          bg="#fff9ec"
-          w="800px"
-          h="500px"
-        >
-          <TableContainer>
-            <Table variant="striped" colorScheme="purple">
-              <Thead>
-                <Tr>
-                  <Th>
-                    <h1 className={styles.tableHead}>Idea</h1>
-                  </Th>
-                  <Th>
-                    <h1 className={styles.tableHead}>Recipient</h1>
-                  </Th>
-                  <Th>
-                    <h1 className={styles.tableHead}>Price</h1>
-                  </Th>
-                  <Th>
-                    <h1 className={styles.tableHead}>Occasion</h1>
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {gifts.map((gift) => (
-                  <GiftTableRow key={gift.id} gift={gift} />
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Box>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Box
+            boxShadow="md"
+            p="6"
+            rounded="lg"
+            bg="#fff9ec"
+            w="800px"
+            h="500px"
+          >
+            <h1 className={styles.title}>Cached Gifts</h1>
+            <TableContainer>
+              <Table variant="striped" colorScheme="purple">
+                <Thead>
+                  <Tr>
+                    <Th>
+                      <h1 className={styles.tableHead}>Idea</h1>
+                    </Th>
+                    <Th>
+                      <h1 className={styles.tableHead}>Recipient</h1>
+                    </Th>
+                    <Th>
+                      <h1 className={styles.tableHead}>Price</h1>
+                    </Th>
+                    <Th>
+                      <h1 className={styles.tableHead}>Occasion</h1>
+                    </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {gifts.map((gift) => (
+                    <GiftTableRow key={gift.id} gift={gift} />
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
+        )}
       </Flex>
     </>
   );
