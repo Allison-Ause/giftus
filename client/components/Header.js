@@ -29,7 +29,9 @@ export default function Header() {
         p="5px"
         alignItems="center"
       >
-        <h1 id={styles.header}>Cadeau Caché</h1>
+        <a href="/">
+          <h1 id={styles.header}>Cadeau Caché</h1>
+        </a>
 
         <Flex alignItems="center">
           {/* <IconButton
