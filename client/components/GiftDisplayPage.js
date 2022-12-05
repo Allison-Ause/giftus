@@ -49,6 +49,7 @@ export default function GiftDisplayPage() {
             bg="#fff9ec"
             w="800px"
             h="500px"
+            overflow="scroll"
           >
             <Flex
               direction="column"

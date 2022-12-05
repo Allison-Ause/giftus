@@ -11,6 +11,7 @@ export default function Search({ gifts, setGifts }) {
 
   // handle search to take searchTerm and filter Gifts state
   // then setGifts to new array of filtered gifts
+
   return (
     <>
       <InputGroup w="800px">
