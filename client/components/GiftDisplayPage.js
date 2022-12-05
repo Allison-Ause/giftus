@@ -15,9 +15,10 @@ import styles from '../global.css';
 import GiftTableRow from './GiftTableRow.js';
 import { Navigate } from 'react-router-dom';
 import Loader from './Loader.js';
+import Search from './Search.js';
 
 export default function GiftDisplayPage() {
-  const { gifts } = useGifts();
+  const { filterGifts, searchTerm, setSearchTerm } = useGifts();
   const { user, loading } = useUser();
 
   if (!loading && !user)
@@ -40,6 +41,10 @@ export default function GiftDisplayPage() {
           justifyContent="center"
           alignItems="center"
         >
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
           <Box
             boxShadow="md"
             p="6"
@@ -47,6 +52,7 @@ export default function GiftDisplayPage() {
             bg="#fff9ec"
             w="800px"
             h="500px"
+            overflow="scroll"
           >
             <Flex
               direction="column"
@@ -80,7 +86,7 @@ export default function GiftDisplayPage() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {gifts.map((gift) => (
+                    {filterGifts().map((gift) => (
                       <GiftTableRow key={gift.id} gift={gift} />
                     ))}
                   </Tbody>
