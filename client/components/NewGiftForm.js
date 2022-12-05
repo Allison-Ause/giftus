@@ -119,7 +119,7 @@ export default function NewGiftForm({
               <FormLabel
                 requiredIndicator
                 htmlFor="idea"
-                size="md"
+                size="sm"
                 fontWeight="bold"
               >
                 Gift:
@@ -127,6 +127,8 @@ export default function NewGiftForm({
               <Input
                 type="text"
                 id="idea"
+                size="sm"
+                borderRadius="5px"
                 variant="outline"
                 bg="white"
                 value={idea}
@@ -146,7 +148,7 @@ export default function NewGiftForm({
               <FormLabel
                 requiredIndicator
                 htmlFor="recipient"
-                size="md"
+                size="sm"
                 fontWeight="bold"
               >
                 Recipient:
@@ -154,6 +156,8 @@ export default function NewGiftForm({
               <Input
                 type="text"
                 id="recipient"
+                size="sm"
+                borderRadius="5px"
                 variant="outline"
                 bg="white"
                 value={recipient}
@@ -171,41 +175,48 @@ export default function NewGiftForm({
               )}
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="link" size="md" fontWeight="bold">
+              <FormLabel htmlFor="link" size="sm" fontWeight="bold">
                 Link:
               </FormLabel>
               <Input
                 type="text"
                 id="link"
+                size="sm"
+                borderRadius="5px"
                 variant="outline"
                 bg="white"
+                placeHolder="http://small-local-vendor.com"
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
               />
 
-              <FormHelperText>Enter complete url.</FormHelperText>
+              <FormHelperText visibility="hidden">
+                &nbsp;
+              </FormHelperText>
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="cost" size="md" fontWeight="bold">
+              <FormLabel htmlFor="cost" size="sm" fontWeight="bold">
                 Price:
               </FormLabel>
               <Input
                 type="number"
                 id="cost"
+                size="sm"
+                borderRadius="5px"
                 variant="outline"
                 bg="white"
                 value={price}
                 onChange={(e) => setCost(e.target.value)}
               />
 
-              <FormHelperText>
-                Enter numeric value with no symbols.
+              <FormHelperText visibility="hidden">
+                &nbsp;
               </FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel
                 htmlFor="occasion"
-                size="md"
+                size="sm"
                 fontWeight="bold"
               >
                 Occasion:
@@ -213,6 +224,8 @@ export default function NewGiftForm({
               <Input
                 type="text"
                 id="occasion"
+                size="sm"
+                borderRadius="5px"
                 variant="outline"
                 bg="white"
                 value={occasion}
@@ -222,14 +235,16 @@ export default function NewGiftForm({
                 &nbsp;
               </FormHelperText>
             </FormControl>
-            <Button
-              onClick={isEditing ? handleEditGift : handleAddGift}
-              size="md"
-              w="75px"
-              colorScheme="purple"
-            >
-              Save
-            </Button>
+            <Flex justifyContent="center">
+              <Button
+                onClick={isEditing ? handleEditGift : handleAddGift}
+                size="md"
+                w="75px"
+                colorScheme="purple"
+              >
+                Save
+              </Button>
+            </Flex>
           </Stack>
         </Flex>
       </Box>
