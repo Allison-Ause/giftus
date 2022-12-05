@@ -15,9 +15,10 @@ import styles from '../global.css';
 import GiftTableRow from './GiftTableRow.js';
 import { Navigate } from 'react-router-dom';
 import Loader from './Loader.js';
+import Search from './Search.js';
 
 export default function GiftDisplayPage() {
-  const { gifts } = useGifts();
+  const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
 
   if (!loading && !user)
@@ -40,6 +41,7 @@ export default function GiftDisplayPage() {
           justifyContent="center"
           alignItems="center"
         >
+          <Search gifts={gifts} setGifts={setGifts} />
           <Box
             boxShadow="md"
             p="6"
