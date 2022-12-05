@@ -18,7 +18,7 @@ import Loader from './Loader.js';
 import Search from './Search.js';
 
 export default function GiftDisplayPage() {
-  const { gifts, setGifts } = useGifts();
+  const { filterGifts, searchTerm, setSearchTerm } = useGifts();
   const { user, loading } = useUser();
 
   if (!loading && !user)
@@ -41,7 +41,10 @@ export default function GiftDisplayPage() {
           justifyContent="center"
           alignItems="center"
         >
-          <Search gifts={gifts} setGifts={setGifts} />
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
           <Box
             boxShadow="md"
             p="6"
@@ -83,7 +86,7 @@ export default function GiftDisplayPage() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {gifts.map((gift) => (
+                    {filterGifts().map((gift) => (
                       <GiftTableRow key={gift.id} gift={gift} />
                     ))}
                   </Tbody>

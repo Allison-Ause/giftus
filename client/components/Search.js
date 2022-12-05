@@ -6,11 +6,13 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-export default function Search({ gifts, setGifts }) {
-  const [searchTerm, setSearchTerm] = useState('');
-
+export default function Search({ searchTerm, setSearchTerm }) {
   // handle search to take searchTerm and filter Gifts state
   // then setGifts to new array of filtered gifts
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <>
@@ -25,7 +27,7 @@ export default function Search({ gifts, setGifts }) {
           bg="rgba(255, 255, 255, 0.722)"
           mb="-15px"
           colorScheme="purple"
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
         />
         <InputRightElement
           children={
