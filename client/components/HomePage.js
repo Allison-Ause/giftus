@@ -46,7 +46,7 @@ export default function HomePage() {
               justifyContent="center"
               gap="10px"
             >
-              <h1 className={styles.title}>Recent Gift Ideas</h1>
+              <h1 className={styles.title}>Recently Cached:</h1>
               <div>
                 {gifts.map((gift) => (
                   <Gift key={gift.id} {...gift} setGifts={setGifts} />

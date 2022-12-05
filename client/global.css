@@ -31,3 +31,10 @@
 #header:hover {
   color: #5f3ead;
 }
+
+.input {
+  border: 1px black solid;
+  border-radius: 5px;
+  height: 30px;
+  margin: 10px;
+}

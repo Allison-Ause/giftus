@@ -48,32 +48,45 @@ export default function GiftDisplayPage() {
             w="800px"
             h="500px"
           >
-            <h1 className={styles.title}>Cached Gifts</h1>
-            <TableContainer>
-              <Table variant="striped" colorScheme="purple">
-                <Thead>
-                  <Tr>
-                    <Th>
-                      <h1 className={styles.tableHead}>Idea</h1>
-                    </Th>
-                    <Th>
-                      <h1 className={styles.tableHead}>Recipient</h1>
-                    </Th>
-                    <Th>
-                      <h1 className={styles.tableHead}>Price</h1>
-                    </Th>
-                    <Th>
-                      <h1 className={styles.tableHead}>Occasion</h1>
-                    </Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {gifts.map((gift) => (
-                    <GiftTableRow key={gift.id} gift={gift} />
-                  ))}
-                </Tbody>
-              </Table>
-            </TableContainer>
+            <Flex
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <h1 className={styles.title}>Cached Gifts</h1>
+              <TableContainer>
+                <Table
+                  variant="striped"
+                  colorScheme="purple"
+                  w="700px"
+                  mt="50px"
+                >
+                  <Thead>
+                    <Tr>
+                      <Th>
+                        <h1 className={styles.tableHead}>Idea</h1>
+                      </Th>
+                      <Th>
+                        <h1 className={styles.tableHead}>
+                          Recipient
+                        </h1>
+                      </Th>
+                      <Th>
+                        <h1 className={styles.tableHead}>Price</h1>
+                      </Th>
+                      <Th>
+                        <h1 className={styles.tableHead}>Occasion</h1>
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {gifts.map((gift) => (
+                      <GiftTableRow key={gift.id} gift={gift} />
+                    ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            </Flex>
           </Box>
         </Flex>
       )}
