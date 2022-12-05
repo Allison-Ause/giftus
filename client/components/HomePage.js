@@ -7,6 +7,7 @@ import NewGiftForm from './NewGiftForm.js';
 import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
+import { useState } from 'react';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
@@ -14,6 +15,8 @@ export default function HomePage() {
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
+
+  const fiveRecents = gifts.slice(0, 5);
 
   return (
     <>
@@ -48,7 +51,7 @@ export default function HomePage() {
             >
               <h1 className={styles.title}>Recently Cached:</h1>
               <div>
-                {gifts.map((gift) => (
+                {fiveRecents.map((gift) => (
                   <Gift key={gift.id} {...gift} setGifts={setGifts} />
                 ))}
               </div>
