@@ -185,7 +185,7 @@ export default function NewGiftForm({
                 borderRadius="5px"
                 variant="outline"
                 bg="white"
-                placeHolder="http://small-local-vendor.com"
+                placeholder="http://small-local-vendor.com"
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
               />
