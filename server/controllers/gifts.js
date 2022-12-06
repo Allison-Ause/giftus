@@ -27,7 +27,6 @@ export default Router()
   .get('/:id', authenticate, async (req, res, next) => {
     try {
       const data = await Gifts.getGiftById(req.params.id);
-      console.log('data from controller:', data);
       res.json(data);
     } catch (e) {
       next(e);

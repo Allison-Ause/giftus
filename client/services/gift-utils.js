@@ -43,7 +43,6 @@ export async function getById(id) {
   });
   if (res.ok) {
     const gift = await res.json();
-    console.log('gift from utils', gift);
     return gift;
   }
 }

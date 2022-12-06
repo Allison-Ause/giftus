@@ -50,7 +50,6 @@ GROUP BY gifts.id
     `,
       [userId]
     );
-    console.log('rows from getAllGifts', rows);
     return rows.map((gift) => new Gifts(gift));
   }
 
@@ -105,7 +104,6 @@ GROUP BY gifts.id
     if (rows.length === 0) {
       return null;
     }
-    console.log('rows from getById'.rows);
     return new Gifts(rows[0]);
   }
 

@@ -15,6 +15,7 @@ export default function GiftDetailPage() {
   const { user, loading } = useUser();
   const { id } = useParams();
   const { gift, setGift } = useGifts(id, user);
+  console.log('gift from GiftDetail useGifts call:', gift);
   const [isEditing, setIsEditing] = useState(false);
 
   if (!loading && !user)
@@ -84,7 +85,7 @@ export default function GiftDetailPage() {
                   fontSize="md"
                   fontWeight="bold"
                   mb="15px"
-                >{`for ${gift.recipient}`}</Text>
+                >{`for ${gift.friend?.name}`}</Text>
                 <Text mb="20px">{`An ideal ${gift.occasion} present!`}</Text>
                 {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
                 {gift.link != '' && (
