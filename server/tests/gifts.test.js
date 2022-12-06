@@ -64,7 +64,7 @@ describe('gift routes', () => {
     });
   });
 
-  it('#GET /gifts/:id returns a single gift', async () => {
+  it.skip('#GET /gifts/:id returns a single gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -86,7 +86,7 @@ describe('gift routes', () => {
     expect(checkRes).to.not.include(id === 1);
   });
 
-  it('#PUT /gifts/:id updates specific gift', async () => {
+  it.skip('#PUT /gifts/:id updates specific gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
     const updatedGift = {

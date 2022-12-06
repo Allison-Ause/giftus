@@ -1,4 +1,4 @@
-import { ids } from 'webpack';
+import pool from '../database.js';
 
 export default class Friends {
   id;
@@ -21,8 +21,9 @@ export default class Friends {
     SELECT * FROM friends
     WHERE user_id = $1
     `,
-      [user_id]
+      [userId]
     );
+    console.log('rows from getAllFriends:', rows);
     return rows.map((friend) => new Friends(friend));
   }
 }
