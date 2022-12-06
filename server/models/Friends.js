@@ -25,4 +25,15 @@ export default class Friends {
     );
     return rows.map((friend) => new Friends(friend));
   }
+
+  static async addFriend({ userId, name, birthday, address }) {
+    const { rows } = await pool.query(
+      `
+    INSERT INTO friends (user_id, name, birthday, address)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *`,
+      [userId, name, birthday, address]
+    );
+    return new Friends(rows[0]);
+  }
 }
