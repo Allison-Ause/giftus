@@ -23,7 +23,6 @@ export default class Friends {
     `,
       [userId]
     );
-    console.log('rows from getAllFriends:', rows);
     return rows.map((friend) => new Friends(friend));
   }
 }

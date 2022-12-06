@@ -8,7 +8,6 @@ export default Router().get(
   async (req, res, next) => {
     try {
       const data = await Friends.getAllFriends(req.user.id);
-      console.log('data from controller:', data);
       res.json(data);
     } catch (e) {
       next(e);
