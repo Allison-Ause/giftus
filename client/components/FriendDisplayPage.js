@@ -81,13 +81,23 @@ export default function FriendDisplayPage() {
                   </Thead>
                   <Tbody>
                     {friends.map((friend) => {
-                      birthday = new Date(
-                        friend.birthday
-                      ).toDateString();
-                      displayDate = birthday
-                        .split(' ')
-                        .splice(1, 2)
-                        .join(' ');
+                      if (
+                        friend.birthday === '1920-08-18T08:00:00.000Z'
+                      ) {
+                        displayDate = '';
+                      } else {
+                        console.log(
+                          'friend.birthday',
+                          friend.birthday
+                        );
+                        birthday = new Date(
+                          friend.birthday
+                        ).toDateString();
+                        displayDate = birthday
+                          .split(' ')
+                          .splice(1, 2)
+                          .join(' ');
+                      }
                       return (
                         <FriendTableRow
                           key={friend.id}

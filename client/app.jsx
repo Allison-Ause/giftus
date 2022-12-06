@@ -15,6 +15,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import GiftDetailPage from './components/GiftDetailPage';
 import GiftDisplayPage from './components/GiftDisplayPage';
 import FriendDisplayPage from './components/FriendDisplayPage';
+import FriendFormPage from './components/FriendFormPage';
 
 const container =
   document.getElementById('app') || document.createElement('div');
@@ -32,6 +33,10 @@ root.render(
               <Route
                 path="/friends"
                 element={<FriendDisplayPage />}
+              />
+              <Route
+                path="/friends/new"
+                element={<FriendFormPage />}
               />
               <Route path="/gifts" element={<GiftDisplayPage />} />
               <Route path="/gifts/:id" element={<GiftDetailPage />} />

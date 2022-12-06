@@ -1,7 +1,7 @@
 import { Td, Tr } from '@chakra-ui/react';
 
 export default function FriendTableRow({ friend, displayDate }) {
-  console.log('displayDate', displayDate);
+  console.log('displayDate:', displayDate);
   return (
     <Tr>
       <Td>{friend.name}</Td>

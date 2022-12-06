@@ -8,14 +8,13 @@ import {
   Input,
   Stack,
   Box,
-  IconButton,
 } from '@chakra-ui/react';
+
 import { useState } from 'react';
 import {
   addGift,
   editGift,
   getAllGifts,
-  getById,
 } from '../services/gift-utils.js';
 import styles from '../global.css';
 

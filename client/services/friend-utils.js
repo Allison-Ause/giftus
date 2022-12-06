@@ -14,3 +14,20 @@ export async function getAllFriends() {
     return friendList;
   }
 }
+
+export async function addFriend(newGift) {
+  const res = await fetch(`${BASE_URL}/friends`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newGift),
+    credentials: 'include',
+  });
+
+  if (res.ok) {
+    const newGift = await res.json();
+    return newGift;
+  }
+}
