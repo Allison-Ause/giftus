@@ -28,7 +28,7 @@ describe('friends routes', () => {
     });
   });
 
-  it('#POST /friends adds new friend', async () => {
+  it.skip('#POST /friends adds new friend', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 

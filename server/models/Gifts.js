@@ -4,7 +4,7 @@ export default class Gifts {
   id;
   userId;
   idea;
-  recipient;
+  friendId;
   link;
   price;
   occasion;
@@ -16,23 +16,41 @@ export default class Gifts {
     this.id = row.id;
     this.userId = row.user_id;
     this.idea = row.idea;
-    this.recipient = row.recipient;
+    this.friendId = row.friend_id;
     this.link = row.link;
     this.price = row.price;
     this.occasion = row.occasion;
     this.isPurchased = row.is_purchased;
     this.createdAt = row.created_at;
+    if (row.friend) {
+      this.friend = row.friend[0];
+    }
   }
 
+  // SELECT * FROM gifts
+  // WHERE user_id = $1
+  // ORDER BY created_at DESC
+
+  // SELECT gifts.*, friends.* FROM gifts
+  // INNER JOIN friends ON friend_id = friends.id
+  // WHERE gifts.user_id = $1
+
+  // sub a coalesce call to create a Friend Object here
   static async getAllGifts(userId) {
     const { rows } = await pool.query(
       `
-    SELECT * FROM gifts
-    WHERE user_id = $1
-    ORDER BY created_at DESC
+    SELECT gifts.*, 
+    COALESCE(
+      json_agg(to_jsonb(friends))
+      FILTER (WHERE friends.id IS NOT NULL), '[]'
+    ) as friend from gifts
+INNER JOIN friends ON friend_id = friends.id
+WHERE gifts.user_id = $1
+GROUP BY gifts.id
     `,
       [userId]
     );
+    console.log('rows from getAllGifts', rows);
     return rows.map((gift) => new Gifts(gift));
   }
 

@@ -6,6 +6,7 @@ export default Router()
   .get('/', authenticate, async (req, res, next) => {
     try {
       const data = await Gifts.getAllGifts(req.user.id);
+      console.log('data from controller', data);
       res.json(data);
     } catch (e) {
       next(e);

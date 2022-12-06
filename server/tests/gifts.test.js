@@ -19,6 +19,7 @@ const existingUser = {
 
 const newGift = {
   userId: '1',
+  friendId: '1',
   idea: 'rainbow glitter',
   link: 'url.link',
   price: 30,
@@ -29,24 +30,15 @@ describe('gift routes', () => {
   beforeEach(() => {
     return setupDb();
   });
-  it.skip('#GET /gifts returns all gifts', async () => {
+  it('#GET /gifts returns all gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
     const res = await agent.get('/gifts');
     expect(res.status).toBe(200);
     expect(res.body.length).toBe(3);
-    expect(res.body[0]).toEqual({
-      id: '1',
-      userId: '1',
-      idea: 'Ice Skates',
-      recipient: 'Jenny',
-      link: 'url.link/buy',
-      price: 45,
-      occasion: 'Christmas',
-      isPurchased: false,
-      createdAt: expect.any(String),
-    });
+    expect(res.body[0].idea).toBe('Ice Skates');
+    expect(res.body[0].friend.name).toBe('Jenny');
   });
 
   it.skip('#POST /gifts adds new gift', async () => {
