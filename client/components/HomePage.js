@@ -52,7 +52,11 @@ export default function HomePage() {
               <h1 className={styles.title}>Recently Cached:</h1>
               <div>
                 {fiveRecents.map((gift) => (
-                  <Gift key={gift.id} {...gift} setGifts={setGifts} />
+                  <Gift
+                    key={gift.id}
+                    gift={gift}
+                    setGifts={setGifts}
+                  />
                 ))}
               </div>
             </Flex>

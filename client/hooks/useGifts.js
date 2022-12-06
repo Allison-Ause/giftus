@@ -11,6 +11,7 @@ export default function useGifts(id, user) {
     const fetchData = async () => {
       const giftList = await getAllGifts();
       setGifts(giftList);
+      console.log('giftList in hook', giftList);
     };
     fetchData();
   }, []);
@@ -28,12 +29,12 @@ export default function useGifts(id, user) {
     const filteredGifts = gifts.filter(
       (gift) =>
         gift.idea.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        gift.recipient
+        gift.friend.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
         gift.occasion.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
+    console.log('filteredGifts', filteredGifts);
     return filteredGifts;
   };
 
