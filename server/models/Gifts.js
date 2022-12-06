@@ -85,17 +85,27 @@ GROUP BY gifts.id
     return new Gifts(rows[0]);
   }
 
+  // SELECT * FROM gifts
+  // WHERE id = $1
+
   static async getGiftById(id) {
     const { rows } = await pool.query(
       `
-    SELECT * FROM gifts
-    WHERE id = $1
+    SELECT gifts.*, 
+    COALESCE(
+      json_agg(to_jsonb(friends))
+      FILTER (WHERE friends.id IS NOT NULL), '[]'
+    ) as friend from gifts
+INNER JOIN friends ON friend_id = friends.id
+WHERE gifts.id = $1
+GROUP BY gifts.id
     `,
       [id]
     );
     if (rows.length === 0) {
       return null;
     }
+    console.log('rows from getById'.rows);
     return new Gifts(rows[0]);
   }
 

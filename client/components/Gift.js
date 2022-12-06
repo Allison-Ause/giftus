@@ -13,12 +13,6 @@ export default function Gift({ gift, setGifts }) {
 
   return (
     <Flex direction="row" gap="3.7px" alignItems="center">
-      {/* conditional rendering not displaying as Link. Why? */}
-      {/* {gift.url ? (
-        <Link to={gift.url}>{gift.idea}</Link>
-      ) : (
-        <h1>{gift.idea}</h1>
-      )} */}
       <Link as={RLink} to={`gifts/${gift.id}`} fontWeight="bold">
         {gift.idea}
       </Link>

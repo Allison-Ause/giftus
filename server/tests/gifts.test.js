@@ -30,7 +30,7 @@ describe('gift routes', () => {
   beforeEach(() => {
     return setupDb();
   });
-  it('#GET /gifts returns all gifts', async () => {
+  it.skip('#GET /gifts returns all gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -56,7 +56,7 @@ describe('gift routes', () => {
     });
   });
 
-  it.skip('#GET /gifts/:id returns a single gift', async () => {
+  it('#GET /gifts/:id returns a single gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -64,7 +64,7 @@ describe('gift routes', () => {
 
     expect(res.status).toBe(200);
     expect(res.body.idea).toBe('Ice Skates');
-    expect(res.body.recipient).toBe('Jenny');
+    expect(res.body.friend.name).toBe('Jenny');
   });
 
   it.skip('#DELETE /gifts/:id deletes specific gift', async () => {
