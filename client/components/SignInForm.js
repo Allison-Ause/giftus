@@ -22,7 +22,7 @@ export default function SignInForm() {
         rounded="lg"
         bg="#fff9ec"
         w="425px"
-        h="600px"
+        h="400px"
         mt="50px"
         padding="30px"
       >
@@ -65,7 +65,7 @@ export default function SignInForm() {
                 type="submit"
                 size="md"
                 w="75px"
-                mb="15px"
+                mb="45px"
                 mt="25px"
                 colorScheme="purple"
               >
