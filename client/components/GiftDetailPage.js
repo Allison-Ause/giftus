@@ -14,7 +14,7 @@ export default function GiftDetailPage() {
   // Save Button = onClick handleUpdateGift, render just display
   const { user, loading } = useUser();
   const { id } = useParams();
-  const { gift, setGift } = useGifts(id, user);
+  const { gift, setGift, giftLoading } = useGifts(id, user);
   console.log('gift from GiftDetail useGifts call:', gift);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -29,7 +29,7 @@ export default function GiftDetailPage() {
   return (
     <>
       <Header />
-      {loading ? (
+      {giftLoading ? (
         <Loader />
       ) : (
         <Flex

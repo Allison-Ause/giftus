@@ -46,4 +46,14 @@ describe('friends routes', () => {
       ...newGift,
     });
   });
+
+  it('#GET /friends/:id gets one friend by id', async () => {
+    const agent = request.agent(app);
+    await agent.post('/users/sessions').send(existingUser);
+
+    const res = await agent.get('/friends/1');
+    expect(res.status).toBe(200);
+    expect(res.body.id).toBe('1');
+    expect(res.body.name).toBe('Jenny');
+  });
 });

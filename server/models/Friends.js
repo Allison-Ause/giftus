@@ -36,4 +36,18 @@ export default class Friends {
     );
     return new Friends(rows[0]);
   }
+
+  static async getFriendById(id) {
+    const { rows } = await pool.query(
+      `
+    SELECT * FROM friends
+    WHERE id = $1`,
+      [id]
+    );
+    console.log('rows from model', rows);
+    if (rows.length === 0) {
+      return null;
+    }
+    return new Friends(rows[0]);
+  }
 }

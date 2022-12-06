@@ -22,4 +22,13 @@ export default Router()
     } catch (e) {
       next(e);
     }
+  })
+  .get('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = await Friends.getFriendById(req.params.id);
+      console.log('data from controller', data);
+      res.json(data);
+    } catch (e) {
+      next(e);
+    }
   });

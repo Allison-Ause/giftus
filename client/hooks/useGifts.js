@@ -5,6 +5,7 @@ import { getAllGifts, getById } from '../services/gift-utils.js';
 export default function useGifts(id, user) {
   const [gifts, setGifts] = useState([]);
   const [gift, setGift] = useState({});
+  const [giftLoading, setGiftLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function useGifts(id, user) {
       const gift = await getById(id);
       console.log('gift from useGifts', gift);
       setGift(gift);
+      setGiftLoading(false);
     };
     fetchData();
   }, [user]);
@@ -42,6 +44,7 @@ export default function useGifts(id, user) {
     setGifts,
     gift,
     setGift,
+    giftLoading,
     filterGifts,
     searchTerm,
     setSearchTerm,
