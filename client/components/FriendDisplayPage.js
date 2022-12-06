@@ -1,5 +1,6 @@
 import {
   Flex,
+  Box,
   Table,
   TableContainer,
   Tbody,
@@ -10,13 +11,21 @@ import {
 import Header from './Header.js';
 import Loader from './Loader.js';
 import styles from '../global.css';
+import { useUser } from '../context/userContext.js';
+import useFriends from '../hooks/useFriends.js';
+import { Navigate } from 'react-router-dom';
+import FriendTableRow from './FriendTableRow.js';
 
 export default function FriendDisplayPage() {
   // where all the friends will be displayed (with search functionality?)
   const { user, loading } = useUser();
+  const { friends } = useFriends();
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
+
+  let birthday;
+  let displayDate;
 
   return (
     <>
@@ -71,12 +80,22 @@ export default function FriendDisplayPage() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {friends.map((friend) => (
-                      <FriendTableRow
-                        key={friend.id}
-                        friend={friend}
-                      />
-                    ))}
+                    {friends.map((friend) => {
+                      birthday = new Date(
+                        friend.birthday
+                      ).toDateString();
+                      displayDate = birthday
+                        .split(' ')
+                        .splice(1, 2)
+                        .join(' ');
+                      return (
+                        <FriendTableRow
+                          key={friend.id}
+                          friend={friend}
+                          displayDate={displayDate}
+                        />
+                      );
+                    })}
                   </Tbody>
                 </Table>
               </TableContainer>

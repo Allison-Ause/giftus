@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getAllFriends } from '../services/friend-utils.js';
 
 export default function useFriends() {
   const [friends, setFriends] = useState([]);
