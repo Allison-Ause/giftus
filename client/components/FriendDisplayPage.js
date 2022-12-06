@@ -86,10 +86,6 @@ export default function FriendDisplayPage() {
                       ) {
                         displayDate = '';
                       } else {
-                        console.log(
-                          'friend.birthday',
-                          friend.birthday
-                        );
                         birthday = new Date(
                           friend.birthday
                         ).toDateString();

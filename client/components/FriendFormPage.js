@@ -35,7 +35,6 @@ export default function FriendForm() {
       isFormInvalid = true;
     }
     if (isFormInvalid) return;
-    console.log('birthday:', birthday);
 
     const newFriend = {
       name,
@@ -43,7 +42,6 @@ export default function FriendForm() {
       address,
     };
 
-    console.log('newFriend:', newFriend);
     await addFriend(newFriend);
     setName('');
     setBirthdayInput('');
