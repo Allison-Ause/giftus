@@ -11,6 +11,7 @@ export async function getAllGifts() {
   });
   if (res.ok) {
     const giftList = await res.json();
+    console.log('giftList from utils', giftList);
     return giftList;
   }
 }
