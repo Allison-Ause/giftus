@@ -29,7 +29,7 @@ export default function NewGiftForm({
 }) {
   const { friends } = useFriends();
   const [idea, setIdea] = useState(gift.idea || '');
-  const [recipient, setRecipient] = useState(gift.recipient || '');
+  const [recipient, setRecipient] = useState(gift.friend.name || '');
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
