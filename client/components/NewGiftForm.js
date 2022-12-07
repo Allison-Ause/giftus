@@ -8,7 +8,6 @@ import {
   Input,
   Stack,
   Box,
-  Text,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -19,6 +18,7 @@ import {
 } from '../services/gift-utils.js';
 import styles from '../global.css';
 import useFriends from '../hooks/useFriends.js';
+import { addFriend } from '../services/friend-utils.js';
 
 export default function NewGiftForm({
   gift,
@@ -33,6 +33,7 @@ export default function NewGiftForm({
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
+  const [selectedFriend, setSelectedFriend] = useState({});
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -64,9 +65,15 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
+    if (!selectedFriend.id && recipient) {
+      const newFriend = await addFriend({ name: recipient });
+      console.log('post-form newFriend:', newFriend);
+      setSelectedFriend(newFriend);
+    }
+
     const newGift = {
       idea,
-      friendId, // this is not a piece of state. Should it be? Currently recipient
+      friendId: selectedFriend.id,
       link,
       price,
       occasion,
@@ -80,6 +87,7 @@ export default function NewGiftForm({
     setLink('');
     setCost('');
     setOccasion('');
+    setSelectedFriend({});
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
@@ -180,31 +188,35 @@ export default function NewGiftForm({
               />
               {isFocused && recipient !== '' && (
                 <Box
-                  bg="red"
+                  bg="white"
                   position="absolute"
                   width="367.5px"
                   height="100px"
                   zIndex="1"
                 >
                   <Box
-                    bg="blue"
+                    bg="white"
                     position="relative"
                     width="367.5px"
                     height="100px"
                   >
-                    {filteredFriends.map((friend) => (
-                      <Button
-                        key={friend.id}
-                        variant="unstyled"
-                        onClick={() => {
-                          console.log('firing!');
-                          setRecipient(friend.name);
-                          setIsFocused(false);
-                        }}
-                      >
-                        {friend.name}
-                      </Button>
-                    ))}
+                    <Flex direction="column" alignItems="flex-start">
+                      {filteredFriends.map((friend) => (
+                        <Button
+                          key={friend.id}
+                          variant="unstyled"
+                          pl="5px"
+                          onClick={() => {
+                            console.log('firing!');
+                            setRecipient(friend.name);
+                            setSelectedFriend(friend);
+                            setIsFocused(false);
+                          }}
+                        >
+                          {friend.name}
+                        </Button>
+                      ))}
+                    </Flex>
                   </Box>
                 </Box>
               )}

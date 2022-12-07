@@ -32,18 +32,18 @@ describe('friends routes', () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
-    const newGift = {
+    const newFriend = {
       userId: '1',
       name: 'Jonathan Strange',
       birthday: '1825-01-11T07:52:58.000Z',
       address: '1313 Norrel St, Neverland',
     };
 
-    const res = await agent.post('/friends').send(newGift);
+    const res = await agent.post('/friends').send(newFriend);
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
       id: expect.any(String),
-      ...newGift,
+      ...newFriend,
     });
   });
 

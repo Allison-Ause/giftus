@@ -15,19 +15,23 @@ export async function getAllFriends() {
   }
 }
 
-export async function addFriend(newGift) {
+export async function addFriend(newFriend) {
+  console.log('newFriend paramter in utils:', newFriend);
+
   const res = await fetch(`${BASE_URL}/friends`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(newGift),
+    body: JSON.stringify(newFriend),
     credentials: 'include',
   });
+  console.log('res from utils:', res);
 
   if (res.ok) {
-    const newGift = await res.json();
-    return newGift;
+    const newFriend = await res.json();
+    console.log('newFriend from utils:', newFriend);
+    return newFriend;
   }
 }
