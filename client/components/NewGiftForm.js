@@ -38,23 +38,21 @@ export default function NewGiftForm({
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  // const filteredFriends = friends.filter(friend);
+  const filteredFriends = friends.filter((friend) =>
+    friend.name.toLowerCase().includes(recipient.toLowerCase())
+  );
+  console.log('filteredFriends', filteredFriends);
   // TODO
-  // create onFocus state (must be focused and have typed more than one character (recipient))
-  // finalized onFocus and onBlur states in Input
-  // create display div with proper visualization parameters
   // display filteredFriends.name in the div below
 
-  const handleFriend = async () => {
-    //
-    // filter through friends.name for value
-    // display suggested friends for selection
-    // IF (!friend):
-    // trigger await addFriend({ name: recipient, birthday: '1920-08-18', address: '' })
-    // use id from returned newFriend
-    // ELSE slurp out id from chosen friend
-    // add id to newGift object
-  };
+  // UDPATED ADD GIFT
+  // filter through friends.name for value
+  // display suggested friends for selection
+  // IF (!friend):
+  // trigger await addFriend({ name: recipient, birthday: '1920-08-18', address: '' })
+  // use id from returned newFriend
+  // ELSE slurp out id from chosen friend
+  // add id to newGift object
 
   const handleAddGift = async (e) => {
     if (!idea) {
