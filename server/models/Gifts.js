@@ -47,6 +47,7 @@ export default class Gifts {
 INNER JOIN friends ON friend_id = friends.id
 WHERE gifts.user_id = $1
 GROUP BY gifts.id
+ORDER BY created_at DESC
     `,
       [userId]
     );

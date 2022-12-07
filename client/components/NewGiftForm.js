@@ -33,13 +33,15 @@ export default function NewGiftForm({
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
-  const [selectedFriend, setSelectedFriend] = useState({});
+  // const [selectedFriend, setSelectedFriend] = useState({});
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
+  let selectedFriend = {};
+
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
   );
@@ -68,9 +70,11 @@ export default function NewGiftForm({
     if (!selectedFriend.id && recipient) {
       const newFriend = await addFriend({ name: recipient });
       console.log('post-form newFriend:', newFriend);
-      setSelectedFriend(newFriend);
+      // setSelectedFriend(newFriend);
+      selectedFriend = newFriend;
     }
 
+    console.log('selectedFriend', selectedFriend);
     const newGift = {
       idea,
       friendId: selectedFriend.id,
@@ -79,15 +83,18 @@ export default function NewGiftForm({
       occasion,
     };
 
-    await addGift(newGift);
+    console.log('newGift:', newGift);
+    const returnGift = await addGift(newGift);
+    console.log('newGift returned', returnGift);
     const newList = await getAllGifts();
+    console.log('newList returned:', newList);
     setGifts(newList);
     setIdea('');
     setRecipient('');
     setLink('');
     setCost('');
     setOccasion('');
-    setSelectedFriend({});
+    selectedFriend = {};
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
@@ -209,7 +216,7 @@ export default function NewGiftForm({
                           onClick={() => {
                             console.log('firing!');
                             setRecipient(friend.name);
-                            setSelectedFriend(friend);
+                            selectedFriend = friend;
                             setIsFocused(false);
                           }}
                         >
