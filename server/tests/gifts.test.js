@@ -7,11 +7,6 @@ import { describe, expect, it } from '@jest/globals';
 import setupDb from '../setup-data';
 import app from '../app';
 
-const testUser = {
-  email: 'santa@christmas.com',
-  password: 'password',
-};
-
 const existingUser = {
   email: 'dog@dog.com',
   password: 'password',
@@ -19,8 +14,8 @@ const existingUser = {
 
 const newGift = {
   userId: '1',
-  friendId: '1',
   idea: 'rainbow glitter',
+  friendId: '1',
   link: 'url.link',
   price: 30,
   occasion: 'Christmas',
@@ -41,9 +36,9 @@ describe('gift routes', () => {
     expect(res.body[0].friend.name).toBe('Jenny');
   });
 
-  it.skip('#POST /gifts adds new gift', async () => {
+  it('#POST /gifts adds new gift', async () => {
     const agent = request.agent(app);
-    await agent.post('/users').send(testUser);
+    await agent.post('/users/sessions').send(existingUser);
 
     const res = await agent.post('/gifts').send(newGift);
 
@@ -56,7 +51,7 @@ describe('gift routes', () => {
     });
   });
 
-  it('#GET /gifts/:id returns a single gift', async () => {
+  it.skip('#GET /gifts/:id returns a single gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 

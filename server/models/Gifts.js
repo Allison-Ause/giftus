@@ -56,19 +56,20 @@ GROUP BY gifts.id
   static async addGift({
     userId,
     idea,
-    recipient,
+    friendId,
     link,
     price,
     occasion,
   }) {
     const { rows } = await pool.query(
       `
-    INSERT INTO gifts (user_id, idea, recipient, link, price, occasion)
+    INSERT INTO gifts (user_id, idea, friend_id, link, price, occasion)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *
     `,
-      [userId, idea, recipient, link, price, occasion]
+      [userId, idea, friendId, link, price, occasion]
     );
+    console.log('addGift rows:', rows);
     return new Gifts(rows[0]);
   }
 
