@@ -26,7 +26,7 @@ export default Router()
   .get('/:id', authenticate, async (req, res, next) => {
     try {
       const data = await Friends.getFriendById(req.params.id);
-      console.log('data from controller', data);
+      console.log('friend data from controller:', data);
       res.json(data);
     } catch (e) {
       next(e);

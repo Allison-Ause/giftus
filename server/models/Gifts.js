@@ -1,4 +1,5 @@
 import pool from '../database.js';
+import Friends from './Friends.js';
 
 export default class Gifts {
   id;
@@ -115,20 +116,21 @@ GROUP BY gifts.id
 
     const { rows } = await pool.query(
       `
-    UPDATE gifts
-    SET idea = $2, friend_id = $3, link = $4, price = $5, occasion = $6
-    WHERE id = $1
-    RETURNING *
-    `,
+        UPDATE gifts
+        SET idea = $2, friend_id = $3, link = $4, price = $5, occasion = $6
+        WHERE id = $1
+        RETURNING *
+      `,
       [
         updatedGift.id,
         updatedGift.idea,
-        updatedGift.friend.id,
+        updatedGift.friendId,
         updatedGift.link,
         updatedGift.price,
         updatedGift.occasion,
       ]
     );
+    console.log('rows from update', rows);
     return new Gifts(rows[0]);
   }
 }

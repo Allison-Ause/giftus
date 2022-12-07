@@ -97,22 +97,40 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
-    if (!selectedFriend.id && recipient) {
-      const newFriend = await addFriend({ name: recipient });
-      selectedFriend = newFriend;
-    }
-    console.log('selectedFriend:', selectedFriend);
+    // selectedFriend starts as initial Friend Obj from gift
+    // when recipient changes, selectedFriend is either:
+    // a) chosen from list: selectedFriend set to new Friend Obj
+    // b) completely new; recipient set (selectedFriend still prev Friend Obj) need to add friend
+
+    // FIX THIS CONDITIONAL:
+    // .find(name) if friend > friend.id
+    // else await addFriend(name)
+
+    let found = friends.find((friend) => friend.name === recipient);
+    console.log('found', found);
+    found
+      ? (found = found)
+      : (found = await addFriend({ name: recipient }));
+    // if (selectedFriend.name !== recipient) {
+    //   const newFriend = await addFriend({ name: recipient });
+    //   selectedFriend = newFriend;
+    // }
+
     const id = gift.id;
     const newValues = {
       id,
       idea,
-      friendId: selectedFriend.id,
+      friendId: found.id,
       link,
       price,
       occasion,
     };
-    await editGift({ ...gift, ...newValues });
+    console.log('newValues', newValues);
+    // updated not properly adjusting friendId
+    const returnedGift = await editGift({ ...gift, ...newValues });
+    console.log('returnedGift', returnedGift);
     const updatedGift = await getById(id);
+    console.log('returned from getById', updatedGift);
     setGift(updatedGift);
     setIsEditing(false);
   };
@@ -181,7 +199,11 @@ export default function NewGiftForm({
                 bg="white"
                 value={recipient}
                 onFocus={() => setIsFocused(true)}
-                // onBlur={() => setIsFocused(false)}
+                onBlur={() =>
+                  setTimeout(() => {
+                    setIsFocused(false);
+                  }, 500)
+                }
                 onChange={(e) => setRecipient(e.target.value)}
               />
               {isFocused && recipient !== '' && (
@@ -205,7 +227,6 @@ export default function NewGiftForm({
                           variant="unstyled"
                           pl="5px"
                           onClick={() => {
-                            console.log('firing!');
                             setRecipient(friend.name);
                             selectedFriend = friend;
                             setIsFocused(false);

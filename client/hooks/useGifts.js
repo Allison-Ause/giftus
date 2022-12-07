@@ -20,7 +20,6 @@ export default function useGifts(id, user) {
     if (!user) return;
     const fetchData = async () => {
       const gift = await getById(id);
-      console.log('gift from useGifts', gift);
       setGift(gift);
       setGiftLoading(false);
     };

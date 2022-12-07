@@ -13,7 +13,6 @@ export default function GiftDetailPage() {
   const { user, loading } = useUser();
   const { id } = useParams();
   const { gift, setGift, giftLoading } = useGifts(id, user);
-  console.log('gift from GiftDetail useGifts call:', gift);
   const [isEditing, setIsEditing] = useState(false);
 
   if (!loading && !user)
