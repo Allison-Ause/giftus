@@ -8,6 +8,7 @@ import {
   Input,
   Stack,
   Box,
+  Text,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -41,11 +42,8 @@ export default function NewGiftForm({
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
   );
-  console.log('filteredFriends', filteredFriends);
   // TODO
-  // display filteredFriends.name in the div below
-
-  // UDPATED ADD GIFT
+  // UDPATE ADD GIFT
   // filter through friends.name for value
   // display suggested friends for selection
   // IF (!friend):
@@ -177,11 +175,9 @@ export default function NewGiftForm({
                 bg="white"
                 value={recipient}
                 onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                // onBlur={() => setIsFocused(false)}
                 onChange={(e) => setRecipient(e.target.value)}
               />
-              {/* display box */}
-              {/* conditional for isFocused and recipient != '' */}
               {isFocused && recipient !== '' && (
                 <Box
                   bg="red"
@@ -195,7 +191,21 @@ export default function NewGiftForm({
                     position="relative"
                     width="367.5px"
                     height="100px"
-                  ></Box>
+                  >
+                    {filteredFriends.map((friend) => (
+                      <Button
+                        key={friend.id}
+                        variant="unstyled"
+                        onClick={() => {
+                          console.log('firing!');
+                          setRecipient(friend.name);
+                          setIsFocused(false);
+                        }}
+                      >
+                        {friend.name}
+                      </Button>
+                    ))}
+                  </Box>
                 </Box>
               )}
               {isRecipientError ? (
