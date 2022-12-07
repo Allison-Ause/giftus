@@ -15,6 +15,7 @@ import {
   addGift,
   editGift,
   getAllGifts,
+  getById,
 } from '../services/gift-utils.js';
 import styles from '../global.css';
 import useFriends from '../hooks/useFriends.js';
@@ -29,7 +30,7 @@ export default function NewGiftForm({
 }) {
   const { friends } = useFriends();
   const [idea, setIdea] = useState(gift.idea || '');
-  const [recipient, setRecipient] = useState(gift.friend.name || '');
+  const [recipient, setRecipient] = useState(gift.friend?.name || '');
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
@@ -39,7 +40,7 @@ export default function NewGiftForm({
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  let selectedFriend = {};
+  let selectedFriend = gift.friend || {};
 
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
@@ -70,7 +71,7 @@ export default function NewGiftForm({
       occasion,
     };
 
-    const returnGift = await addGift(newGift);
+    await addGift(newGift);
     const newList = await getAllGifts();
     setGifts(newList);
     setIdea('');
@@ -100,7 +101,7 @@ export default function NewGiftForm({
       const newFriend = await addFriend({ name: recipient });
       selectedFriend = newFriend;
     }
-
+    console.log('selectedFriend:', selectedFriend);
     const id = gift.id;
     const newValues = {
       id,
@@ -110,7 +111,8 @@ export default function NewGiftForm({
       price,
       occasion,
     };
-    const updatedGift = await editGift({ ...gift, ...newValues });
+    await editGift({ ...gift, ...newValues });
+    const updatedGift = await getById(id);
     setGift(updatedGift);
     setIsEditing(false);
   };
