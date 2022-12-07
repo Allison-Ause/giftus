@@ -17,6 +17,7 @@ import {
   getAllGifts,
 } from '../services/gift-utils.js';
 import styles from '../global.css';
+import useFriends from '../hooks/useFriends.js';
 
 export default function NewGiftForm({
   gift,
@@ -25,6 +26,7 @@ export default function NewGiftForm({
   isEditing,
   setIsEditing,
 }) {
+  const { friends } = useFriends();
   const [idea, setIdea] = useState(gift.idea || '');
   const [recipient, setRecipient] = useState(gift.recipient || '');
   const [link, setLink] = useState(gift.link || '');
@@ -32,11 +34,27 @@ export default function NewGiftForm({
   const [occasion, setOccasion] = useState(gift.occasion || '');
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  // this might be redundant now that I've set the state default to 0
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  // do I need this e parameter?
+  // const filteredFriends = friends.filter(friend);
+  // TODO
+  // create onFocus state (must be focused and have typed more than one character (recipient))
+  // finalized onFocus and onBlur states in Input
+  // create display div with proper visualization parameters
+  // display filteredFriends.name in the div below
+
+  const handleFriend = async () => {
+    //
+    // filter through friends.name for value
+    // display suggested friends for selection
+    // IF (!friend):
+    // trigger await addFriend({ name: recipient, birthday: '1920-08-18', address: '' })
+    // use id from returned newFriend
+    // ELSE slurp out id from chosen friend
+    // add id to newGift object
+  };
 
   const handleAddGift = async (e) => {
     if (!idea) {
@@ -52,7 +70,7 @@ export default function NewGiftForm({
 
     const newGift = {
       idea,
-      recipient,
+      friendId, // this is not a piece of state. Should it be? Currently recipient
       link,
       price,
       occasion,
@@ -160,9 +178,28 @@ export default function NewGiftForm({
                 variant="outline"
                 bg="white"
                 value={recipient}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
                 onChange={(e) => setRecipient(e.target.value)}
               />
-
+              {/* display box */}
+              {/* conditional for isFocused and recipient != '' */}
+              {isFocused && recipient !== '' && (
+                <Box
+                  bg="red"
+                  position="absolute"
+                  width="367.5px"
+                  height="100px"
+                  zIndex="1"
+                >
+                  <Box
+                    bg="blue"
+                    position="relative"
+                    width="367.5px"
+                    height="100px"
+                  ></Box>
+                </Box>
+              )}
               {isRecipientError ? (
                 <FormErrorMessage>
                   Who would love to receive this gift?

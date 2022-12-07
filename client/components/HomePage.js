@@ -7,7 +7,6 @@ import NewGiftForm from './NewGiftForm.js';
 import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
-import { useState } from 'react';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
