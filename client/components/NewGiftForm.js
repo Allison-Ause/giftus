@@ -33,7 +33,6 @@ export default function NewGiftForm({
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
-  // const [selectedFriend, setSelectedFriend] = useState({});
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -45,15 +44,6 @@ export default function NewGiftForm({
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
   );
-  // TODO
-  // UDPATE ADD GIFT
-  // filter through friends.name for value
-  // display suggested friends for selection
-  // IF (!friend):
-  // trigger await addFriend({ name: recipient, birthday: '1920-08-18', address: '' })
-  // use id from returned newFriend
-  // ELSE slurp out id from chosen friend
-  // add id to newGift object
 
   const handleAddGift = async (e) => {
     if (!idea) {
@@ -69,12 +59,9 @@ export default function NewGiftForm({
 
     if (!selectedFriend.id && recipient) {
       const newFriend = await addFriend({ name: recipient });
-      console.log('post-form newFriend:', newFriend);
-      // setSelectedFriend(newFriend);
       selectedFriend = newFriend;
     }
 
-    console.log('selectedFriend', selectedFriend);
     const newGift = {
       idea,
       friendId: selectedFriend.id,
@@ -83,11 +70,8 @@ export default function NewGiftForm({
       occasion,
     };
 
-    console.log('newGift:', newGift);
     const returnGift = await addGift(newGift);
-    console.log('newGift returned', returnGift);
     const newList = await getAllGifts();
-    console.log('newList returned:', newList);
     setGifts(newList);
     setIdea('');
     setRecipient('');
@@ -112,11 +96,16 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
+    if (!selectedFriend.id && recipient) {
+      const newFriend = await addFriend({ name: recipient });
+      selectedFriend = newFriend;
+    }
+
     const id = gift.id;
     const newValues = {
       id,
       idea,
-      recipient,
+      friendId: selectedFriend.id,
       link,
       price,
       occasion,

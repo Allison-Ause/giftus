@@ -116,14 +116,14 @@ GROUP BY gifts.id
     const { rows } = await pool.query(
       `
     UPDATE gifts
-    SET idea = $2, recipient = $3, link = $4, price = $5, occasion = $6
+    SET idea = $2, friend_id = $3, link = $4, price = $5, occasion = $6
     WHERE id = $1
     RETURNING *
     `,
       [
         updatedGift.id,
         updatedGift.idea,
-        updatedGift.recipient,
+        updatedGift.friend.id,
         updatedGift.link,
         updatedGift.price,
         updatedGift.occasion,
