@@ -70,7 +70,6 @@ describe('gift routes', () => {
     expect(res.status).toBe(200);
 
     const checkRes = await agent.get('/gifts');
-    console.log('checkRes gift', checkRes.body);
     expect(checkRes.body.length).toBe(2);
   });
 

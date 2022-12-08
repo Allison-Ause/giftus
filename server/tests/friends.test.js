@@ -55,7 +55,6 @@ describe('friends routes', () => {
     expect(res.status).toBe(200);
 
     const checkRes = await agent.get('/friends');
-    console.log('friends returned', checkRes.body);
     expect(checkRes.body.length).toBe(2);
     // friendID 1 prev. owned giftId 1 (which no longer exists after cascade)
     const gifts = await agent.get('/gifts');

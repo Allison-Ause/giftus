@@ -59,7 +59,6 @@ export default class Friends {
     `,
       [id]
     );
-    console.log('rows from model', rows);
     return new Friends(rows[0]);
   }
 

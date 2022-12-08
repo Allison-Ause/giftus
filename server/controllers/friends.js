@@ -42,9 +42,7 @@ export default Router()
   })
   .delete('/:id', authenticate, async (req, res, next) => {
     try {
-      console.log('entering controller');
       const data = await Friends.deleteFriend(req.params.id);
-      console.log('data from controller', data);
       res.json(data);
     } catch (e) {
       next(e);

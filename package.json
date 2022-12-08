@@ -11,7 +11,7 @@
     "setup-db": "node setup-db.js",
     "start": "npm-run-all --parallel start:server start:web",
     "start:production": "node dist/server/index.js",
-    "start:server": "nodemon server/index.js",
+    "start:server": "nodemon -i client server/index.js",
     "start:web": "webpack serve --hot --mode development --devtool eval-source-map",
     "start:web:watch": "npm run start",
     "build:web": "webpack --devtool source-map",
