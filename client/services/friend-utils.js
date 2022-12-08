@@ -32,6 +32,21 @@ export async function addFriend(newFriend) {
   }
 }
 
+export async function getFriendById(id) {
+  const res = await fetch(`${BASE_URL}/friends/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  if (res.ok) {
+    const friend = await res.json();
+    return friend;
+  }
+}
+
 export async function deleteFriend(id) {
   const res = await fetch(`${BASE_URL}/friends/${id}`, {
     method: 'DELETE',
