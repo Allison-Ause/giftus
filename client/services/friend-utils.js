@@ -32,6 +32,39 @@ export async function addFriend(newFriend) {
   }
 }
 
+export async function getFriendById(id) {
+  const res = await fetch(`${BASE_URL}/friends/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  if (res.ok) {
+    const friend = await res.json();
+    return friend;
+  }
+}
+
+export async function editFriend(friend) {
+  const res = await fetch(`${BASE_URL}/friends/${friend.id}`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(friend),
+    credentials: 'include',
+  });
+
+  if (res.ok) {
+    // updated gift not returning appropriate update
+    const updatedFriend = await res.json();
+    return updatedFriend;
+  }
+}
+
 export async function deleteFriend(id) {
   const res = await fetch(`${BASE_URL}/friends/${id}`, {
     method: 'DELETE',

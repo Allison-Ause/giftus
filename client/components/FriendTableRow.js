@@ -1,5 +1,6 @@
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { IconButton, Td, Tr } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
+import { IconButton, Td, Tr, Link } from '@chakra-ui/react';
+import { Link as RLink } from 'react-router-dom';
 import {
   deleteFriend,
   getAllFriends,
@@ -18,7 +19,11 @@ export default function FriendTableRow({
 
   return (
     <Tr>
-      <Td>{friend.name}</Td>
+      <Td fontWeight="bold">
+        <Link as={RLink} to={`${friend.id}`}>
+          {friend.name}
+        </Link>
+      </Td>
       <Td>{displayDate}</Td>
       <Td>{friend.address}</Td>
       <Td>

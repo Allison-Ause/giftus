@@ -59,7 +59,25 @@ export default class Friends {
     `,
       [id]
     );
-    console.log('rows from model', rows);
+    return new Friends(rows[0]);
+  }
+
+  static async updateFriend(props) {
+    const originalFriend = await Friends.getFriendById(props.id);
+    const updatedFriend = { ...originalFriend, ...props };
+    const { rows } = await pool.query(
+      `
+    UPDATE friends
+    SET name = $2, birthday = $3, address = $4
+    WHERE id = $1
+    RETURNING *`,
+      [
+        updatedFriend.id,
+        updatedFriend.name,
+        updatedFriend.birthday,
+        updatedFriend.address,
+      ]
+    );
     return new Friends(rows[0]);
   }
 }

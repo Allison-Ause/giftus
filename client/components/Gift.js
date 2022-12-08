@@ -16,7 +16,10 @@ export default function Gift({ gift, setGifts }) {
       <Link as={RLink} to={`gifts/${gift.id}`} fontWeight="bold">
         {gift.idea}
       </Link>
-      <Text>{`for ${gift.friend.name}`}</Text>
+      <Text>{`for`}</Text>{' '}
+      <Link as={RLink} to={`friends/${gift.friend.id}`}>
+        {gift.friend.name}
+      </Link>
       <IconButton
         aria-label="delete gift"
         icon={<DeleteIcon />}

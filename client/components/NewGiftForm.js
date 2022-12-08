@@ -68,7 +68,6 @@ export default function NewGiftForm({
       ? (found = found)
       : (found = await addFriend({ name: recipient }));
 
-    console.log('found', found);
     const newGift = {
       idea,
       friendId: found.id, // selectedfriend.id
@@ -117,7 +116,7 @@ export default function NewGiftForm({
       price,
       occasion,
     };
-    const returnedGift = await editGift({ ...gift, ...newValues });
+    await editGift({ ...gift, ...newValues });
     const updatedGift = await getById(id);
     setGift(updatedGift);
     setIsEditing(false);

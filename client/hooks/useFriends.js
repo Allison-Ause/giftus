@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
-import { getAllFriends } from '../services/friend-utils.js';
+import {
+  getAllFriends,
+  getFriendById,
+} from '../services/friend-utils.js';
 
-export default function useFriends() {
+export default function useFriends(id, user) {
   const [friends, setFriends] = useState([]);
+  const [friend, setFriend] = useState({});
+  const [friendLoading, setFriendLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,5 +16,23 @@ export default function useFriends() {
     };
     fetchData();
   }, []);
-  return { friends, setFriends };
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchData = async () => {
+      const singleFriend = await getFriendById(id);
+      setFriend(singleFriend);
+      setFriendLoading(false);
+    };
+    fetchData();
+  }, [user]);
+
+  return {
+    friends,
+    setFriends,
+    friend,
+    setFriend,
+    friendLoading,
+    setFriendLoading,
+  };
 }

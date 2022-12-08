@@ -31,11 +31,18 @@ export default Router()
       next(e);
     }
   })
+  .put('/:id', authenticate, async (req, res, next) => {
+    try {
+      const data = { id: req.params.id, ...req.body };
+      const updatedFriend = await Friends.updateFriend(data);
+      res.json(updatedFriend);
+    } catch (e) {
+      next(e);
+    }
+  })
   .delete('/:id', authenticate, async (req, res, next) => {
     try {
-      console.log('entering controller');
       const data = await Friends.deleteFriend(req.params.id);
-      console.log('data from controller', data);
       res.json(data);
     } catch (e) {
       next(e);

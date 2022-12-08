@@ -16,6 +16,7 @@ import GiftDetailPage from './components/GiftDetailPage.js';
 import GiftDisplayPage from './components/GiftDisplayPage.js';
 import FriendDisplayPage from './components/FriendDisplayPage.js';
 import FriendFormPage from './components/FriendFormPage.js';
+import FriendDetailPage from './components/FriendDetailPage.js';
 
 const container =
   document.getElementById('app') || document.createElement('div');
@@ -37,6 +38,10 @@ root.render(
               <Route
                 path="/friends/new"
                 element={<FriendFormPage />}
+              />
+              <Route
+                path="/friends/:id"
+                element={<FriendDetailPage />}
               />
               <Route path="/gifts" element={<GiftDisplayPage />} />
               <Route path="/gifts/:id" element={<GiftDetailPage />} />
