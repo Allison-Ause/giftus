@@ -26,11 +26,11 @@ export default function FriendForm({
   isEditing,
   setIsEditing,
 }) {
-  const [name, setName] = useState(friend.name || '');
+  const [name, setName] = useState(friend?.name || '');
   const [birthdayInput, setBirthdayInput] = useState(
     calendarDate || ''
   );
-  const [address, setAddress] = useState(friend.address || '');
+  const [address, setAddress] = useState(friend?.address || '');
   const [isNameError, setIsNameError] = useState(false);
   const toast = useToast();
 
