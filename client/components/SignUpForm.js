@@ -25,7 +25,7 @@ export default function SignUpForm() {
         rounded="lg"
         bg="#fff9ec"
         w="425px"
-        h="600px"
+        h="500px"
         mt="50px"
         padding="30px"
       >
@@ -84,7 +84,7 @@ export default function SignUpForm() {
                 type="submit"
                 size="md"
                 w="75px"
-                mb="15px"
+                mb="45px"
                 mt="25px"
                 colorScheme="purple"
               >

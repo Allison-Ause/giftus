@@ -10,11 +10,9 @@ import Header from './Header.js';
 import Loader from './Loader.js';
 
 export default function GiftDetailPage() {
-  // Edit Button = onClick load form?
-  // Save Button = onClick handleUpdateGift, render just display
   const { user, loading } = useUser();
   const { id } = useParams();
-  const { gift, setGift } = useGifts(id, user);
+  const { gift, setGift, giftLoading } = useGifts(id, user);
   const [isEditing, setIsEditing] = useState(false);
 
   if (!loading && !user)
@@ -28,7 +26,7 @@ export default function GiftDetailPage() {
   return (
     <>
       <Header />
-      {loading ? (
+      {giftLoading ? (
         <Loader />
       ) : (
         <Flex
@@ -84,7 +82,7 @@ export default function GiftDetailPage() {
                   fontSize="md"
                   fontWeight="bold"
                   mb="15px"
-                >{`for ${gift.recipient}`}</Text>
+                >{`for ${gift.friend?.name}`}</Text>
                 <Text mb="20px">{`An ideal ${gift.occasion} present!`}</Text>
                 {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
                 {gift.link != '' && (

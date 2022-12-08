@@ -8,8 +8,8 @@ import {
   Input,
   Stack,
   Box,
-  IconButton,
 } from '@chakra-ui/react';
+
 import { useState } from 'react';
 import {
   addGift,
@@ -18,6 +18,8 @@ import {
   getById,
 } from '../services/gift-utils.js';
 import styles from '../global.css';
+import useFriends from '../hooks/useFriends.js';
+import { addFriend } from '../services/friend-utils.js';
 
 export default function NewGiftForm({
   gift,
@@ -26,18 +28,23 @@ export default function NewGiftForm({
   isEditing,
   setIsEditing,
 }) {
+  const { friends } = useFriends();
   const [idea, setIdea] = useState(gift.idea || '');
-  const [recipient, setRecipient] = useState(gift.recipient || '');
+  const [recipient, setRecipient] = useState(gift.friend?.name || '');
   const [link, setLink] = useState(gift.link || '');
   const [cost, setCost] = useState(gift.price || 0);
   const [occasion, setOccasion] = useState(gift.occasion || '');
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  // this might be redundant now that I've set the state default to 0
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  // do I need this e parameter?
+  let selectedFriend = gift.friend || {};
+
+  const filteredFriends = friends.filter((friend) =>
+    friend.name.toLowerCase().includes(recipient.toLowerCase())
+  );
 
   const handleAddGift = async (e) => {
     if (!idea) {
@@ -51,9 +58,14 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
+    if (!selectedFriend.id && recipient) {
+      const newFriend = await addFriend({ name: recipient });
+      selectedFriend = newFriend;
+    }
+
     const newGift = {
       idea,
-      recipient,
+      friendId: selectedFriend.id,
       link,
       price,
       occasion,
@@ -67,6 +79,7 @@ export default function NewGiftForm({
     setLink('');
     setCost('');
     setOccasion('');
+    selectedFriend = {};
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
@@ -84,16 +97,22 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
+    let found = friends.find((friend) => friend.name === recipient);
+    found
+      ? (found = found)
+      : (found = await addFriend({ name: recipient }));
+
     const id = gift.id;
     const newValues = {
       id,
       idea,
-      recipient,
+      friendId: found.id,
       link,
       price,
       occasion,
     };
-    const updatedGift = await editGift({ ...gift, ...newValues });
+    const returnedGift = await editGift({ ...gift, ...newValues });
+    const updatedGift = await getById(id);
     setGift(updatedGift);
     setIsEditing(false);
   };
@@ -161,9 +180,47 @@ export default function NewGiftForm({
                 variant="outline"
                 bg="white"
                 value={recipient}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() =>
+                  setTimeout(() => {
+                    setIsFocused(false);
+                  }, 500)
+                }
                 onChange={(e) => setRecipient(e.target.value)}
               />
-
+              {isFocused && recipient !== '' && (
+                <Box
+                  bg="white"
+                  position="absolute"
+                  width="367.5px"
+                  height="100px"
+                  zIndex="1"
+                >
+                  <Box
+                    bg="white"
+                    position="relative"
+                    width="367.5px"
+                    height="100px"
+                  >
+                    <Flex direction="column" alignItems="flex-start">
+                      {filteredFriends.map((friend) => (
+                        <Button
+                          key={friend.id}
+                          variant="unstyled"
+                          pl="5px"
+                          onClick={() => {
+                            setRecipient(friend.name);
+                            selectedFriend = friend;
+                            setIsFocused(false);
+                          }}
+                        >
+                          {friend.name}
+                        </Button>
+                      ))}
+                    </Flex>
+                  </Box>
+                </Box>
+              )}
               {isRecipientError ? (
                 <FormErrorMessage>
                   Who would love to receive this gift?

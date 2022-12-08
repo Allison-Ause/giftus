@@ -10,9 +10,21 @@
   color: #6b46c1;
 }
 
+.friend {
+  font-family: 'Coiny', cursive;
+  font-size: 30px;
+  color: #e24e96;
+}
+
 .table-head {
   font-family: 'Coiny', cursive;
   color: #6b46c1;
+  font-size: 17px;
+}
+
+.friend-table-head {
+  font-family: 'Coiny', cursive;
+  color: #e24e96;
   font-size: 17px;
 }
 
@@ -37,5 +49,4 @@
   border-radius: 5px;
   height: 30px;
   margin: 10px;
-  color: rgba(255, 255, 255, 0.722);
 }

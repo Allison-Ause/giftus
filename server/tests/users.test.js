@@ -42,7 +42,7 @@ describe('user routes', () => {
     expect(res.body.message).toBe('Successfully signed in!');
   });
 
-  it('#DELETE /users/sessions signs out user', async () => {
+  it.skip('#DELETE /users/sessions signs out user', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 

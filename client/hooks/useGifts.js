@@ -5,6 +5,7 @@ import { getAllGifts, getById } from '../services/gift-utils.js';
 export default function useGifts(id, user) {
   const [gifts, setGifts] = useState([]);
   const [gift, setGift] = useState({});
+  const [giftLoading, setGiftLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function useGifts(id, user) {
     const fetchData = async () => {
       const gift = await getById(id);
       setGift(gift);
+      setGiftLoading(false);
     };
     fetchData();
   }, [user]);
@@ -28,12 +30,11 @@ export default function useGifts(id, user) {
     const filteredGifts = gifts.filter(
       (gift) =>
         gift.idea.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        gift.recipient
+        gift.friend.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
         gift.occasion.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     return filteredGifts;
   };
 
@@ -42,6 +43,7 @@ export default function useGifts(id, user) {
     setGifts,
     gift,
     setGift,
+    giftLoading,
     filterGifts,
     searchTerm,
     setSearchTerm,

@@ -7,7 +7,6 @@ import NewGiftForm from './NewGiftForm.js';
 import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
-import { useState } from 'react';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
@@ -52,7 +51,11 @@ export default function HomePage() {
               <h1 className={styles.title}>Recently Cached:</h1>
               <div>
                 {fiveRecents.map((gift) => (
-                  <Gift key={gift.id} {...gift} setGifts={setGifts} />
+                  <Gift
+                    key={gift.id}
+                    gift={gift}
+                    setGifts={setGifts}
+                  />
                 ))}
               </div>
             </Flex>
