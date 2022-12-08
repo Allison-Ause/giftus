@@ -1,4 +1,9 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
+import {
+  HamburgerIcon,
+  Search2Icon,
+  SearchIcon,
+  SmallAddIcon,
+} from '@chakra-ui/icons';
 import {
   Flex,
   Menu,
@@ -59,6 +64,27 @@ export default function Header() {
                   onClick={() => navigate('/gifts')}
                 >
                   Gifts
+                  <SearchIcon pl="5px" boxSize="5" />
+                </MenuItem>
+                <MenuItem
+                  color="#482698"
+                  fontWeight="bold"
+                  h="35px"
+                  p="5px"
+                  onClick={() => navigate('/friends')}
+                >
+                  Friends
+                  <SearchIcon pl="5px" boxSize="5" />
+                </MenuItem>
+                <MenuItem
+                  color="#482698"
+                  fontWeight="bold"
+                  h="35px"
+                  p="5px"
+                  onClick={() => navigate('/friends/new')}
+                >
+                  Add Friend
+                  <SmallAddIcon pl="5px" boxSize="6" />
                 </MenuItem>
                 <MenuItem
                   color="#482698"
