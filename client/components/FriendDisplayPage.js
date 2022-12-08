@@ -58,7 +58,7 @@ export default function FriendDisplayPage() {
               justifyContent="center"
               alignItems="center"
             >
-              <h1 className={styles.title}>Future Recipients</h1>
+              <h1 className={styles.friend}>Future Recipients</h1>
               <TableContainer>
                 <Table
                   variant="striped"
@@ -69,13 +69,19 @@ export default function FriendDisplayPage() {
                   <Thead>
                     <Tr>
                       <Th>
-                        <h1 className={styles.tableHead}>Name</h1>
+                        <h1 className={styles.friendTableHead}>
+                          Name
+                        </h1>
                       </Th>
                       <Th>
-                        <h1 className={styles.tableHead}>Birthday</h1>
+                        <h1 className={styles.friendTableHead}>
+                          Birthday
+                        </h1>
                       </Th>
                       <Th>
-                        <h1 className={styles.tableHead}>Address</h1>
+                        <h1 className={styles.friendTableHead}>
+                          Address
+                        </h1>
                       </Th>
                     </Tr>
                   </Thead>
