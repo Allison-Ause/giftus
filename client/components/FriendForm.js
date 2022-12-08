@@ -13,7 +13,11 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import styles from '../global.css';
-import { addFriend } from '../services/friend-utils.js';
+import {
+  addFriend,
+  editFriend,
+  getFriendById,
+} from '../services/friend-utils.js';
 
 export default function FriendForm({
   friend,
@@ -80,15 +84,15 @@ export default function FriendForm({
     }
     if (isFormInvalid) return;
 
-    const updatedFriend = {
+    const newValues = {
       id: friend.id,
       name,
       birthday,
       address,
     };
-
-    //form business
-    // await updateFriend
+    await editFriend({ ...friend, ...newValues });
+    const editedFriend = await getFriendById(friend.id);
+    setFriend(editedFriend);
     setIsEditing(false);
   };
   return (
