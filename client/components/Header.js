@@ -1,6 +1,5 @@
 import {
   HamburgerIcon,
-  Search2Icon,
   SearchIcon,
   SmallAddIcon,
 } from '@chakra-ui/icons';

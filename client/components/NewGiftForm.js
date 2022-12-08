@@ -97,23 +97,10 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
-    // selectedFriend starts as initial Friend Obj from gift
-    // when recipient changes, selectedFriend is either:
-    // a) chosen from list: selectedFriend set to new Friend Obj
-    // b) completely new; recipient set (selectedFriend still prev Friend Obj) need to add friend
-
-    // FIX THIS CONDITIONAL:
-    // .find(name) if friend > friend.id
-    // else await addFriend(name)
-
     let found = friends.find((friend) => friend.name === recipient);
     found
       ? (found = found)
       : (found = await addFriend({ name: recipient }));
-    // if (selectedFriend.name !== recipient) {
-    //   const newFriend = await addFriend({ name: recipient });
-    //   selectedFriend = newFriend;
-    // }
 
     const id = gift.id;
     const newValues = {

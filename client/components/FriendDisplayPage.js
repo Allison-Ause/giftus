@@ -17,7 +17,6 @@ import { Navigate } from 'react-router-dom';
 import FriendTableRow from './FriendTableRow.js';
 
 export default function FriendDisplayPage() {
-  // where all the friends will be displayed (with search functionality?)
   const { user, loading } = useUser();
   const { friends } = useFriends();
 
