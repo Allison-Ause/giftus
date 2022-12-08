@@ -93,12 +93,12 @@ export default function FriendDetailPage() {
                 {friend.name}
               </Text>
               <Text
-                decoration="underline solid pink 4px"
+                decoration="underline solid pink.500 4px"
                 mt="10px"
               >{`Birthday`}</Text>
               <Text fontWeight="bold">{friend.birthday}</Text>
               <Text
-                decoration="underline solid pink 4px"
+                decoration="underline solid pink.500 4px"
                 mt="15px"
               >{`Address`}</Text>
               <Text w="200px" fontWeight="bold">
@@ -120,7 +120,7 @@ export default function FriendDetailPage() {
               alignItems="center"
             >
               <h1 className={styles.friend}>Gift Ideas</h1>
-              <Text>{`For list of gifts!`}</Text>
+              <Text>{`For list of gifts! with delete buttons, then eliminate delete buttons from front page`}</Text>
             </Flex>
           </Box>
         </Flex>
