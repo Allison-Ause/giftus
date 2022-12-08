@@ -9,6 +9,7 @@ import {
   Input,
   Stack,
   Textarea,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { addFriend } from '../services/friend-utils.js';
@@ -23,6 +24,7 @@ export default function FriendForm() {
   const [birthdayInput, setBirthdayInput] = useState('');
   const [address, setAddress] = useState('');
   const [isNameError, setIsNameError] = useState(false);
+  const toast = useToast();
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -48,6 +50,24 @@ export default function FriendForm() {
     setAddress('');
     setIsNameError(false);
     isFormInvalid = false;
+    toast({
+      position: 'bottom',
+      render: () => (
+        <Box
+          borderRadius="5px"
+          boxShadow="md"
+          bg="pink.400"
+          color="white"
+          p="15px"
+          fontWeight="bold"
+          fontSize="15px"
+          h="55px"
+          mb="35px"
+        >
+          {`Successfully added ${newFriend.name}!`}
+        </Box>
+      ),
+    });
   };
 
   return (
@@ -72,8 +92,8 @@ export default function FriendForm() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="500px"
-            h="600px"
+            w="400px"
+            h="500px"
           >
             <Flex
               direction="column"

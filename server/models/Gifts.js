@@ -71,7 +71,6 @@ ORDER BY created_at DESC
     `,
       [userId, idea, friendId, link, price, occasion]
     );
-    console.log('addGift rows:', rows);
     return new Gifts(rows[0]);
   }
 
@@ -130,7 +129,6 @@ GROUP BY gifts.id
         updatedGift.occasion,
       ]
     );
-    console.log('rows from update', rows);
     return new Gifts(rows[0]);
   }
 }

@@ -48,7 +48,6 @@ export async function getById(id) {
 }
 
 export async function editGift(gift) {
-  console.log('gift params', gift);
   // gift params are accurate with updated friendId
   const res = await fetch(`${BASE_URL}/gifts/${gift.id}`, {
     method: 'PUT',
@@ -63,7 +62,6 @@ export async function editGift(gift) {
   if (res.ok) {
     // updated gift not returning appropriate update
     const updatedGift = await res.json();
-    console.log('updatedGift in utils', updatedGift);
     return updatedGift;
   }
 }

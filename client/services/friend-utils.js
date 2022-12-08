@@ -16,8 +16,6 @@ export async function getAllFriends() {
 }
 
 export async function addFriend(newFriend) {
-  console.log('newFriend paramter in utils:', newFriend);
-
   const res = await fetch(`${BASE_URL}/friends`, {
     method: 'POST',
     headers: {
@@ -27,11 +25,9 @@ export async function addFriend(newFriend) {
     body: JSON.stringify(newFriend),
     credentials: 'include',
   });
-  console.log('res from utils:', res);
 
   if (res.ok) {
     const newFriend = await res.json();
-    console.log('newFriend from utils:', newFriend);
     return newFriend;
   }
 }

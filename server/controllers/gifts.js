@@ -18,7 +18,6 @@ export default Router()
         userId: req.user.id,
       };
       const newGift = await Gifts.addGift(data);
-      console.log('return from controller:', newGift);
       res.json(newGift);
     } catch (e) {
       next(e);
