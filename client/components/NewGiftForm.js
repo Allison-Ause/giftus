@@ -116,7 +116,7 @@ export default function NewGiftForm({
       price,
       occasion,
     };
-    const returnedGift = await editGift({ ...gift, ...newValues });
+    await editGift({ ...gift, ...newValues });
     const updatedGift = await getById(id);
     setGift(updatedGift);
     setIsEditing(false);

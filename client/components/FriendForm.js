@@ -74,9 +74,22 @@ export default function FriendForm({
   };
 
   const handleEditFriend = async () => {
+    if (!name) {
+      setIsNameError(true);
+      isFormInvalid = true;
+    }
+    if (isFormInvalid) return;
+
+    const updatedFriend = {
+      id: friend.id,
+      name,
+      birthday,
+      address,
+    };
+
     //form business
     // await updateFriend
-    // toggle isEditing
+    setIsEditing(false);
   };
   return (
     <Flex
