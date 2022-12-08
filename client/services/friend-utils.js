@@ -31,3 +31,10 @@ export async function addFriend(newFriend) {
     return newFriend;
   }
 }
+
+export async function deleteFriend(id) {
+  const res = await fetch(`${BASE_URL}/friends/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  });
+}
