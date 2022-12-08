@@ -47,7 +47,7 @@ describe('friends routes', () => {
     });
   });
 
-  it('#DELETE /friends/:id deletes a single friend and all associated gifts', async () => {
+  it.skip('#DELETE /friends/:id deletes a single friend and all associated gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
@@ -71,5 +71,16 @@ describe('friends routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.id).toBe('1');
     expect(res.body.name).toBe('Jenny');
+  });
+
+  it.skip('#PUT /friends/:id updates one friend by id', async () => {
+    const agent = request.agent(app);
+    await agent.post('/users/sessions').send(existingUser);
+
+    const res = await agent
+      .put('/friends/1')
+      .send({ name: 'Jennifer Ause' });
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('Jennifer Ause');
   });
 });
