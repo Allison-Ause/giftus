@@ -15,10 +15,18 @@ import { useState } from 'react';
 import styles from '../global.css';
 import { addFriend } from '../services/friend-utils.js';
 
-export default function FriendForm() {
-  const [name, setName] = useState('');
-  const [birthdayInput, setBirthdayInput] = useState('');
-  const [address, setAddress] = useState('');
+export default function FriendForm({
+  friend,
+  setFriend,
+  calendarDate,
+  isEditing,
+  setIsEditing,
+}) {
+  const [name, setName] = useState(friend.name || '');
+  const [birthdayInput, setBirthdayInput] = useState(
+    calendarDate || ''
+  );
+  const [address, setAddress] = useState(friend.address || '');
   const [isNameError, setIsNameError] = useState(false);
   const toast = useToast();
 
@@ -65,6 +73,11 @@ export default function FriendForm() {
     });
   };
 
+  const handleEditFriend = async () => {
+    //form business
+    // await updateFriend
+    // toggle isEditing
+  };
   return (
     <Flex
       direction="column"
@@ -169,7 +182,9 @@ export default function FriendForm() {
             </FormControl>
             <Flex justifyContent="center">
               <Button
-                onClick={handleAddFriend}
+                onClick={
+                  isEditing ? handleEditFriend : handleAddFriend
+                }
                 size="md"
                 w="75px"
                 colorScheme="pink"

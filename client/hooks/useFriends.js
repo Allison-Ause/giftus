@@ -22,7 +22,7 @@ export default function useFriends(id, user) {
     const fetchData = async () => {
       const singleFriend = await getFriendById(id);
       setFriend(singleFriend);
-      // setFriendLoading(false);
+      setFriendLoading(false);
     };
     fetchData();
   }, [user]);
