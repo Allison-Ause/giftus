@@ -34,7 +34,7 @@ export default function FriendForm({
   const [isNameError, setIsNameError] = useState(false);
   const toast = useToast();
 
-  const birthday = !birthdayInput ? '1920-08-18' : birthdayInput;
+  const birthday = !birthdayInput ? null : birthdayInput;
   let isFormInvalid = false;
 
   const handleAddFriend = async (e) => {
