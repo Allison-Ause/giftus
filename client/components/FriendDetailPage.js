@@ -1,18 +1,21 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, IconButton, Stack, Text } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import useFriends from '../hooks/useFriends.js';
 import Header from './Header.js';
 import Loader from './Loader.js';
 import styles from '../global.css';
+import { useState } from 'react';
+import { EditIcon } from '@chakra-ui/icons';
+import useGifts from '../hooks/useGifts.js';
 
 export default function FriendDetailPage() {
   const { user, loading } = useUser();
   const { id } = useParams();
-  const { friend, friendLoading, setFriendLoading } = useFriends(
-    id,
-    user
-  );
+  const { friend } = useFriends(id, user);
+  const { gifts } = useGifts();
+  const [isEditing, setIsEditing] = useState(false);
+  const [dateLoading, setDateLoading] = useState(true);
   console.log('friend:', friend);
 
   let birthday;
@@ -25,26 +28,30 @@ export default function FriendDetailPage() {
   function changeDate() {
     if (friend.birthday === '1920-08-18T08:00:00.000Z') {
       displayDate = '';
-      setFriendLoading(false);
+      setDateLoading(false);
     } else {
       birthday = new Date(friend.birthday).toDateString();
       displayDate = birthday.split(' ').splice(1, 2).join(' ');
-      setFriendLoading(false);
+      setDateLoading(false);
     }
+    return displayDate;
   }
+  // changeDate();
 
   return (
     <>
       <Header />
-      {friendLoading ? (
+      {loading ? (
         <Loader />
       ) : (
         <Flex
+          direction="row"
+          gap="25px"
           className={styles.bg}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
           h="calc(100vh)"
-          justifyContent="center"
+          justifyContent="space-around"
           alignItems="center"
         >
           <Box
@@ -52,9 +59,70 @@ export default function FriendDetailPage() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="425px"
-            h="600px"
-          ></Box>
+            h="400px"
+            w="350px"
+          >
+            <Flex justifyContent="flex-end" m="-15px">
+              <IconButton
+                aria-label="edit-gift"
+                size="md"
+                colorScheme="pink"
+                variant="ghost"
+                icon={<EditIcon />}
+                onClick={() => {
+                  setIsEditing(true);
+                }}
+              />
+            </Flex>
+            <Flex
+              direction="column"
+              gap="10px"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <h1 className={styles.friend} id={styles.drop}>
+                Your Friend
+              </h1>
+              <Text
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize="lg"
+                letterSpacing="wide"
+                mt="15px"
+              >
+                {friend.name}
+              </Text>
+              <Text
+                decoration="underline solid pink 4px"
+                mt="10px"
+              >{`Birthday`}</Text>
+              <Text fontWeight="bold">{friend.birthday}</Text>
+              <Text
+                decoration="underline solid pink 4px"
+                mt="15px"
+              >{`Address`}</Text>
+              <Text w="200px" fontWeight="bold">
+                {friend.address}
+              </Text>
+            </Flex>
+          </Box>
+          <Box
+            boxShadow="md"
+            p="6"
+            rounded="lg"
+            bg="#fff9ec"
+            h="500px"
+            w="350px"
+          >
+            <Flex
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <h1 className={styles.friend}>Gift Ideas</h1>
+              <Text>{`For list of gifts!`}</Text>
+            </Flex>
+          </Box>
         </Flex>
       )}
     </>

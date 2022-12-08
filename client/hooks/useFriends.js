@@ -7,7 +7,6 @@ import {
 export default function useFriends(id, user) {
   const [friends, setFriends] = useState([]);
   const [friend, setFriend] = useState({});
-  const [displayDate, setDisplayDate] = useState('');
   const [friendLoading, setFriendLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +33,6 @@ export default function useFriends(id, user) {
     friend,
     setFriend,
     friendLoading,
-    displayDate,
+    setFriendLoading,
   };
 }
