@@ -33,7 +33,7 @@ CREATE TABLE gifts (
   is_purchased BOOLEAN DEFAULT(false),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (friend_id) references friends(id)
+  FOREIGN KEY (friend_id) references friends(id) ON DELETE CASCADE
 );
 
 
