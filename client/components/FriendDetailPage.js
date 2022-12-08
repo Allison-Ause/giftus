@@ -17,7 +17,6 @@ export default function FriendDetailPage() {
   const { friend, setFriend, friendLoading } = useFriends(id, user);
   const { gifts } = useGifts();
   const [isEditing, setIsEditing] = useState(false);
-  console.log('friend:', friend);
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
