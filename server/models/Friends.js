@@ -49,4 +49,17 @@ export default class Friends {
     }
     return new Friends(rows[0]);
   }
+
+  static async deleteFriend(id) {
+    const { rows } = await pool.query(
+      `
+    DELETE FROM friends
+    WHERE id = $1
+    RETURNING *
+    `,
+      [id]
+    );
+    console.log('rows from model', rows);
+    return new Friends(rows[0]);
+  }
 }

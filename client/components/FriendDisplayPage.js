@@ -18,7 +18,7 @@ import FriendTableRow from './FriendTableRow.js';
 
 export default function FriendDisplayPage() {
   const { user, loading } = useUser();
-  const { friends } = useFriends();
+  const { friends, setFriends } = useFriends();
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -48,7 +48,7 @@ export default function FriendDisplayPage() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="800px"
+            w="900px"
             h="500px"
             overflow="scroll"
           >
@@ -62,7 +62,7 @@ export default function FriendDisplayPage() {
                 <Table
                   variant="striped"
                   colorScheme="pink"
-                  w="700px"
+                  w="800px"
                   mt="50px"
                 >
                   <Thead>
@@ -82,6 +82,7 @@ export default function FriendDisplayPage() {
                           Address
                         </h1>
                       </Th>
+                      <Th></Th>
                     </Tr>
                   </Thead>
                   <Tbody>
@@ -103,6 +104,7 @@ export default function FriendDisplayPage() {
                         <FriendTableRow
                           key={friend.id}
                           friend={friend}
+                          setFriends={setFriends}
                           displayDate={displayDate}
                         />
                       );

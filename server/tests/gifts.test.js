@@ -62,15 +62,16 @@ describe('gift routes', () => {
     expect(res.body.friend.name).toBe('Jenny');
   });
 
-  it.skip('#DELETE /gifts/:id deletes specific gift', async () => {
+  it('#DELETE /gifts/:id deletes specific gift', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
     const res = await agent.delete('/gifts/1');
-
     expect(res.status).toBe(200);
+
     const checkRes = await agent.get('/gifts');
-    expect(checkRes).to.not.include(id === 1);
+    console.log('checkRes gift', checkRes.body);
+    expect(checkRes.body.length).toBe(2);
   });
 
   it('#PUT /gifts/:id updates specific gift', async () => {

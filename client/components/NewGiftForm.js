@@ -40,7 +40,7 @@ export default function NewGiftForm({
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  let selectedFriend = gift.friend || {};
+  // let selectedFriend = gift.friend || {};
 
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
@@ -58,14 +58,20 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
-    if (!selectedFriend.id && recipient) {
-      const newFriend = await addFriend({ name: recipient });
-      selectedFriend = newFriend;
-    }
+    // if (!selectedFriend.id && recipient) {
+    //   const newFriend = await addFriend({ name: recipient });
+    //   selectedFriend = newFriend;
+    // }
 
+    let found = friends.find((friend) => friend.name === recipient);
+    found
+      ? (found = found)
+      : (found = await addFriend({ name: recipient }));
+
+    console.log('found', found);
     const newGift = {
       idea,
-      friendId: selectedFriend.id,
+      friendId: found.id, // selectedfriend.id
       link,
       price,
       occasion,
@@ -79,7 +85,7 @@ export default function NewGiftForm({
     setLink('');
     setCost('');
     setOccasion('');
-    selectedFriend = {};
+    // selectedFriend = {};
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
@@ -210,7 +216,7 @@ export default function NewGiftForm({
                           pl="5px"
                           onClick={() => {
                             setRecipient(friend.name);
-                            selectedFriend = friend;
+                            // selectedFriend = friend;
                             setIsFocused(false);
                           }}
                         >

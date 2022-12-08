@@ -52,6 +52,7 @@ export default function FriendForm() {
     isFormInvalid = false;
     toast({
       position: 'bottom',
+      duration: 2000,
       render: () => (
         <Box
           borderRadius="5px"

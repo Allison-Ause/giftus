@@ -12,10 +12,10 @@ import AuthPage from './components/AuthPage';
 import HomePage from './components/HomePage';
 import { UserProvider } from './context/userContext';
 import { ChakraProvider } from '@chakra-ui/react';
-import GiftDetailPage from './components/GiftDetailPage';
-import GiftDisplayPage from './components/GiftDisplayPage';
-import FriendDisplayPage from './components/FriendDisplayPage';
-import FriendFormPage from './components/FriendFormPage';
+import GiftDetailPage from './components/GiftDetailPage.js';
+import GiftDisplayPage from './components/GiftDisplayPage.js';
+import FriendDisplayPage from './components/FriendDisplayPage.js';
+import FriendFormPage from './components/FriendFormPage.js';
 
 const container =
   document.getElementById('app') || document.createElement('div');
