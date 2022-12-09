@@ -38,12 +38,6 @@ export default function Header() {
         </a>
 
         <Flex alignItems="center">
-          {/* <IconButton
-            aria-label="search-database"
-            variant="ghost"
-            colorScheme="purple"
-            icon={<SearchIcon />}
-          /> */}
           {user && (
             <Menu colorScheme="purple">
               <MenuButton

@@ -30,6 +30,7 @@ export default function FriendDisplayPage() {
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
+  console.log('friends:', friends);
   let birthday;
   let displayDate;
 

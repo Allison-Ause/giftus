@@ -20,7 +20,6 @@ export default function Search({
     }
   };
   const location = useLocation();
-  console.log(location);
 
   return (
     <>

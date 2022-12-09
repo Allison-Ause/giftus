@@ -1,5 +1,5 @@
-import { Box, Flex } from '@chakra-ui/react';
-import { Navigate } from 'react-router-dom';
+import { Box, Flex, Stack, Text, Link } from '@chakra-ui/react';
+import { Navigate, Link as RLink } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
 import Gift from './Gift.js';
@@ -7,13 +7,17 @@ import NewGiftForm from './NewGiftForm.js';
 import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
-import { fiveRecentGifts } from '../services/general-utils.js';
+import {
+  fourRecentGifts,
+  formatDateMD,
+  upcomingDates,
+} from '../services/general-utils.js';
+import useFriends from '../hooks/useFriends.js';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
-  console.log('loading:', loading);
-  console.log('user:', user);
+  const { friends } = useFriends();
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -35,32 +39,67 @@ export default function HomePage() {
           justifyContent="space-around"
         >
           <NewGiftForm gift={{}} setGifts={setGifts} />
-          <Box
-            boxShadow="md"
-            p="6"
-            rounded="lg"
-            bg="#fff9ec"
-            w="425px"
-            h="600px"
-          >
-            <Flex
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              gap="10px"
+          <Flex direction="column" gap="50px">
+            <Box
+              boxShadow="md"
+              p="6"
+              rounded="lg"
+              bg="#fff9ec"
+              w="425px"
+              h="350px"
             >
-              <h1 className={styles.title}>Recently Cached:</h1>
-              <div>
-                {fiveRecentGifts(gifts).map((gift) => (
-                  <Gift
-                    key={gift.id}
-                    gift={gift}
-                    setGifts={setGifts}
-                  />
-                ))}
-              </div>
-            </Flex>
-          </Box>
+              <Flex
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <h1 className={styles.title}>Recent Ideas</h1>
+                <Stack spacing={1} mt="15px">
+                  {fourRecentGifts(gifts).map((gift) => (
+                    <Gift
+                      key={gift.id}
+                      gift={gift}
+                      setGifts={setGifts}
+                    />
+                  ))}
+                </Stack>
+              </Flex>
+            </Box>
+            <Box
+              boxShadow="md"
+              p="6"
+              rounded="lg"
+              bg="#fff9ec"
+              w="425px"
+              h="350px"
+            >
+              <Flex
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <h1 className={styles.title}>Upcoming Dates</h1>
+                <Stack spacing={3} mt="20px">
+                  {upcomingDates(friends)
+                    .slice(0, 4)
+                    .map((friend) => (
+                      <Flex key={friend.id} direction="row" gap="5px">
+                        <Text fontWeight="bold">{`${formatDateMD(
+                          friend.birthday
+                        )} -`}</Text>
+                        <Text>
+                          <Link
+                            as={RLink}
+                            to={`/friends/${friend.id}`}
+                          >{`${friend.name}'s`}</Link>
+                          {` Birthday`}
+                        </Text>
+                      </Flex>
+                    ))}
+                </Stack>
+              </Flex>
+            </Box>
+          </Flex>
         </Flex>
       )}
     </>
