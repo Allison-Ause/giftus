@@ -138,7 +138,7 @@ export default function NewGiftForm({
           alignItems="center"
         >
           <Stack spacing={1}>
-            <h1 className={styles.title}>Cache Your Clever Idea!</h1>
+            <h1 className={styles.title}>Stash Your Clever Idea!</h1>
             <FormControl isRequired isInvalid={isIdeaError}>
               <FormLabel
                 requiredIndicator

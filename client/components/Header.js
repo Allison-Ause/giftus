@@ -62,7 +62,7 @@ export default function Header() {
                   p="5px"
                   onClick={() => navigate('/gifts')}
                 >
-                  Gifts
+                  View Gifts
                   <SearchIcon pl="5px" boxSize="5" />
                 </MenuItem>
                 <MenuItem
@@ -72,7 +72,7 @@ export default function Header() {
                   p="5px"
                   onClick={() => navigate('/friends')}
                 >
-                  Friends
+                  View Friends
                   <SearchIcon pl="5px" boxSize="5" />
                 </MenuItem>
                 <MenuItem

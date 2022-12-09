@@ -9,7 +9,11 @@ export default function GiftTableRow({ gift }) {
           {gift.idea}
         </Link>
       </Td>
-      <Td>{gift.friend.name}</Td>
+      <Td>
+        <Link as={RLink} to={`/friends/${gift.friend.id}`}>
+          {gift.friend.name}
+        </Link>
+      </Td>
       <Td>{`$${gift.price}`}</Td>
       <Td>{gift.occasion}</Td>
     </Tr>

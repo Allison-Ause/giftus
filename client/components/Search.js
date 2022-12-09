@@ -2,7 +2,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 import {
   Input,
   InputGroup,
-  InputRightElement,
+  InputLeftElement,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -14,6 +14,16 @@ export default function Search({ searchTerm, setSearchTerm }) {
   return (
     <>
       <InputGroup w="800px">
+        <InputLeftElement
+          children={
+            <SearchIcon
+              size="md"
+              color="purple.600"
+              ml="10px"
+              mr="5px"
+            />
+          }
+        />
         <Input
           placeholder="Search gifts..."
           type="text"
@@ -25,11 +35,6 @@ export default function Search({ searchTerm, setSearchTerm }) {
           mb="-15px"
           colorScheme="purple"
           onChange={handleSearch}
-        />
-        <InputRightElement
-          children={
-            <SearchIcon size="md" color="purple.500" mr="10px" />
-          }
         />
       </InputGroup>
     </>
