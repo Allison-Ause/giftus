@@ -14,7 +14,6 @@ export function formatDateMD(date) {
     day: 'numeric',
   };
 
-  console.log('formattedDate:', formatDate(date, options));
   return formatDate(date, options);
 }
 
@@ -40,11 +39,6 @@ function toUpcomingDate(date) {
 export function upcomingDates(friends) {
   const allSortedFriends = [...friends];
 
-  // const birthdays = friends.map((friend) => [
-  //   friend,
-  //   new Date(friend.birthday),
-  // ]);
-
   allSortedFriends.sort(function (a, b) {
     return (
       toUpcomingDate(new Date(a.birthday)) -
@@ -55,8 +49,16 @@ export function upcomingDates(friends) {
   const sortedFriends = allSortedFriends.filter(
     (friend) => friend.birthday
   );
-  console.log('sortedFriends:', sortedFriends);
   return sortedFriends;
+}
+
+export function searchItems(items, searchTerm) {
+  const searchResults = items.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.address?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  return searchResults;
 }
 
 // const friends = [

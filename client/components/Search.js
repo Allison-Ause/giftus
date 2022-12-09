@@ -12,6 +12,8 @@ export default function Search({
   friendSearchTerm,
   setFriendSearchTerm,
 }) {
+  const location = useLocation();
+
   const handleSearch = (e) => {
     if (location.pathname === '/gifts') {
       setSearchTerm(e.target.value);
@@ -19,7 +21,6 @@ export default function Search({
       setFriendSearchTerm(e.target.value);
     }
   };
-  const location = useLocation();
 
   return (
     <>

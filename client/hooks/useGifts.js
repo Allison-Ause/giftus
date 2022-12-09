@@ -30,10 +30,12 @@ export default function useGifts(id, user) {
     const filteredGifts = gifts.filter(
       (gift) =>
         gift.idea.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        gift.friend.name
+        gift.friend?.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        gift.occasion.toLowerCase().includes(searchTerm.toLowerCase())
+        gift.occasion
+          ?.toLowerCase()
+          .includes(searchTerm.toLowerCase())
     );
     return filteredGifts;
   };

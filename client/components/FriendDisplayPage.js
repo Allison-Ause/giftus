@@ -16,21 +16,17 @@ import useFriends from '../hooks/useFriends.js';
 import { Navigate } from 'react-router-dom';
 import FriendTableRow from './FriendTableRow.js';
 import Search from './Search.js';
+import { searchItems } from '../services/general-utils.js';
+import { useState } from 'react';
 
 export default function FriendDisplayPage() {
   const { user, loading } = useUser();
-  const {
-    friends,
-    setFriends,
-    searchFriends,
-    friendSearchTerm,
-    setFriendSearchTerm,
-  } = useFriends();
+  const { friends, setFriends } = useFriends();
+  const [friendSearchTerm, setFriendSearchTerm] = useState('');
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
-  console.log('friends:', friends);
   let birthday;
   let displayDate;
 
@@ -98,29 +94,29 @@ export default function FriendDisplayPage() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {searchFriends().map((friend) => {
-                      if (
-                        friend.birthday === '1920-08-18T08:00:00.000Z'
-                      ) {
-                        displayDate = '';
-                      } else {
-                        birthday = new Date(
-                          friend.birthday
-                        ).toDateString();
-                        displayDate = birthday
-                          .split(' ')
-                          .splice(1, 2)
-                          .join(' ');
+                    {searchItems(friends, friendSearchTerm).map(
+                      (friend) => {
+                        if (friend.birthday === null) {
+                          displayDate = '';
+                        } else {
+                          birthday = new Date(
+                            friend.birthday
+                          ).toDateString();
+                          displayDate = birthday
+                            .split(' ')
+                            .splice(1, 2)
+                            .join(' ');
+                        }
+                        return (
+                          <FriendTableRow
+                            key={friend.id}
+                            friend={friend}
+                            setFriends={setFriends}
+                            displayDate={displayDate}
+                          />
+                        );
                       }
-                      return (
-                        <FriendTableRow
-                          key={friend.id}
-                          friend={friend}
-                          setFriends={setFriends}
-                          displayDate={displayDate}
-                        />
-                      );
-                    })}
+                    )}
                   </Tbody>
                 </Table>
               </TableContainer>
