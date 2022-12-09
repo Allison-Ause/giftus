@@ -1,4 +1,11 @@
-import { Box, Flex, IconButton, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  IconButton,
+  Link,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import useFriends from '../hooks/useFriends.js';
@@ -6,16 +13,17 @@ import Header from './Header.js';
 import Loader from './Loader.js';
 import styles from '../global.css';
 import { useState } from 'react';
-import { EditIcon } from '@chakra-ui/icons';
+import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import useGifts from '../hooks/useGifts.js';
 import FriendForm from './FriendForm.js';
 import { formatDate } from '../services/general-utils.js';
+import { Link as RLink } from 'react-router-dom';
 
 export default function FriendDetailPage() {
   const { user, loading } = useUser();
   const { id } = useParams();
   const { friend, setFriend, friendLoading } = useFriends(id, user);
-  const { gifts } = useGifts();
+  const { friendFilter } = useGifts(id);
   const [isEditing, setIsEditing] = useState(false);
 
   if (!loading && !user)
@@ -122,7 +130,26 @@ export default function FriendDetailPage() {
               alignItems="center"
             >
               <h1 className={styles.friend}>Gift Ideas</h1>
-              <Text>{`For list of gifts! with delete buttons, then eliminate delete buttons from front page`}</Text>
+              <Stack spacing={2}>
+                {friendFilter().map((gift) => (
+                  <Text key={gift.id} fontWeight="bold">
+                    <Link
+                      as={RLink}
+                      to={`/gifts/${gift.id}`}
+                      mr="10px"
+                    >
+                      {gift.idea}
+                    </Link>
+                    {gift.link ? (
+                      <Link href={gift.link} isExternal>
+                        <ExternalLinkIcon color="#6b46c1" />
+                      </Link>
+                    ) : (
+                      ''
+                    )}
+                  </Text>
+                ))}
+              </Stack>
             </Flex>
           </Box>
         </Flex>
