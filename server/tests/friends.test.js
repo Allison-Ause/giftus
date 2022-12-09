@@ -47,19 +47,18 @@ describe('friends routes', () => {
     });
   });
 
-  it.skip('#DELETE /friends/:id deletes a single friend and all associated gifts', async () => {
+  it('#DELETE /friends/:id deletes a single friend and all associated gifts', async () => {
     const agent = request.agent(app);
     await agent.post('/users/sessions').send(existingUser);
 
     const res = await agent.delete('/friends/1');
     expect(res.status).toBe(200);
 
-    const checkRes = await agent.get('/friends');
-    expect(checkRes.body.length).toBe(2);
+    const checkRes = await agent.get('/friends/1');
+    expect(checkRes.body).toBe(null);
     // friendID 1 prev. owned giftId 1 (which no longer exists after cascade)
-    const gifts = await agent.get('/gifts');
-
-    expect(gifts.body.length).toBe(2);
+    const gifts = await agent.get('/gifts/1');
+    expect(gifts.body).toBe(null);
   });
 
   it.skip('#GET /friends/:id gets one friend by id', async () => {

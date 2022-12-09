@@ -69,8 +69,8 @@ describe('gift routes', () => {
     const res = await agent.delete('/gifts/1');
     expect(res.status).toBe(200);
 
-    const checkRes = await agent.get('/gifts');
-    expect(checkRes.body.length).toBe(2);
+    const checkRes = await agent.get('/gifts/1');
+    expect(checkRes.body).toBe(null);
   });
 
   it.skip('#PUT /gifts/:id updates specific gift', async () => {
