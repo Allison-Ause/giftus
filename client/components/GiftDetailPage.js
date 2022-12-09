@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Link, IconButton } from '@chakra-ui/react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link as RLink } from 'react-router-dom';
 import useGifts from '../hooks/useGifts.js';
 import styles from '../global.css';
 import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
@@ -78,11 +78,21 @@ export default function GiftDetailPage() {
                 >
                   {gift.idea}
                 </Text>
-                <Text
-                  fontSize="md"
-                  fontWeight="bold"
-                  mb="15px"
-                >{`for ${gift.friend?.name}`}</Text>
+                <Flex direction="row" gap="5px">
+                  <Text
+                    fontSize="md"
+                    fontWeight="bold"
+                    mb="20px"
+                  >{`for `}</Text>
+                  <Text fontSize="md" fontWeight="bold" mb="20px">
+                    <Link
+                      as={RLink}
+                      to={`/friends/${gift.friend.id}`}
+                    >
+                      {gift.friend.name}
+                    </Link>
+                  </Text>
+                </Flex>
                 <Text mb="20px">{`An ideal ${gift.occasion} present!`}</Text>
                 {gift.price != 0 && <Text>{`$${gift.price}`}</Text>}
                 {gift.link != '' && (
