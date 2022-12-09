@@ -50,6 +50,7 @@ INSERT INTO friends (user_id, name, birthday, address) VALUES
 
 INSERT INTO gifts (user_id, idea, friend_id, link, price, occasion) VALUES
 (1, 'Ice Skates', 1, 'https://www.powells.com/book/conditioning-for-figure-skating-9781570282201', 45, 'Christmas'),
+(1, 'Raincoat', 1, 'https://www.blackdiamondequipment.com/en_US/product/stormline-stretch-rain-shell-womens/?colorid=11168', 270, 'Christmas'),
 (1, 'Toadstool Lamp', 2, 'url.link/shop', 25, 'Birthday'),
 (1, 'Sword Umbrella', 3, 'url.link/merchant', 70, 'Christmas');
 

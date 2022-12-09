@@ -38,6 +38,15 @@ export default function useGifts(id, user) {
     return filteredGifts;
   };
 
+  const friendFilter = () => {
+    console.log('id:', id);
+    console.log('gifts:', gifts);
+    console.log('gift.friend.id', gift.friendId);
+    const friendGifts = gifts.filter((gift) => gift.friendId === id);
+    console.log('friendGifts from hook', friendGifts);
+    return friendGifts;
+  };
+
   return {
     gifts,
     setGifts,
@@ -45,6 +54,7 @@ export default function useGifts(id, user) {
     setGift,
     giftLoading,
     filterGifts,
+    friendFilter,
     searchTerm,
     setSearchTerm,
   };

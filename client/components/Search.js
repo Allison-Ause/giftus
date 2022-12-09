@@ -7,9 +7,6 @@ import {
 import { useState } from 'react';
 
 export default function Search({ searchTerm, setSearchTerm }) {
-  // handle search to take searchTerm and filter Gifts state
-  // then setGifts to new array of filtered gifts
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
