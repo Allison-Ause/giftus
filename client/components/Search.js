@@ -4,7 +4,6 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { useState } from 'react';
 
 export default function Search({ searchTerm, setSearchTerm }) {
   const handleSearch = (e) => {
@@ -30,7 +29,6 @@ export default function Search({ searchTerm, setSearchTerm }) {
           value={searchTerm}
           variant="outline"
           size="md"
-          // w="800px"
           bg="rgba(255, 255, 255, 0.722)"
           mb="-15px"
           colorScheme="purple"
