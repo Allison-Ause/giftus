@@ -14,7 +14,7 @@ export default function GiftTableRow({ gift }) {
           {gift.friend.name}
         </Link>
       </Td>
-      <Td>{`$${gift.price}`}</Td>
+      {gift.price != 0 && <Td>{`$${gift.price}`}</Td>}
       <Td>{gift.occasion}</Td>
     </Tr>
   );

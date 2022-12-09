@@ -30,20 +30,18 @@ export default function useGifts(id, user) {
     const filteredGifts = gifts.filter(
       (gift) =>
         gift.idea.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        gift.friend.name
+        gift.friend?.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        gift.occasion.toLowerCase().includes(searchTerm.toLowerCase())
+        gift.occasion
+          ?.toLowerCase()
+          .includes(searchTerm.toLowerCase())
     );
     return filteredGifts;
   };
 
   const friendFilter = () => {
-    console.log('id:', id);
-    console.log('gifts:', gifts);
-    console.log('gift.friend.id', gift.friendId);
     const friendGifts = gifts.filter((gift) => gift.friendId === id);
-    console.log('friendGifts from hook', friendGifts);
     return friendGifts;
   };
 
