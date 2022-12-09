@@ -8,6 +8,7 @@ export default function useFriends(id, user) {
   const [friends, setFriends] = useState([]);
   const [friend, setFriend] = useState({});
   const [friendLoading, setFriendLoading] = useState(true);
+  const [friendSearchTerm, setFriendSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,19 @@ export default function useFriends(id, user) {
     fetchData();
   }, [user]);
 
+  const searchFriends = () => {
+    const friendsSearchResult = friends.filter(
+      (friend) =>
+        friend.name
+          .toLowerCase()
+          .includes(friendSearchTerm.toLowerCase()) ||
+        friend.address
+          .toLowerCase()
+          .includes(friendSearchTerm.toLowerCase())
+    );
+    return friendsSearchResult;
+  };
+
   return {
     friends,
     setFriends,
@@ -34,5 +48,8 @@ export default function useFriends(id, user) {
     setFriend,
     friendLoading,
     setFriendLoading,
+    searchFriends,
+    friendSearchTerm,
+    setFriendSearchTerm,
   };
 }

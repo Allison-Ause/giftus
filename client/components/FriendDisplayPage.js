@@ -15,10 +15,17 @@ import { useUser } from '../context/userContext.js';
 import useFriends from '../hooks/useFriends.js';
 import { Navigate } from 'react-router-dom';
 import FriendTableRow from './FriendTableRow.js';
+import Search from './Search.js';
 
 export default function FriendDisplayPage() {
   const { user, loading } = useUser();
-  const { friends, setFriends } = useFriends();
+  const {
+    friends,
+    setFriends,
+    searchFriends,
+    friendSearchTerm,
+    setFriendSearchTerm,
+  } = useFriends();
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -43,6 +50,10 @@ export default function FriendDisplayPage() {
           justifyContent="center"
           alignItems="center"
         >
+          <Search
+            friendSearchTerm={friendSearchTerm}
+            setFriendSearchTerm={setFriendSearchTerm}
+          />
           <Box
             boxShadow="md"
             p="6"
@@ -86,7 +97,7 @@ export default function FriendDisplayPage() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {friends.map((friend) => {
+                    {searchFriends().map((friend) => {
                       if (
                         friend.birthday === '1920-08-18T08:00:00.000Z'
                       ) {
