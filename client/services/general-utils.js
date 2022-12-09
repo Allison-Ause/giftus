@@ -15,3 +15,11 @@ export function formatDate(birthday) {
   }
   return displayDate;
 }
+
+export function upcomingDates(gifts) {
+  const orderedDates = gifts.sort((a, b) => a.birthday - b.birthday);
+  console.log(orderedDates);
+  return orderedDates;
+}
+
+upcomingDates([{}]);

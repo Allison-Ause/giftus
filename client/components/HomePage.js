@@ -11,11 +11,15 @@ import Loader from './Loader.js';
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
+  console.log('loading:', loading);
+  console.log('user:', user);
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
 
-  const fiveRecents = gifts.slice(0, 5);
+  if (!loading && user) {
+    const fiveRecents = gifts.slice(0, 5);
+  }
 
   return (
     <>
