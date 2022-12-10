@@ -121,7 +121,9 @@ export default function FriendForm({
           alignItems="center"
         >
           <Stack spacing={1}>
-            <h1 className={styles.friend}>Add a Friend!</h1>
+            <h1 className={styles.friend}>
+              {isEditing ? 'Edit Friend' : 'Add a Friend!'}
+            </h1>
             <FormControl isRequired isInvalid={isNameError}>
               <FormLabel
                 requiredIndicator

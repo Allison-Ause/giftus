@@ -36,6 +36,7 @@ export default function HomePage() {
           backgroundSize="cover"
           h="calc(100vh)"
           padding="30px"
+          alignItems="center"
           justifyContent="space-around"
         >
           <NewGiftForm gift={{}} setGifts={setGifts} />
@@ -78,7 +79,7 @@ export default function HomePage() {
                 alignItems="center"
                 justifyContent="center"
               >
-                <h1 className={styles.title}>Upcoming Dates</h1>
+                <h1 className={styles.title}>Upcoming Events</h1>
                 <Stack spacing={3} mt="20px">
                   {upcomingDates(friends)
                     .slice(0, 4)

@@ -16,10 +16,7 @@ import { useState } from 'react';
 import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import useGifts from '../hooks/useGifts.js';
 import FriendForm from './FriendForm.js';
-import {
-  formatDate,
-  formatDateYMD,
-} from '../services/general-utils.js';
+import { formatDateYMD } from '../services/general-utils.js';
 import { Link as RLink } from 'react-router-dom';
 
 export default function FriendDetailPage() {
@@ -103,14 +100,14 @@ export default function FriendDetailPage() {
                   {friend.name}
                 </Text>
                 <Text
-                  decoration="underline solid pink.500 4px"
+                  decoration="underline solid pink 4px"
                   mt="10px"
                 >{`Birthday`}</Text>
                 <Text fontWeight="bold">
                   {formatDateYMD(friend.birthday)}
                 </Text>
                 <Text
-                  decoration="underline solid pink.500 4px"
+                  decoration="underline solid pink 4px"
                   mt="15px"
                 >{`Address`}</Text>
                 <Text w="200px" fontWeight="bold">

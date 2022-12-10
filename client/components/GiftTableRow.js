@@ -19,5 +19,3 @@ export default function GiftTableRow({ gift }) {
     </Tr>
   );
 }
-
-// {gift.price != 0 && <Td>{`$${gift.price}`}</Td>}
