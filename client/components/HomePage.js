@@ -104,14 +104,14 @@ export default function HomePage() {
                         alignItems="center"
                         justifyContent="center"
                       >
-                        <Text fontWeight="bold">{`${formatDateMD(
-                          friend.birthday
-                        )} -`}</Text>
+                        <Text fontWeight="bold">
+                          {formatDateMD(friend.birthday)}
+                        </Text>
                         <Text>
                           <Link
                             as={RLink}
                             to={`/friends/${friend.id}`}
-                          >{`${friend.name}'s`}</Link>
+                          >{`- ${friend.name}'s`}</Link>
                           {` Birthday`}
                         </Text>
                       </Flex>

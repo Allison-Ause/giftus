@@ -198,15 +198,15 @@ export default function NewGiftForm({
                 <Box
                   bg="white"
                   position="absolute"
-                  width="367.5px"
-                  height="100px"
+                  w={{ base: '250px', md: '400px' }}
                   zIndex="1"
                 >
                   <Box
                     bg="white"
                     position="relative"
-                    width="367.5px"
-                    height="100px"
+                    w={{ base: '250px', md: '400px' }}
+                    boxShadow="2xl"
+                    rounded="lg"
                   >
                     <Flex direction="column" alignItems="flex-start">
                       {filteredFriends.map((friend) => (
