@@ -1,5 +1,5 @@
-import { Box, Flex, Button } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Box, Flex, Button, Text, Link } from '@chakra-ui/react';
+import { Link as RLink } from 'react-router-dom';
 import { signUpUser } from '../services/user-utils.js';
 import styles from '../global.css';
 
@@ -24,9 +24,8 @@ export default function SignUpForm() {
         p="6"
         rounded="lg"
         bg="#fff9ec"
-        w="425px"
+        w={{ base: '300px', md: '425px' }}
         h="500px"
-        mt="50px"
         padding="30px"
       >
         <Flex
@@ -37,10 +36,10 @@ export default function SignUpForm() {
           <h1 className={styles.title}>Sign-Up</h1>
           <form onSubmit={handleSignUp}>
             <Flex
-              mt="25px"
               direction="column"
               justifyContent="center"
               alignItems="flex-end"
+              mt={{ base: '5px', md: '25px' }}
             >
               <label>
                 First Name:
@@ -84,17 +83,20 @@ export default function SignUpForm() {
                 type="submit"
                 size="md"
                 w="75px"
-                mb="45px"
-                mt="25px"
+                mb={{ base: '20px', md: '45px' }}
+                mt={{ base: '10px', md: '25px' }}
                 colorScheme="purple"
               >
                 Sign Up
               </Button>
             </Flex>
           </form>
-          <Link to="/auth/sign-in">
-            Already have an account? Sign In.
-          </Link>
+          <Text>
+            <Link as={RLink} to="/auth/sign-in" color="purple.600">
+              Sign In
+            </Link>{' '}
+            to existing account.
+          </Text>
         </Flex>
       </Box>
     </>
