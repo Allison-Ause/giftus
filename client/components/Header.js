@@ -34,7 +34,7 @@ export default function Header() {
         alignItems="center"
       >
         <a href="/">
-          <h1 id={styles.header}>Gifthis</h1>
+          <h1 id={styles.header}>Giftist</h1>
         </a>
 
         <Flex alignItems="center">

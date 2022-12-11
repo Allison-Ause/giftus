@@ -43,12 +43,12 @@ export default function FriendDetailPage() {
         <Loader />
       ) : (
         <Flex
-          direction="row"
+          direction={{ base: 'column', md: 'row' }}
           gap="25px"
           className={styles.bg}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
-          h="calc(100vh)"
+          h={{ base: '100%vh', md: 'calc(100vh)' }}
           justifyContent="space-around"
           alignItems="center"
         >
@@ -67,7 +67,8 @@ export default function FriendDetailPage() {
               rounded="lg"
               bg="#fff9ec"
               h="400px"
-              w="350px"
+              w={{ base: '300px', md: '350px' }}
+              mt={{ base: '25px', md: '0px' }}
             >
               <Flex justifyContent="flex-end" m="-15px">
                 <IconButton
@@ -121,8 +122,9 @@ export default function FriendDetailPage() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            h="500px"
-            w="350px"
+            minH={{ base: '300px', md: '400px' }}
+            w={{ base: '300px', md: '350px' }}
+            mb={{ base: '25px', md: '0px' }}
           >
             <Flex
               direction="column"
@@ -130,7 +132,7 @@ export default function FriendDetailPage() {
               alignItems="center"
             >
               <h1 className={styles.friend}>Gift Ideas</h1>
-              <Stack spacing={2}>
+              <Stack spacing={2} mt="10px">
                 {friendFilter().map((gift) => (
                   <Text key={gift.id} fontWeight="bold">
                     <Link
