@@ -23,8 +23,8 @@ export function formatDate(birthday, options) {
     : new Date(birthday).toLocaleString('en-US', options);
 }
 
-export function fourRecentGifts(gifts) {
-  return gifts.slice(0, 4);
+export function fiveRecentGifts(gifts) {
+  return gifts.slice(0, 5);
 }
 
 function toUpcomingDate(date) {

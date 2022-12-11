@@ -8,6 +8,9 @@
   font-family: 'Coiny', cursive;
   font-size: 30px;
   color: #6b46c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .friend {

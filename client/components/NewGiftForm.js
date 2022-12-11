@@ -129,16 +129,17 @@ export default function NewGiftForm({
         p="6"
         rounded="lg"
         bg="#fff9ec"
-        w="500px"
-        h="600px"
+        mt={{ base: '20px', md: '0px' }}
+        w={{ base: '300px', md: '500px' }}
+        // h={{ base: '650px', md: '600px' }}
       >
         <Flex
           direction="column"
           justifyContent="center"
           alignItems="center"
         >
-          <Stack spacing={1}>
-            <h1 className={styles.title}>Stash Your Clever Idea!</h1>
+          <Stack spacing={1} w={{ base: '250px', md: '400px' }}>
+            <h1 className={styles.title}>Stash It!</h1>
             <FormControl isRequired isInvalid={isIdeaError}>
               <FormLabel
                 requiredIndicator
