@@ -34,6 +34,7 @@ export default function FriendDetailPage() {
   let calendarDate;
   if (!friendLoading) {
     calendarDate = friend.birthday.slice(0, 10);
+    // or if no birthday render something else
   }
 
   return (

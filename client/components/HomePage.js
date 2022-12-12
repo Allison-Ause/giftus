@@ -34,7 +34,7 @@ export default function HomePage() {
           className={styles.bg}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
-          h="100%vh"
+          h={{ base: '100%vh', md: 'calc(100vh)' }}
           padding={{ base: '5px', md: '30px' }}
           alignItems="center"
           justifyContent={{ base: 'center', md: 'space-around' }}
