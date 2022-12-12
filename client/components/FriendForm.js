@@ -69,7 +69,7 @@ export default function FriendForm({
           fontWeight="bold"
           fontSize="15px"
           h="55px"
-          mb="35px"
+          mb={{ base: '35px', md: '150px' }}
         >
           {`Successfully added ${newFriend.name}!`}
         </Box>
@@ -103,7 +103,8 @@ export default function FriendForm({
       bg="#fff9ec"
       w={{ base: '300px', md: '400px' }}
       h="500px"
-      mt={{ base: '25px', md: '50px' }}
+      mt={{ base: '25px', md: '185px' }}
+      mb={{ base: '75px', md: '0px' }}
     >
       <Flex
         direction="column"

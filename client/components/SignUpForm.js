@@ -27,6 +27,7 @@ export default function SignUpForm() {
         w={{ base: '300px', md: '425px' }}
         h="500px"
         padding="30px"
+        mt={{ base: '25px', md: '185px' }}
       >
         <Flex
           direction="column"

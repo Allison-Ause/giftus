@@ -4,6 +4,7 @@ import FriendForm from './FriendForm.js';
 import { useUser } from '../context/userContext.js';
 import { Flex } from '@chakra-ui/react';
 import styles from '../global.css';
+import { Navigate } from 'react-router-dom';
 
 export default function FriendFormPage() {
   const { user, loading } = useUser();
