@@ -26,7 +26,6 @@ export default function AuthPage() {
           backgroundSize="cover"
           h="calc(100vh)"
           alignItems="center"
-          justifyContent="center"
         >
           {authMethod === 'sign-in' ? <SignInForm /> : <SignUpForm />}
         </Flex>

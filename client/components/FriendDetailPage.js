@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   IconButton,
   Link,
@@ -33,8 +34,11 @@ export default function FriendDetailPage() {
   // FOR PASSING TO DATE INPUT IN EDITING FORM
   let calendarDate;
   if (!friendLoading) {
-    calendarDate = friend.birthday.slice(0, 10);
-    // or if no birthday render something else
+    if (friend.birthday != null) {
+      calendarDate = friend.birthday.slice(0, 10);
+    } else {
+      calendarDate = '';
+    }
   }
 
   return (
@@ -112,9 +116,7 @@ export default function FriendDetailPage() {
                   decoration="underline solid pink 4px"
                   mt="15px"
                 >{`Address`}</Text>
-                <Text w="200px" fontWeight="bold">
-                  {friend.address}
-                </Text>
+                <Text fontWeight="bold">{friend.address}</Text>
               </Flex>
             </Box>
           )}
@@ -129,30 +131,47 @@ export default function FriendDetailPage() {
           >
             <Flex
               direction="column"
-              justifyContent="center"
-              alignItems="center"
+              justifyContent="space-between"
+              alignContent="center"
+              minH={{ base: '250px', md: '350px' }}
             >
-              <h1 className={styles.friend}>Gift Ideas</h1>
-              <Stack spacing={2} mt="10px">
-                {friendFilter().map((gift) => (
-                  <Text key={gift.id} fontWeight="bold">
-                    <Link
-                      as={RLink}
-                      to={`/gifts/${gift.id}`}
-                      mr="10px"
-                    >
-                      {gift.idea}
-                    </Link>
-                    {gift.link ? (
-                      <Link href={gift.link} isExternal>
-                        <ExternalLinkIcon color="#6b46c1" />
+              <Flex
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <h1 className={styles.friend}>Gift Ideas</h1>
+                <Stack spacing={2} mt="10px">
+                  {friendFilter().map((gift) => (
+                    <Text key={gift.id} fontWeight="bold">
+                      <Link
+                        as={RLink}
+                        to={`/gifts/${gift.id}`}
+                        mr="10px"
+                      >
+                        {gift.idea}
                       </Link>
-                    ) : (
-                      ''
-                    )}
-                  </Text>
-                ))}
-              </Stack>
+                      {gift.link ? (
+                        <Link href={gift.link} isExternal>
+                          <ExternalLinkIcon color="#6b46c1" />
+                        </Link>
+                      ) : (
+                        ''
+                      )}
+                    </Text>
+                  ))}
+                </Stack>
+              </Flex>
+              <Flex justifyContent="center">
+                <Link
+                  as={RLink}
+                  to="/"
+                  color="#e24e96"
+                  fontWeight="bold"
+                >
+                  Add Gifts from the Homepage.
+                </Link>
+              </Flex>
             </Flex>
           </Box>
         </Flex>

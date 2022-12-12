@@ -69,7 +69,7 @@ export default function FriendForm({
           fontWeight="bold"
           fontSize="15px"
           h="55px"
-          mb="35px"
+          mb={{ base: '35px', md: '150px' }}
         >
           {`Successfully added ${newFriend.name}!`}
         </Box>
@@ -96,122 +96,104 @@ export default function FriendForm({
     setIsEditing(false);
   };
   return (
-    <Flex
-      direction="column"
-      className={styles.bg}
-      backgroundPosition="bottom-left"
-      backgroundSize="cover"
-      h="calc(100vh)"
-      alignItems="center"
+    <Box
+      boxShadow="md"
+      p="6"
+      rounded="lg"
+      bg="#fff9ec"
+      w={{ base: '300px', md: '400px' }}
+      h="500px"
+      mt={{ base: '25px', md: '185px' }}
+      mb={{ base: '75px', md: '0px' }}
     >
-      <Box
-        boxShadow="md"
-        p="6"
-        rounded="lg"
-        bg="#fff9ec"
-        w={{ base: '300px', md: '400px' }}
-        h="500px"
-        mt={{ base: '25px', md: '50px' }}
+      <Flex
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
       >
-        <Flex
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Stack spacing={1}>
-            <h1 className={styles.friend}>
-              {isEditing ? 'Edit Friend' : 'Add a Friend!'}
-            </h1>
-            <FormControl isRequired isInvalid={isNameError}>
-              <FormLabel
-                requiredIndicator
-                htmlFor="name"
-                size="sm"
-                fontWeight="bold"
-                mt="25px"
-              >
-                Name:
-              </FormLabel>
-              <Input
-                type="text"
-                id="name"
-                size="sm"
-                borderRadius="5px"
-                variant="outline"
-                bg="white"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              {isNameError ? (
-                <FormErrorMessage>
-                  What is your friend's name?
-                </FormErrorMessage>
-              ) : (
-                <FormHelperText visibility="hidden">
-                  &nbsp;
-                </FormHelperText>
-              )}
-            </FormControl>
-            <FormControl>
-              <FormLabel
-                htmlFor="birthday"
-                size="sm"
-                fontWeight="bold"
-              >
-                Birthday:
-              </FormLabel>
-              <Input
-                type="date"
-                id="birthday"
-                size="sm"
-                borderRadius="5px"
-                variant="outline"
-                bg="white"
-                value={birthdayInput}
-                onChange={(e) => setBirthdayInput(e.target.value)}
-              />
+        <Stack spacing={1}>
+          <h1 className={styles.friend}>
+            {isEditing ? 'Edit Friend' : 'Add a Friend!'}
+          </h1>
+          <FormControl isRequired isInvalid={isNameError}>
+            <FormLabel
+              requiredIndicator
+              htmlFor="name"
+              size="sm"
+              fontWeight="bold"
+              mt="25px"
+            >
+              Name:
+            </FormLabel>
+            <Input
+              type="text"
+              id="name"
+              size="sm"
+              borderRadius="5px"
+              variant="outline"
+              bg="white"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {isNameError ? (
+              <FormErrorMessage>
+                What is your friend's name?
+              </FormErrorMessage>
+            ) : (
               <FormHelperText visibility="hidden">
                 &nbsp;
               </FormHelperText>
-            </FormControl>
-            <FormControl>
-              <FormLabel
-                htmlFor="address"
-                size="sm"
-                fontWeight="bold"
-              >
-                Address:
-              </FormLabel>
-              <Textarea
-                type="text"
-                id="address"
-                size="sm"
-                h="40px"
-                borderRadius="5px"
-                variant="outline"
-                bg="white"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <FormHelperText visibility="hidden">
-                &nbsp;
-              </FormHelperText>
-            </FormControl>
-            <Flex justifyContent="center">
-              <Button
-                onClick={
-                  isEditing ? handleEditFriend : handleAddFriend
-                }
-                size="md"
-                w="75px"
-                colorScheme="pink"
-              >
-                Save
-              </Button>
-            </Flex>
-          </Stack>
-        </Flex>
-      </Box>
-    </Flex>
+            )}
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="birthday" size="sm" fontWeight="bold">
+              Birthday:
+            </FormLabel>
+            <Input
+              type="date"
+              id="birthday"
+              size="sm"
+              borderRadius="5px"
+              variant="outline"
+              bg="white"
+              value={birthdayInput}
+              onChange={(e) => setBirthdayInput(e.target.value)}
+            />
+            <FormHelperText visibility="hidden">
+              &nbsp;
+            </FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="address" size="sm" fontWeight="bold">
+              Address:
+            </FormLabel>
+            <Textarea
+              type="text"
+              id="address"
+              size="sm"
+              h="40px"
+              borderRadius="5px"
+              variant="outline"
+              bg="white"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <FormHelperText visibility="hidden">
+              &nbsp;
+            </FormHelperText>
+          </FormControl>
+          <Flex justifyContent="center">
+            <Button
+              onClick={isEditing ? handleEditFriend : handleAddFriend}
+              size="md"
+              w="75px"
+              colorScheme="pink"
+            >
+              Save
+            </Button>
+          </Flex>
+        </Stack>
+      </Flex>
+    </Box>
   );
 }

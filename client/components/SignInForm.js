@@ -24,6 +24,7 @@ export default function SignInForm() {
         w={{ base: '300px', md: '425px' }}
         h="400px"
         padding="30px"
+        mt={{ base: '25px', md: '185px' }}
       >
         <Flex
           direction="column"
