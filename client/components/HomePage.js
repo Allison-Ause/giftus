@@ -8,7 +8,7 @@ import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
 import {
-  fourRecentGifts,
+  fiveRecentGifts,
   formatDateMD,
   upcomingDates,
 } from '../services/general-utils.js';
@@ -29,25 +29,31 @@ export default function HomePage() {
         <Loader />
       ) : (
         <Flex
-          direction="row"
-          gap="50px"
+          direction={{ base: 'column', md: 'row' }}
+          gap={{ base: '10px', md: '50px' }}
           className={styles.bg}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
-          h="calc(100vh)"
-          padding="30px"
+          h="100%vh"
+          padding={{ base: '5px', md: '30px' }}
           alignItems="center"
-          justifyContent="space-around"
+          justifyContent={{ base: 'center', md: 'space-around' }}
         >
           <NewGiftForm gift={{}} setGifts={setGifts} />
-          <Flex direction="column" gap="50px">
+          <Flex
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            gap={{ base: '15px', md: '50px' }}
+          >
             <Box
               boxShadow="md"
               p="6"
               rounded="lg"
               bg="#fff9ec"
-              w="425px"
-              h="350px"
+              w={{ base: '300px', md: '425px' }}
+              // h="350px"
+              mt={{ base: '15px', md: '0px' }}
             >
               <Flex
                 direction="column"
@@ -55,13 +61,20 @@ export default function HomePage() {
                 justifyContent="center"
               >
                 <h1 className={styles.title}>Recent Ideas</h1>
-                <Stack spacing={1} mt="15px">
-                  {fourRecentGifts(gifts).map((gift) => (
-                    <Gift
+                <Stack spacing={1} mt="20px">
+                  {fiveRecentGifts(gifts).map((gift) => (
+                    <Flex
                       key={gift.id}
-                      gift={gift}
-                      setGifts={setGifts}
-                    />
+                      gap="5px"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Gift
+                        key={gift.id}
+                        gift={gift}
+                        setGifts={setGifts}
+                      />
+                    </Flex>
                   ))}
                 </Stack>
               </Flex>
@@ -71,28 +84,35 @@ export default function HomePage() {
               p="6"
               rounded="lg"
               bg="#fff9ec"
-              w="425px"
-              h="350px"
+              w={{ base: '300px', md: '425px' }}
+              h={{ base: '420px', md: '300px' }}
+              mt={{ base: '10px', md: '0px' }}
             >
               <Flex
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
               >
-                <h1 className={styles.title}>Upcoming Events</h1>
+                <h1 className={styles.title}>Coming Up</h1>
                 <Stack spacing={3} mt="20px">
                   {upcomingDates(friends)
-                    .slice(0, 4)
+                    .slice(0, 5)
                     .map((friend) => (
-                      <Flex key={friend.id} direction="row" gap="5px">
-                        <Text fontWeight="bold">{`${formatDateMD(
-                          friend.birthday
-                        )} -`}</Text>
+                      <Flex
+                        key={friend.id}
+                        direction={{ base: 'column', md: 'row' }}
+                        gap={{ base: '0px', md: '5px' }}
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text fontWeight="bold">
+                          {formatDateMD(friend.birthday)}
+                        </Text>
                         <Text>
                           <Link
                             as={RLink}
                             to={`/friends/${friend.id}`}
-                          >{`${friend.name}'s`}</Link>
+                          >{`- ${friend.name}'s`}</Link>
                           {` Birthday`}
                         </Text>
                       </Flex>

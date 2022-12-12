@@ -12,11 +12,17 @@ export default function Gift({ gift, setGifts }) {
   };
 
   return (
-    <Flex direction="row" gap="3.7px" alignItems="center">
+    <Flex
+      direction="row"
+      gap="3.7px"
+      justifyContent="center"
+      alignItems="center"
+      flexWrap="wrap"
+    >
       <Link as={RLink} to={`gifts/${gift.id}`} fontWeight="bold">
         {gift.idea}
       </Link>
-      <Text>{`for`}</Text>{' '}
+      <Text>{`for `} </Text>
       <Link as={RLink} to={`friends/${gift.friend.id}`}>
         {gift.friend.name}
       </Link>

@@ -98,13 +98,10 @@ export default function FriendForm({
   return (
     <Flex
       direction="column"
-      gap="50px"
       className={styles.bg}
       backgroundPosition="bottom-left"
       backgroundSize="cover"
       h="calc(100vh)"
-      padding="30px"
-      justifyContent="center"
       alignItems="center"
     >
       <Box
@@ -112,8 +109,9 @@ export default function FriendForm({
         p="6"
         rounded="lg"
         bg="#fff9ec"
-        w="400px"
+        w={{ base: '300px', md: '400px' }}
         h="500px"
+        mt={{ base: '25px', md: '50px' }}
       >
         <Flex
           direction="column"
