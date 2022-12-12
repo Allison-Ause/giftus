@@ -33,7 +33,12 @@ export default function FriendDetailPage() {
   // FOR PASSING TO DATE INPUT IN EDITING FORM
   let calendarDate;
   if (!friendLoading) {
-    calendarDate = friend.birthday.slice(0, 10);
+    if (friend.birthday != null) {
+      calendarDate = friend.birthday.slice(0, 10);
+    } else {
+      calendarDate = '';
+    }
+
     // or if no birthday render something else
   }
 

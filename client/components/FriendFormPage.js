@@ -2,6 +2,8 @@ import Header from './Header.js';
 import Loader from './Loader.js';
 import FriendForm from './FriendForm.js';
 import { useUser } from '../context/userContext.js';
+import { Flex } from '@chakra-ui/react';
+import styles from '../global.css';
 
 export default function FriendFormPage() {
   const { user, loading } = useUser();
@@ -12,7 +14,20 @@ export default function FriendFormPage() {
   return (
     <>
       <Header />
-      {loading ? <Loader /> : <FriendForm />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <Flex
+          direction="column"
+          className={styles.bg}
+          backgroundPosition="bottom-left"
+          backgroundSize="cover"
+          h={{ base: '100%vh', md: 'calc(100vh)' }}
+          alignItems="center"
+        >
+          <FriendForm />
+        </Flex>
+      )}
     </>
   );
 }

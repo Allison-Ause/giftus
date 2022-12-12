@@ -10,7 +10,7 @@ export default function Loader() {
         className={global.bg}
         backgroundPosition="bottom-left"
         backgroundSize="cover"
-        h="calc(100vh)"
+        h={{ base: '100%vh', md: 'calc(100vh)' }}
         padding="30px"
         justifyContent="center"
         alignItems="center"
