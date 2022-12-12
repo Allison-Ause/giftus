@@ -26,7 +26,6 @@ export default function FriendDetailPage() {
   const { friend, setFriend, friendLoading } = useFriends(id, user);
   const { friendFilter } = useGifts(id);
   const [isEditing, setIsEditing] = useState(false);
-  const [isAddingGift, setIsAddingGift] = useState(false);
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -117,9 +116,7 @@ export default function FriendDetailPage() {
                   decoration="underline solid pink 4px"
                   mt="15px"
                 >{`Address`}</Text>
-                <Text w="200px" fontWeight="bold">
-                  {friend.address}
-                </Text>
+                <Text fontWeight="bold">{friend.address}</Text>
               </Flex>
             </Box>
           )}
@@ -166,15 +163,14 @@ export default function FriendDetailPage() {
                 </Stack>
               </Flex>
               <Flex justifyContent="center">
-                <Button
-                  onClick={() => setIsAddingGift(true)}
-                  size="md"
-                  w="75px"
-                  colorScheme="pink"
-                  mt="25px"
+                <Link
+                  as={RLink}
+                  to="/"
+                  color="#e24e96"
+                  fontWeight="bold"
                 >
-                  Add Gift
-                </Button>
+                  Add Gifts from the Homepage.
+                </Link>
               </Flex>
             </Flex>
           </Box>
