@@ -8,6 +8,7 @@ import {
   Input,
   Stack,
   Box,
+  useToast,
 } from '@chakra-ui/react';
 
 import { useState } from 'react';
@@ -37,6 +38,7 @@ export default function NewGiftForm({
   const [isIdeaError, setIsIdeaError] = useState(false);
   const [isRecipientError, setIsRecipientError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const toast = useToast();
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
@@ -88,6 +90,25 @@ export default function NewGiftForm({
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
+    toast({
+      position: 'bottom',
+      duration: 2000,
+      render: () => (
+        <Box
+          borderRadius="5px"
+          boxShadow="md"
+          bg="purple.400"
+          color="white"
+          p="15px"
+          fontWeight="bold"
+          fontSize="15px"
+          h="55px"
+          mb={{ base: '35px', md: '150px' }}
+        >
+          {`Successfully added '${newGift.idea}' to your stash!`}
+        </Box>
+      ),
+    });
   };
 
   const handleEditGift = async () => {
