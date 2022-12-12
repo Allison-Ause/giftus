@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   IconButton,
   Link,
@@ -25,6 +26,7 @@ export default function FriendDetailPage() {
   const { friend, setFriend, friendLoading } = useFriends(id, user);
   const { friendFilter } = useGifts(id);
   const [isEditing, setIsEditing] = useState(false);
+  const [isAddingGift, setIsAddingGift] = useState(false);
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -38,8 +40,6 @@ export default function FriendDetailPage() {
     } else {
       calendarDate = '';
     }
-
-    // or if no birthday render something else
   }
 
   return (
@@ -134,30 +134,48 @@ export default function FriendDetailPage() {
           >
             <Flex
               direction="column"
-              justifyContent="center"
-              alignItems="center"
+              justifyContent="space-between"
+              alignContent="center"
+              minH={{ base: '250px', md: '350px' }}
             >
-              <h1 className={styles.friend}>Gift Ideas</h1>
-              <Stack spacing={2} mt="10px">
-                {friendFilter().map((gift) => (
-                  <Text key={gift.id} fontWeight="bold">
-                    <Link
-                      as={RLink}
-                      to={`/gifts/${gift.id}`}
-                      mr="10px"
-                    >
-                      {gift.idea}
-                    </Link>
-                    {gift.link ? (
-                      <Link href={gift.link} isExternal>
-                        <ExternalLinkIcon color="#6b46c1" />
+              <Flex
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <h1 className={styles.friend}>Gift Ideas</h1>
+                <Stack spacing={2} mt="10px">
+                  {friendFilter().map((gift) => (
+                    <Text key={gift.id} fontWeight="bold">
+                      <Link
+                        as={RLink}
+                        to={`/gifts/${gift.id}`}
+                        mr="10px"
+                      >
+                        {gift.idea}
                       </Link>
-                    ) : (
-                      ''
-                    )}
-                  </Text>
-                ))}
-              </Stack>
+                      {gift.link ? (
+                        <Link href={gift.link} isExternal>
+                          <ExternalLinkIcon color="#6b46c1" />
+                        </Link>
+                      ) : (
+                        ''
+                      )}
+                    </Text>
+                  ))}
+                </Stack>
+              </Flex>
+              <Flex justifyContent="center">
+                <Button
+                  onClick={() => setIsAddingGift(true)}
+                  size="md"
+                  w="75px"
+                  colorScheme="pink"
+                  mt="25px"
+                >
+                  Add Gift
+                </Button>
+              </Flex>
             </Flex>
           </Box>
         </Flex>
