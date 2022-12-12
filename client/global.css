@@ -39,8 +39,8 @@
   font-family: 'Modak', cursive;
   font-size: 40px;
   color: #482698;
-  margin-left: 10px;
-  margin: 5px;
+  margin-bottom: -10px;
+  margin-left: -10px;
 }
 
 #header:hover {

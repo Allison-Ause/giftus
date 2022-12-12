@@ -64,6 +64,7 @@ export default function HomePage() {
                 <Stack spacing={1} mt="20px">
                   {fiveRecentGifts(gifts).map((gift) => (
                     <Flex
+                      key={gift.id}
                       gap="5px"
                       alignItems="center"
                       justifyContent="center"

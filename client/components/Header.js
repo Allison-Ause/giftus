@@ -10,11 +10,13 @@ import {
   MenuList,
   MenuItem,
   Button,
+  Image,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 import { signOutUser } from '../services/user-utils.js';
+import logo from '../public/logo.png';
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -31,11 +33,26 @@ export default function Header() {
         backgroundColor="#ffeef2"
         justifyContent={user ? 'space-between' : 'center'}
         p="5px"
-        alignItems="center"
+        // alignItems="center"
       >
-        <a href="/">
-          <h1 id={styles.header}>Giftus</h1>
-        </a>
+        <Flex
+          direction="row"
+          gap="5px"
+          alignItems="flex-end"
+          justifyContent="flex-start"
+        >
+          <Image
+            id="logo"
+            src={logo}
+            boxSize="65px"
+            alt="logo"
+            ml="10px"
+            margin="5px"
+          />
+          <a href="/">
+            <h1 id={styles.header}>Giftus</h1>
+          </a>
+        </Flex>
 
         <Flex alignItems="center">
           {user && (
