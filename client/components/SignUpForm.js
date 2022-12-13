@@ -35,7 +35,7 @@ export default function SignUpForm() {
           alignItems="center"
         >
           <h1 className={styles.title}>Sign-Up</h1>
-          <form onSubmit={handleSignUp}>
+          <form autoComplete="new-off" onSubmit={handleSignUp}>
             <Flex
               direction="column"
               justifyContent="center"
@@ -45,6 +45,7 @@ export default function SignUpForm() {
               <label>
                 First Name:
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="firstName"
@@ -53,6 +54,7 @@ export default function SignUpForm() {
               <label>
                 Last Name:
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="lastName"
@@ -61,6 +63,7 @@ export default function SignUpForm() {
               <label>
                 Email:
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="email"
@@ -69,6 +72,7 @@ export default function SignUpForm() {
               <label>
                 Password:
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="password"
                   name="password"

@@ -169,7 +169,7 @@ export default function FriendDetailPage() {
                   color="#e24e96"
                   fontWeight="bold"
                 >
-                  Add Gifts from the Homepage.
+                  Add more Gifts here!
                 </Link>
               </Flex>
             </Flex>

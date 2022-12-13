@@ -164,7 +164,7 @@ export default function NewGiftForm({
             <FormControl
               isRequired
               isInvalid={isIdeaError}
-              autoComplete="new-password"
+              autoComplete="new-off"
             >
               <FormLabel
                 requiredIndicator
@@ -198,7 +198,7 @@ export default function NewGiftForm({
             <FormControl
               isRequired
               isInvalid={isRecipientError}
-              autoComplete="new-password"
+              autoComplete="new-off"
             >
               <FormLabel
                 requiredIndicator
@@ -268,7 +268,7 @@ export default function NewGiftForm({
                 </FormHelperText>
               )}
             </FormControl>
-            <FormControl autoComplete="new-password">
+            <FormControl autoComplete="new-off">
               <FormLabel htmlFor="link" size="sm" fontWeight="bold">
                 Link:
               </FormLabel>
@@ -308,7 +308,7 @@ export default function NewGiftForm({
                 &nbsp;
               </FormHelperText>
             </FormControl>
-            <FormControl autoComplete="new-password">
+            <FormControl autoComplete="new-off">
               <FormLabel
                 htmlFor="occasion"
                 size="sm"
