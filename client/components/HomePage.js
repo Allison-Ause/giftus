@@ -32,7 +32,7 @@ export default function HomePage() {
           direction={{ base: 'column', md: 'row' }}
           gap={{ base: '10px', md: '50px' }}
           className={styles.bg}
-          backgroundPosition="bottom-left"
+          backgroundPosition="center"
           backgroundSize="cover"
           h={{ base: '100%vh', md: 'calc(100vh)' }}
           padding={{ base: '5px', md: '30px' }}

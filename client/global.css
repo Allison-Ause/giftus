@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Modak&display=swap');
 
 .bg {
-  background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+  background-image: linear-gradient(
+      to top,
+      #9795f06f 0%,
+      #fbc8d4b3 100%
+    ),
+    url('/client/public/gift-overlay.png');
 }
 
 .title {
