@@ -161,7 +161,11 @@ export default function NewGiftForm({
         >
           <Stack spacing={1} w={{ base: '250px', md: '400px' }}>
             <h1 className={styles.title}>Stash It!</h1>
-            <FormControl isRequired isInvalid={isIdeaError}>
+            <FormControl
+              isRequired
+              isInvalid={isIdeaError}
+              autoComplete="new-password"
+            >
               <FormLabel
                 requiredIndicator
                 htmlFor="idea"
@@ -177,6 +181,7 @@ export default function NewGiftForm({
                 borderRadius="5px"
                 variant="outline"
                 bg="white"
+                autoComplete="off"
                 value={idea}
                 onChange={(e) => setIdea(e.target.value)}
               />
@@ -190,7 +195,11 @@ export default function NewGiftForm({
                 </FormHelperText>
               )}
             </FormControl>
-            <FormControl isRequired isInvalid={isRecipientError}>
+            <FormControl
+              isRequired
+              isInvalid={isRecipientError}
+              autoComplete="new-password"
+            >
               <FormLabel
                 requiredIndicator
                 htmlFor="recipient"
@@ -206,6 +215,7 @@ export default function NewGiftForm({
                 borderRadius="5px"
                 variant="outline"
                 bg="white"
+                autoComplete="off"
                 value={recipient}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() =>
@@ -258,7 +268,7 @@ export default function NewGiftForm({
                 </FormHelperText>
               )}
             </FormControl>
-            <FormControl>
+            <FormControl autoComplete="new-password">
               <FormLabel htmlFor="link" size="sm" fontWeight="bold">
                 Link:
               </FormLabel>
@@ -269,6 +279,7 @@ export default function NewGiftForm({
                 borderRadius="5px"
                 variant="outline"
                 bg="white"
+                autoComplete="off"
                 placeholder="http://small-local-vendor.com"
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
@@ -297,7 +308,7 @@ export default function NewGiftForm({
                 &nbsp;
               </FormHelperText>
             </FormControl>
-            <FormControl>
+            <FormControl autoComplete="new-password">
               <FormLabel
                 htmlFor="occasion"
                 size="sm"
@@ -312,6 +323,7 @@ export default function NewGiftForm({
                 borderRadius="5px"
                 variant="outline"
                 bg="white"
+                autoComplete="off"
                 value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
               />
