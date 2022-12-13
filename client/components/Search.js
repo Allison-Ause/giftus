@@ -5,6 +5,7 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
+import styles from '../global.css';
 
 export default function Search({
   searchTerm,
@@ -23,7 +24,7 @@ export default function Search({
   };
 
   return (
-    <div>
+    <div className={styles.screenOnly}>
       <InputGroup w="800px">
         <InputLeftElement
           children={

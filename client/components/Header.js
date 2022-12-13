@@ -28,7 +28,7 @@ export default function Header() {
   };
 
   return (
-    <header>
+    <header className={styles.screenOnly}>
       <Flex
         backgroundColor="#ffeef2"
         justifyContent={user ? 'space-between' : 'center'}
