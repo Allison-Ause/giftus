@@ -23,7 +23,7 @@ export default function Search({
   };
 
   return (
-    <>
+    <div>
       <InputGroup w="800px">
         <InputLeftElement
           children={
@@ -61,6 +61,6 @@ export default function Search({
           />
         )}
       </InputGroup>
-    </>
+    </div>
   );
 }

@@ -1,7 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Modak&display=swap');
 
+@media print {
+  .screen-only {
+    display: none;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none;
+  }
+}
+
 .bg {
-  background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+  background-image: linear-gradient(
+      to top,
+      #9795f099 0%,
+      #fbc8d4c4 100%
+    ),
+    url('/client/public/gift-overlay.png');
 }
 
 .title {
