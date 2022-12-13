@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const ThemeContext = createContext();
 
@@ -12,4 +12,14 @@ const ThemeProvider = ({ children }) => {
   );
 };
 
-export { ThemeContext, ThemeProvider };
+const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error(
+      'useThemeContext must be used within a UserProvider'
+    );
+  }
+  return context;
+};
+
+export { ThemeProvider, useTheme };

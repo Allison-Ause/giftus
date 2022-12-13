@@ -17,9 +17,11 @@ import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 import { signOutUser } from '../services/user-utils.js';
 import logo from '../public/logo.png';
+import { useTheme } from '../context/themeContext.js';
 
 export default function Header() {
   const { user, setUser } = useUser();
+  const { theme, setTheme } = useTheme;
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -33,7 +35,6 @@ export default function Header() {
         backgroundColor="#ffeef2"
         justifyContent={user ? 'space-between' : 'center'}
         p="5px"
-        // alignItems="center"
       >
         <Flex
           direction="row"
