@@ -11,18 +11,27 @@ import {
   MenuItem,
   Button,
   Image,
+  FormControl,
+  FormLabel,
+  Switch,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 import { signOutUser } from '../services/user-utils.js';
 import logo from '../public/logo.png';
+import snowflake from '../public/snowflake.png';
 import { useTheme } from '../context/themeContext.js';
 
 export default function Header() {
   const { user, setUser } = useUser();
-  const { theme, setTheme } = useTheme;
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
+  console.log('theme:', theme);
+  const handleTheme = () => {
+    theme === 'default' ? setTheme('festive') : setTheme('default');
+    console.log('theme is:', theme);
+  };
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -55,8 +64,29 @@ export default function Header() {
           </a>
         </Flex>
 
-        <Flex alignItems="center">
-          {user && (
+        {user && (
+          <Flex
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <FormControl>
+              <FormLabel htmlFor="change-theme">
+                <Switch
+                  id="theme-toggle"
+                  size="md"
+                  colorScheme="purple"
+                  onChange={handleTheme}
+                />
+              </FormLabel>
+            </FormControl>
+            <Image
+              id="snowflake"
+              src={snowflake}
+              boxSize="25px"
+              ml="-20px"
+              mr="15px"
+            />
             <Menu colorScheme="purple">
               <MenuButton
                 as={Button}
@@ -117,8 +147,8 @@ export default function Header() {
                 </MenuItem>
               </MenuList>
             </Menu>
-          )}
-        </Flex>
+          </Flex>
+        )}
       </Flex>
     </header>
   );

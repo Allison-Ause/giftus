@@ -13,10 +13,13 @@ import {
   upcomingDates,
 } from '../services/general-utils.js';
 import useFriends from '../hooks/useFriends.js';
+import { useTheme } from '../context/themeContext.js';
+import Snow from './Snow/Snow.js';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
+  const { theme } = useTheme();
   const { friends } = useFriends();
 
   if (!loading && !user)
@@ -31,7 +34,7 @@ export default function HomePage() {
         <Flex
           direction={{ base: 'column', md: 'row' }}
           gap={{ base: '10px', md: '50px' }}
-          className={styles.bg}
+          className={theme === 'default' ? styles.bg : styles.festive}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
           h={{ base: '100%vh', md: 'calc(100vh)' }}

@@ -4,6 +4,10 @@
   background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
 }
 
+.festive {
+  background-image: url('./public/festivebg.png');
+}
+
 .title {
   font-family: 'Coiny', cursive;
   font-size: 30px;
