@@ -3,14 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// const accountSid = process.env.TWILIO_ACCOUNT_SID;
-// const authToken = process.env.TWILIO_AUTH_TOKEN;
-// const client = new twilio(accountSid, authToken);
-
-const client = twilio(
-  'ACa1af9b4b71ad44e942d663be3ea9255a',
-  'a2271aa99b9a4b4eeff04418bd0b4638'
-);
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = twilio(accountSid, authToken);
 
 client.messages
   .create({
