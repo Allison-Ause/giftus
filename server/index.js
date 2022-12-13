@@ -8,11 +8,16 @@
  * Any deployments will need to execute the transpiled version of this file.
  ******************************************************************************/
 
-import dotenv from 'dotenv'
-import app from './app.js'
+import dotenv from 'dotenv';
+import app from './app.js';
 
-dotenv.config()
+dotenv.config();
 
-const server = app.listen(parseInt(process.env.PORT || '7890'), () => {
-  console.log('Started server on ', server.address())
-})
+const server = app.listen(
+  parseInt(process.env.PORT || '7890'),
+  () => {
+    console.log('Started server on ', server.address());
+  }
+);
+
+// this is where my setInterval will be for running my function
