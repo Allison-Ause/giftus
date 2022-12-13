@@ -5,9 +5,11 @@ import styles from '../global.css';
 import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { useUser } from '../context/userContext.js';
 import { useState } from 'react';
+import { PDFViewer } from '@react-18-pdf/renderer';
 import NewGiftForm from './NewGiftForm.js';
 import Header from './Header.js';
 import Loader from './Loader.js';
+import PDF from './PDF.js';
 
 export default function GiftDetailPage() {
   const { user, loading } = useUser();
@@ -26,6 +28,9 @@ export default function GiftDetailPage() {
   return (
     <>
       <Header />
+      <PDFViewer>
+        <PDF />
+      </PDFViewer>
       {giftLoading ? (
         <Loader />
       ) : (
