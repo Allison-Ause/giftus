@@ -67,7 +67,7 @@ export default function FriendDetailPage() {
             />
           ) : (
             <Box
-              boxShadow="md"
+              boxShadow="lg"
               p="6"
               rounded="lg"
               bg="#fff9ec"
@@ -121,7 +121,7 @@ export default function FriendDetailPage() {
             </Box>
           )}
           <Box
-            boxShadow="md"
+            boxShadow="lg"
             p="6"
             rounded="lg"
             bg="#fff9ec"

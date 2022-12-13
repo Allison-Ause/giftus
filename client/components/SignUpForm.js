@@ -20,7 +20,7 @@ export default function SignUpForm() {
   return (
     <>
       <Box
-        boxShadow="md"
+        boxShadow="lg"
         p="6"
         rounded="lg"
         bg="#fff9ec"
