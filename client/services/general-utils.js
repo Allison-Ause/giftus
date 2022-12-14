@@ -1,3 +1,5 @@
+// import { useToast, Box, Text } from '@chakra-ui/react';
+
 export function formatDateYMD(date) {
   const options = {
     year: 'numeric',
@@ -45,10 +47,12 @@ export function upcomingDates(friends) {
       toUpcomingDate(new Date(b.birthday))
     );
   });
+  console.log('allSortedFriends', allSortedFriends);
 
   const sortedFriends = allSortedFriends.filter(
     (friend) => friend.birthday
   );
+  console.log('sortedFriends:', sortedFriends);
   return sortedFriends;
 }
 
@@ -58,7 +62,33 @@ export function searchItems(items, searchTerm) {
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.address?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return searchResults;
+}
+
+export function checkUpcomingBirthdays(friends) {
+  const friendList = [...friends];
+  let trueDate;
+  const today = new Date();
+  const twoWeeksAhead = new Date(Date.now() + 12096e5);
+
+  // CONVERT BIRTHDAYS TO THIS YEAR OR NEXT FOR SORTING
+  const birthDates = friendList.map((friend) => {
+    trueDate = new Date(friend.birthday);
+    trueDate.setFullYear(today.getFullYear());
+    if (trueDate < today)
+      trueDate.setFullYear(today.getFullYear() + 1);
+    return { ...friend, birthday: trueDate };
+  });
+
+  // FILTER BIRTHDAYS FOR ONLY UPCOMING IN TWO WEEKS
+  const upcomingDates = birthDates.filter((friend) => {
+    return (
+      today.getTime() < friend.birthday.getTime() &&
+      friend.birthday.getTime() < twoWeeksAhead.getTime()
+    );
+  });
+  return upcomingDates;
 }
 
 // const friends = [
@@ -66,7 +96,7 @@ export function searchItems(items, searchTerm) {
 //     id: '1',
 //     userId: '1',
 //     name: 'Jenny',
-//     birthday: '1976-05-22T07:00:00.000Z',
+//     birthday: '2000-05-22T07:00:00.000Z',
 //     address: '29480 SW Volley St #22, Wilsonville OR 97070',
 //   },
 //   {
@@ -84,7 +114,3 @@ export function searchItems(items, searchTerm) {
 //     address: '4242 Heaven, Ashland OR 98223',
 //   },
 // ];
-
-// set Date to specific year
-// when is the NEXT birthday?
-// has this date already passed? (<) if so, make next year. If not, make this year
