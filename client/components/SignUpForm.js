@@ -20,7 +20,7 @@ export default function SignUpForm() {
   return (
     <>
       <Box
-        boxShadow="md"
+        boxShadow="lg"
         p="6"
         rounded="lg"
         bg="#fff9ec"
@@ -35,7 +35,7 @@ export default function SignUpForm() {
           alignItems="center"
         >
           <h1 className={styles.title}>Sign-Up</h1>
-          <form onSubmit={handleSignUp}>
+          <form onSubmit={handleSignUp} autoComplete="new-off">
             <Flex
               direction="column"
               justifyContent="center"
@@ -46,6 +46,7 @@ export default function SignUpForm() {
                 First Name:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="text"
                   name="firstName"
                 />
@@ -54,6 +55,7 @@ export default function SignUpForm() {
                 Last Name:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="text"
                   name="lastName"
                 />
@@ -62,6 +64,7 @@ export default function SignUpForm() {
                 Email:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="text"
                   name="email"
                 />
@@ -70,6 +73,7 @@ export default function SignUpForm() {
                 Password:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="password"
                   name="password"
                 />

@@ -1,13 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Modak&display=swap');
 
+@media print {
+  .screen-only {
+    display: none;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none;
+    font-size: 40px;
+    /* font-family: 'Coiny', cursive;
+    font-size: 40px;
+    color: #6b46c1; */
+  }
+}
+
 .bg {
-  background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+  background-image: linear-gradient(
+      to top,
+      #9795f099 0%,
+      #fbc8d4c4 100%
+    ),
+    url('/client/public/gift-overlay.png');
 }
 
 .title {
   font-family: 'Coiny', cursive;
-  font-size: 30px;
+  font-size: 40px;
   color: #6b46c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-title {
+  font-family: 'Coiny', cursive;
+  font-size: 35px;
+  color: #482698;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +47,15 @@
   font-family: 'Coiny', cursive;
   font-size: 30px;
   color: #e24e96;
+}
+
+.friend-table-title {
+  font-family: 'Coiny', cursive;
+  font-size: 35px;
+  color: #e24e96;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .table-head {
@@ -33,6 +72,10 @@
 
 #drop {
   margin-top: 25px;
+}
+
+#lift {
+  margin-top: -125px;
 }
 
 #header {

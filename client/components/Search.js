@@ -5,6 +5,7 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
+import styles from '../global.css';
 
 export default function Search({
   searchTerm,
@@ -23,8 +24,8 @@ export default function Search({
   };
 
   return (
-    <>
-      <InputGroup w="800px">
+    <div className={styles.screenOnly}>
+      <InputGroup w="900px" autoComplete="new-off">
         <InputLeftElement
           children={
             <SearchIcon
@@ -38,11 +39,12 @@ export default function Search({
         {location.pathname === '/gifts' ? (
           <Input
             placeholder="Search gifts..."
+            autoComplete="off"
             type="text"
             value={searchTerm}
             variant="outline"
             size="md"
-            bg="rgba(255, 255, 255, 0.722)"
+            bg="rgba(255, 255, 255, 0.822)"
             mb="-15px"
             colorScheme="purple"
             onChange={handleSearch}
@@ -50,6 +52,7 @@ export default function Search({
         ) : (
           <Input
             placeholder="Search friends..."
+            autoComplete="off"
             type="text"
             value={friendSearchTerm}
             variant="outline"
@@ -61,6 +64,6 @@ export default function Search({
           />
         )}
       </InputGroup>
-    </>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ export default function SignInForm() {
   return (
     <>
       <Box
-        boxShadow="md"
+        boxShadow="lg"
         p="6"
         rounded="lg"
         bg="#fff9ec"
@@ -32,7 +32,7 @@ export default function SignInForm() {
           alignItems="center"
         >
           <h1 className={styles.title}>Sign-In</h1>
-          <form onSubmit={handleSignIn}>
+          <form onSubmit={handleSignIn} autoComplete="new-off">
             <Flex
               direction="column"
               justifyContent="center"
@@ -43,6 +43,7 @@ export default function SignInForm() {
                 Email:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="text"
                   name="email"
                 />
@@ -51,6 +52,7 @@ export default function SignInForm() {
                 Password:
                 <input
                   className={styles.input}
+                  autoComplete="off"
                   type="password"
                   name="password"
                 />

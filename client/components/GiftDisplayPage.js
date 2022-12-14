@@ -37,20 +37,21 @@ export default function GiftDisplayPage() {
           backgroundPosition="bottom-left"
           backgroundSize="cover"
           h="calc(100vh)"
-          padding="30px"
+          padding="20px"
           justifyContent="center"
           alignItems="center"
         >
+          <h1 className={styles.tableTitle}>Stashed Gifts</h1>
           <Search
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />
           <Box
-            boxShadow="md"
+            boxShadow="lg"
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="800px"
+            w="900px"
             h="500px"
             overflow="scroll"
           >
@@ -59,12 +60,11 @@ export default function GiftDisplayPage() {
               justifyContent="center"
               alignItems="center"
             >
-              <h1 className={styles.title}>Cached Gifts</h1>
               <TableContainer>
                 <Table
                   variant="striped"
                   colorScheme="purple"
-                  w="700px"
+                  w="800px"
                   mt="50px"
                 >
                   <Thead>

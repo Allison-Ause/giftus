@@ -47,7 +47,7 @@ export default function HomePage() {
             gap={{ base: '15px', md: '50px' }}
           >
             <Box
-              boxShadow="md"
+              boxShadow="lg"
               p="6"
               rounded="lg"
               bg="#fff9ec"
@@ -80,7 +80,7 @@ export default function HomePage() {
               </Flex>
             </Box>
             <Box
-              boxShadow="md"
+              boxShadow="lg"
               p="6"
               rounded="lg"
               bg="#fff9ec"
