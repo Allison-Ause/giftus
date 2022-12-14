@@ -25,7 +25,7 @@ export default function Search({
 
   return (
     <div className={styles.screenOnly}>
-      <InputGroup w="900px">
+      <InputGroup w="900px" autoComplete="new-off">
         <InputLeftElement
           children={
             <SearchIcon
@@ -39,6 +39,7 @@ export default function Search({
         {location.pathname === '/gifts' ? (
           <Input
             placeholder="Search gifts..."
+            autoComplete="off"
             type="text"
             value={searchTerm}
             variant="outline"
@@ -51,6 +52,7 @@ export default function Search({
         ) : (
           <Input
             placeholder="Search friends..."
+            autoComplete="off"
             type="text"
             value={friendSearchTerm}
             variant="outline"

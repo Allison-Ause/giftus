@@ -152,7 +152,6 @@ export default function NewGiftForm({
         bg="#fff9ec"
         mt={{ base: '20px', md: '0px' }}
         w={{ base: '300px', md: '500px' }}
-        // h={{ base: '650px', md: '600px' }}
       >
         <Flex
           direction="column"
@@ -161,7 +160,11 @@ export default function NewGiftForm({
         >
           <Stack spacing={1} w={{ base: '250px', md: '400px' }}>
             <h1 className={styles.title}>Stash It!</h1>
-            <FormControl isRequired isInvalid={isIdeaError}>
+            <FormControl
+              isRequired
+              isInvalid={isIdeaError}
+              autoComplete="new-off"
+            >
               <FormLabel
                 requiredIndicator
                 htmlFor="idea"
@@ -171,6 +174,7 @@ export default function NewGiftForm({
                 Gift:
               </FormLabel>
               <Input
+                autoComplete="off"
                 type="text"
                 id="idea"
                 size="sm"
@@ -190,7 +194,11 @@ export default function NewGiftForm({
                 </FormHelperText>
               )}
             </FormControl>
-            <FormControl isRequired isInvalid={isRecipientError}>
+            <FormControl
+              isRequired
+              isInvalid={isRecipientError}
+              autoComplete="new-off"
+            >
               <FormLabel
                 requiredIndicator
                 htmlFor="recipient"
@@ -200,6 +208,7 @@ export default function NewGiftForm({
                 Recipient:
               </FormLabel>
               <Input
+                autoComplete="off"
                 type="text"
                 id="recipient"
                 size="sm"
@@ -258,11 +267,12 @@ export default function NewGiftForm({
                 </FormHelperText>
               )}
             </FormControl>
-            <FormControl>
+            <FormControl autoComplete="new-off">
               <FormLabel htmlFor="link" size="sm" fontWeight="bold">
                 Link:
               </FormLabel>
               <Input
+                autoComplete="off"
                 type="text"
                 id="link"
                 size="sm"
@@ -297,7 +307,7 @@ export default function NewGiftForm({
                 &nbsp;
               </FormHelperText>
             </FormControl>
-            <FormControl>
+            <FormControl autoComplete="new-off">
               <FormLabel
                 htmlFor="occasion"
                 size="sm"
@@ -306,6 +316,7 @@ export default function NewGiftForm({
                 Occasion:
               </FormLabel>
               <Input
+                autoComplete="off"
                 type="text"
                 id="occasion"
                 size="sm"

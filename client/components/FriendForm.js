@@ -116,7 +116,11 @@ export default function FriendForm({
           <h1 className={styles.friend}>
             {isEditing ? 'Edit Friend' : 'Add a Friend!'}
           </h1>
-          <FormControl isRequired isInvalid={isNameError}>
+          <FormControl
+            isRequired
+            isInvalid={isNameError}
+            autoComplete="new-off"
+          >
             <FormLabel
               requiredIndicator
               htmlFor="name"
@@ -127,6 +131,7 @@ export default function FriendForm({
               Name:
             </FormLabel>
             <Input
+              autoComplete="off"
               type="text"
               id="name"
               size="sm"
@@ -164,11 +169,12 @@ export default function FriendForm({
               &nbsp;
             </FormHelperText>
           </FormControl>
-          <FormControl>
+          <FormControl autoComplete="new-off">
             <FormLabel htmlFor="address" size="sm" fontWeight="bold">
               Address:
             </FormLabel>
             <Textarea
+              autoComplete="off"
               type="text"
               id="address"
               size="sm"
