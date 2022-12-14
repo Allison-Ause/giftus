@@ -25,7 +25,7 @@ export default function Search({
 
   return (
     <div className={styles.screenOnly}>
-      <InputGroup w="800px">
+      <InputGroup w="900px">
         <InputLeftElement
           children={
             <SearchIcon
@@ -43,7 +43,7 @@ export default function Search({
             value={searchTerm}
             variant="outline"
             size="md"
-            bg="rgba(255, 255, 255, 0.722)"
+            bg="rgba(255, 255, 255, 0.822)"
             mb="-15px"
             colorScheme="purple"
             onChange={handleSearch}

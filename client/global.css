@@ -9,6 +9,10 @@
 @media screen {
   .print-only {
     display: none;
+    font-size: 40px;
+    /* font-family: 'Coiny', cursive;
+    font-size: 40px;
+    color: #6b46c1; */
   }
 }
 
@@ -23,8 +27,17 @@
 
 .title {
   font-family: 'Coiny', cursive;
-  font-size: 30px;
+  font-size: 40px;
   color: #6b46c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-title {
+  font-family: 'Coiny', cursive;
+  font-size: 35px;
+  color: #482698;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +47,15 @@
   font-family: 'Coiny', cursive;
   font-size: 30px;
   color: #e24e96;
+}
+
+.friend-table-title {
+  font-family: 'Coiny', cursive;
+  font-size: 35px;
+  color: #e24e96;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .table-head {
@@ -50,6 +72,10 @@
 
 #drop {
   margin-top: 25px;
+}
+
+#lift {
+  margin-top: -125px;
 }
 
 #header {

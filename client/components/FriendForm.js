@@ -97,6 +97,7 @@ export default function FriendForm({
   };
   return (
     <Box
+      className={styles.screenOnly}
       boxShadow="lg"
       p="6"
       rounded="lg"

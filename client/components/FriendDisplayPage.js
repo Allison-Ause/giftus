@@ -47,6 +47,9 @@ export default function FriendDisplayPage() {
           justifyContent="center"
           alignItems="center"
         >
+          <h1 className={styles.friendTableTitle}>
+            Future Recipients
+          </h1>
           <Search
             friendSearchTerm={friendSearchTerm}
             setFriendSearchTerm={setFriendSearchTerm}
@@ -65,7 +68,6 @@ export default function FriendDisplayPage() {
               justifyContent="center"
               alignItems="center"
             >
-              <h1 className={styles.friend}>Future Recipients</h1>
               <TableContainer>
                 <Table
                   variant="striped"

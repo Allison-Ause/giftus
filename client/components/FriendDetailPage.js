@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   IconButton,
+  Image,
   Link,
   Stack,
   Text,
@@ -14,11 +15,16 @@ import Header from './Header.js';
 import Loader from './Loader.js';
 import styles from '../global.css';
 import { useState } from 'react';
-import { EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import {
+  DownloadIcon,
+  EditIcon,
+  ExternalLinkIcon,
+} from '@chakra-ui/icons';
 import useGifts from '../hooks/useGifts.js';
 import FriendForm from './FriendForm.js';
 import { formatDateYMD } from '../services/general-utils.js';
 import { Link as RLink } from 'react-router-dom';
+import logo from '../public/logo.png';
 
 export default function FriendDetailPage() {
   const { user, loading } = useUser();
@@ -30,6 +36,10 @@ export default function FriendDetailPage() {
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
   if (friend === null) return <Navigate to="/" />;
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   // FOR PASSING TO DATE INPUT IN EDITING FORM
   let calendarDate;
@@ -67,6 +77,7 @@ export default function FriendDetailPage() {
             />
           ) : (
             <Box
+              className={styles.screenOnly}
               boxShadow="lg"
               p="6"
               rounded="lg"
@@ -136,12 +147,36 @@ export default function FriendDetailPage() {
               minH={{ base: '250px', md: '350px' }}
             >
               <Flex
+                justifyContent="flex-end"
+                m="-15px"
+                className={styles.screenOnly}
+              >
+                <IconButton
+                  className={styles.screenOnly}
+                  aria-label="print-gift-list"
+                  size="lg"
+                  colorScheme="pink"
+                  variant="ghost"
+                  icon={
+                    <DownloadIcon className={styles.screenOnly} />
+                  }
+                  onClick={handlePrint}
+                />
+              </Flex>
+              <Flex
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
               >
-                <h1 className={styles.friend}>Gift Ideas</h1>
-                <Stack spacing={2} mt="10px">
+                {/* WHY CAN I NOT STYLE THIS FONT? */}
+                <h1 className={styles.friend} id={styles.lift}>
+                  Gift Ideas
+                </h1>
+                <h1
+                  className={styles.printOnly}
+                >{`FOR ${friend.name.toUpperCase()}`}</h1>
+                {/* ^^^ DISPLAYED ONLY IN PRINT ^^^ */}
+                <Stack spacing={2} mt="20px">
                   {friendFilter().map((gift) => (
                     <Text key={gift.id} fontWeight="bold">
                       <Link
@@ -152,7 +187,11 @@ export default function FriendDetailPage() {
                         {gift.idea}
                       </Link>
                       {gift.link ? (
-                        <Link href={gift.link} isExternal>
+                        <Link
+                          href={gift.link}
+                          isExternal
+                          className={styles.screenOnly}
+                        >
                           <ExternalLinkIcon color="#6b46c1" />
                         </Link>
                       ) : (
@@ -161,6 +200,14 @@ export default function FriendDetailPage() {
                     </Text>
                   ))}
                 </Stack>
+                <Image
+                  className={styles.printOnly}
+                  id="logo"
+                  src={logo}
+                  boxSize="65px"
+                  alt="logo"
+                  mt="50px"
+                />
               </Flex>
               <Flex justifyContent="center">
                 <Link
@@ -169,7 +216,9 @@ export default function FriendDetailPage() {
                   color="#e24e96"
                   fontWeight="bold"
                 >
-                  Add Gifts from the Homepage.
+                  <h1 className={styles.screenOnly}>
+                    Add Gifts from the Homepage.
+                  </h1>
                 </Link>
               </Flex>
             </Flex>
