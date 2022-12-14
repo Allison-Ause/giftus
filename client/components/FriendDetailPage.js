@@ -146,36 +146,31 @@ export default function FriendDetailPage() {
               alignContent="center"
               minH={{ base: '250px', md: '350px' }}
             >
-              <Flex
-                justifyContent="flex-end"
-                m="-15px"
-                className={styles.screenOnly}
-              >
-                <IconButton
-                  className={styles.screenOnly}
-                  aria-label="print-gift-list"
-                  size="lg"
-                  colorScheme="pink"
-                  variant="ghost"
-                  icon={
-                    <DownloadIcon className={styles.screenOnly} />
-                  }
-                  onClick={handlePrint}
-                />
-              </Flex>
+              <Box className={styles.screenOnly}>
+                <Flex justifyContent="flex-end" m="-15px">
+                  <IconButton
+                    aria-label="print-gift-list"
+                    size="lg"
+                    colorScheme="pink"
+                    variant="ghost"
+                    icon={<DownloadIcon />}
+                    onClick={handlePrint}
+                  />
+                </Flex>
+              </Box>
               <Flex
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
               >
-                {/* WHY CAN I NOT STYLE THIS FONT? */}
-                <h1 className={styles.friend} id={styles.lift}>
-                  Gift Ideas
-                </h1>
-                <h1
-                  className={styles.printOnly}
-                >{`FOR ${friend.name.toUpperCase()}`}</h1>
-                {/* ^^^ DISPLAYED ONLY IN PRINT ^^^ */}
+                <Box mt={{ base: '0px', md: '-125px' }}>
+                  <h1 className={styles.friend}>Gift Ideas</h1>
+
+                  <h1
+                    className={styles.printOnly}
+                  >{`FOR ${friend.name.toUpperCase()}`}</h1>
+                  {/* ^^^ DISPLAYED ONLY IN PRINT ^^^ */}
+                </Box>
                 <Stack spacing={2} mt="20px">
                   {friendFilter().map((gift) => (
                     <Text key={gift.id} fontWeight="bold">
