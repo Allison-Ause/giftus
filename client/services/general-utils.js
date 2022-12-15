@@ -97,22 +97,41 @@ export const makeToast = (toast, friend) => {
     render: () => (
       <Box
         rounded="lg"
-        bgColor="purple.600"
+        bgColor="pink.600"
         boxShadow="2xlg"
         p="25px"
         mt={{ base: '95px', md: '120px' }}
-        w={{ base: '200px', md: '250px' }}
+        w={{ base: '300px', md: '350px' }}
       >
         <Flex
           direction="column"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontWeight="bold" fontSize="20px" color="white">{`${
-            friend.name
-          }'s Birthday is ${formatDateMD(friend.birthday)}!`}</Text>
-          <Text color="pink.100">
-            {'Time to buy a stashed gift!'}
+          <Flex
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text
+              display="flex"
+              fontWeight="bold"
+              fontSize="20px"
+              color="white"
+            >{`${friend.name}'s Birthday is`}</Text>
+            <Text
+              fontWeight="bold"
+              fontSize="20px"
+              color="white"
+            >{`${formatDateMD(friend.birthday)}!`}</Text>
+          </Flex>
+          <Text
+            fontWeight="bold"
+            fontSize="15px"
+            color="yellow.100"
+            mt="10px"
+          >
+            {'Time to buy a stashed gift.'}
           </Text>
         </Flex>
       </Box>
