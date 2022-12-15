@@ -31,9 +31,6 @@ export default function HomePage() {
   const toast = useToast();
   const oneHourInMS = 60 * 60 * 1000;
 
-  if (!loading && !user)
-    return <Navigate to="/auth/sign-in" replace />;
-
   const runOnce = () => {
     checkUpcomingBirthdays(friends).forEach(
       makeToast.bind(null, toast)
@@ -46,6 +43,9 @@ export default function HomePage() {
     const interval = setInterval(runOnce, oneHourInMS);
     return () => clearInterval(interval);
   }, [friendsLoading]);
+
+  if (!loading && !user)
+    return <Navigate to="/auth/sign-in" replace />;
 
   return (
     <>

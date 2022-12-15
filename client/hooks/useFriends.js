@@ -11,13 +11,14 @@ export default function useFriends(id, user) {
   const [friendsLoading, setFriendsLoading] = useState(true);
 
   useEffect(() => {
+    if (!user) return;
     const fetchData = async () => {
       const friendList = await getAllFriends();
       setFriends(friendList);
       setFriendsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (!user) return;
