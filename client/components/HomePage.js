@@ -42,7 +42,6 @@ export default function HomePage() {
 
   useEffect(() => {
     if (friendsLoading) return;
-    console.log('firing useEffect');
     runOnce();
     const interval = setInterval(runOnce, oneHourInMS);
     return () => clearInterval(interval);

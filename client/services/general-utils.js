@@ -94,7 +94,6 @@ export const makeToast = (toast, friend) => {
     position: 'top',
     duration: 5000,
     isClosable: true,
-    variant: 'top-accent-toast',
     render: () => (
       <Box
         rounded="lg"
