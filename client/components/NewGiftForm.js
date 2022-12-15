@@ -31,7 +31,7 @@ export default function NewGiftForm({
   isEditing,
   setIsEditing,
 }) {
-  const { friends } = useFriends();
+  const { friends } = useFriends(null, user);
   const [idea, setIdea] = useState(gift.idea || '');
   const [recipient, setRecipient] = useState(gift.friend?.name || '');
   const [link, setLink] = useState(gift.link || '');
