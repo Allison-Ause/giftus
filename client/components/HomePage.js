@@ -1,4 +1,11 @@
-import { Box, Flex, Stack, Text, Link } from '@chakra-ui/react';
+import {
+  useToast,
+  Box,
+  Flex,
+  Stack,
+  Text,
+  Link,
+} from '@chakra-ui/react';
 import { Navigate, Link as RLink } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import useGifts from '../hooks/useGifts.js';
@@ -8,19 +15,38 @@ import styles from '../global.css';
 import Header from './Header.js';
 import Loader from './Loader.js';
 import {
+  checkUpcomingBirthdays,
   fiveRecentGifts,
   formatDateMD,
   upcomingDates,
+  makeToast,
 } from '../services/general-utils.js';
 import useFriends from '../hooks/useFriends.js';
+import { useEffect } from 'react';
 
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
-  const { friends } = useFriends();
+  const { friends, friendsLoading } = useFriends();
+  const toast = useToast();
+  const oneHourInMS = 60 * 60 * 1000;
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
+
+  const runOnce = () => {
+    checkUpcomingBirthdays(friends).forEach(
+      makeToast.bind(null, toast)
+    );
+  };
+
+  useEffect(() => {
+    if (friendsLoading) return;
+    console.log('firing useEffect');
+    runOnce();
+    const interval = setInterval(runOnce, oneHourInMS);
+    return () => clearInterval(interval);
+  }, [friendsLoading]);
 
   return (
     <>

@@ -8,11 +8,13 @@ export default function useFriends(id, user) {
   const [friends, setFriends] = useState([]);
   const [friend, setFriend] = useState({});
   const [friendLoading, setFriendLoading] = useState(true);
+  const [friendsLoading, setFriendsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const friendList = await getAllFriends();
       setFriends(friendList);
+      setFriendsLoading(false);
     };
     fetchData();
   }, []);
@@ -34,5 +36,6 @@ export default function useFriends(id, user) {
     setFriend,
     friendLoading,
     setFriendLoading,
+    friendsLoading,
   };
 }

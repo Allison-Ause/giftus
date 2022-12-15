@@ -1,4 +1,4 @@
-// import { useToast, Box, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 export function formatDateYMD(date) {
   const options = {
@@ -47,12 +47,10 @@ export function upcomingDates(friends) {
       toUpcomingDate(new Date(b.birthday))
     );
   });
-  console.log('allSortedFriends', allSortedFriends);
 
   const sortedFriends = allSortedFriends.filter(
     (friend) => friend.birthday
   );
-  console.log('sortedFriends:', sortedFriends);
   return sortedFriends;
 }
 
@@ -90,6 +88,38 @@ export function checkUpcomingBirthdays(friends) {
   });
   return upcomingDates;
 }
+
+export const makeToast = (toast, friend) => {
+  toast({
+    position: 'top',
+    duration: 5000,
+    isClosable: true,
+    variant: 'top-accent-toast',
+    render: () => (
+      <Box
+        rounded="lg"
+        bgColor="purple.600"
+        boxShadow="2xlg"
+        p="25px"
+        mt={{ base: '95px', md: '120px' }}
+        w={{ base: '200px', md: '250px' }}
+      >
+        <Flex
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text fontWeight="bold" fontSize="20px" color="white">{`${
+            friend.name
+          }'s Birthday is ${formatDateMD(friend.birthday)}!`}</Text>
+          <Text color="pink.100">
+            {'Time to buy a stashed gift!'}
+          </Text>
+        </Flex>
+      </Box>
+    ),
+  });
+};
 
 // const friends = [
 //   {
