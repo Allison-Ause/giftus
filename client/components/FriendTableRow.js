@@ -10,6 +10,7 @@ export default function FriendTableRow({
   friend,
   setFriends,
   displayDate,
+  isMobile,
 }) {
   const handleDelete = async () => {
     await deleteFriend(friend.id);
@@ -25,16 +26,18 @@ export default function FriendTableRow({
         </Link>
       </Td>
       <Td>{displayDate}</Td>
-      <Td>{friend.address}</Td>
-      <Td>
-        <IconButton
-          aria-label="delete friend"
-          icon={<DeleteIcon />}
-          variant="ghost"
-          colorScheme="pink"
-          onClick={handleDelete}
-        />
-      </Td>
+      {!isMobile && <Td>{friend.address}</Td>}
+      {!isMobile && (
+        <Td>
+          <IconButton
+            aria-label="delete friend"
+            icon={<DeleteIcon />}
+            variant="ghost"
+            colorScheme="pink"
+            onClick={handleDelete}
+          />
+        </Td>
+      )}
     </Tr>
   );
 }

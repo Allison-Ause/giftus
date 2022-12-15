@@ -7,6 +7,8 @@ import {
   Th,
   Thead,
   Tr,
+  useMediaQuery,
+  Text,
 } from '@chakra-ui/react';
 import Header from './Header.js';
 import Loader from './Loader.js';
@@ -23,6 +25,7 @@ export default function FriendDisplayPage() {
   const { user, loading } = useUser();
   const { friends, setFriends } = useFriends();
   const [friendSearchTerm, setFriendSearchTerm] = useState('');
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   if (!loading && !user)
     return <Navigate to="/auth/sign-in" replace />;
@@ -38,12 +41,12 @@ export default function FriendDisplayPage() {
       ) : (
         <Flex
           direction="column"
-          gap="50px"
+          gap={{ base: '10px', md: '50px' }}
           className={styles.bg}
           backgroundPosition="bottom-left"
           backgroundSize="cover"
-          h="calc(100vh)"
-          padding="30px"
+          h={{ base: '100%vh', md: 'calc(100vh)' }}
+          padding={{ base: '5px', md: '30px' }}
           justifyContent="center"
           alignItems="center"
         >
@@ -59,7 +62,7 @@ export default function FriendDisplayPage() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="900px"
+            w={{ base: '400px', md: '900px' }}
             h="500px"
             overflow="scroll"
           >
@@ -69,58 +72,118 @@ export default function FriendDisplayPage() {
               alignItems="center"
             >
               <TableContainer>
-                <Table
-                  variant="striped"
-                  colorScheme="pink"
-                  w="800px"
-                  mt="50px"
-                >
-                  <Thead>
-                    <Tr>
-                      <Th>
-                        <h1 className={styles.friendTableHead}>
-                          Name
-                        </h1>
-                      </Th>
-                      <Th>
-                        <h1 className={styles.friendTableHead}>
-                          Birthday
-                        </h1>
-                      </Th>
-                      <Th>
-                        <h1 className={styles.friendTableHead}>
-                          Address
-                        </h1>
-                      </Th>
-                      <Th></Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {searchItems(friends, friendSearchTerm).map(
-                      (friend) => {
-                        if (friend.birthday === null) {
-                          displayDate = '';
-                        } else {
-                          birthday = new Date(
-                            friend.birthday
-                          ).toDateString();
-                          displayDate = birthday
-                            .split(' ')
-                            .splice(1, 2)
-                            .join(' ');
+                {isMobile ? (
+                  <Table
+                    variant="striped"
+                    colorScheme="pink"
+                    w="350px"
+                    mt="50px"
+                  >
+                    <Thead>
+                      <Tr>
+                        <Th>
+                          <Flex
+                            justifyContent="center"
+                            pb="10px"
+                            mt="-40px"
+                            ml="-60px"
+                          >
+                            <Text fontSize="4xl">👤</Text>
+                          </Flex>
+                        </Th>
+                        <Th>
+                          <Flex
+                            justifyContent="center"
+                            pb="10px"
+                            mt="-40px"
+                            mr="20px"
+                          >
+                            <Text fontSize="4xl">🎂</Text>
+                          </Flex>
+                        </Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {searchItems(friends, friendSearchTerm).map(
+                        (friend) => {
+                          if (friend.birthday === null) {
+                            displayDate = '';
+                          } else {
+                            birthday = new Date(
+                              friend.birthday
+                            ).toDateString();
+                            displayDate = birthday
+                              .split(' ')
+                              .splice(1, 2)
+                              .join(' ');
+                          }
+                          return (
+                            <FriendTableRow
+                              key={friend.id}
+                              friend={friend}
+                              setFriends={setFriends}
+                              displayDate={displayDate}
+                              isMobile={isMobile}
+                            />
+                          );
                         }
-                        return (
-                          <FriendTableRow
-                            key={friend.id}
-                            friend={friend}
-                            setFriends={setFriends}
-                            displayDate={displayDate}
-                          />
-                        );
-                      }
-                    )}
-                  </Tbody>
-                </Table>
+                      )}
+                    </Tbody>
+                  </Table>
+                ) : (
+                  <Table
+                    variant="striped"
+                    colorScheme="pink"
+                    w="800px"
+                    mt="50px"
+                  >
+                    <Thead>
+                      <Tr>
+                        <Th>
+                          <h1 className={styles.friendTableHead}>
+                            Name
+                          </h1>
+                        </Th>
+                        <Th>
+                          <h1 className={styles.friendTableHead}>
+                            Birthday
+                          </h1>
+                        </Th>
+                        <Th>
+                          <h1 className={styles.friendTableHead}>
+                            Address
+                          </h1>
+                        </Th>
+                        <Th></Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {searchItems(friends, friendSearchTerm).map(
+                        (friend) => {
+                          if (friend.birthday === null) {
+                            displayDate = '';
+                          } else {
+                            birthday = new Date(
+                              friend.birthday
+                            ).toDateString();
+                            displayDate = birthday
+                              .split(' ')
+                              .splice(1, 2)
+                              .join(' ');
+                          }
+                          return (
+                            <FriendTableRow
+                              key={friend.id}
+                              friend={friend}
+                              setFriends={setFriends}
+                              displayDate={displayDate}
+                            />
+                          );
+                        }
+                      )}
+                    </Tbody>
+                  </Table>
+                )}
               </TableContainer>
             </Flex>
           </Box>

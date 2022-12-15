@@ -14,6 +14,7 @@ import {
 import { useState } from 'react';
 import {
   addGift,
+  deleteGift,
   editGift,
   getAllGifts,
   getById,
@@ -21,6 +22,7 @@ import {
 import styles from '../global.css';
 import useFriends from '../hooks/useFriends.js';
 import { addFriend } from '../services/friend-utils.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewGiftForm({
   gift,
@@ -39,6 +41,7 @@ export default function NewGiftForm({
   const [isRecipientError, setIsRecipientError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
@@ -141,6 +144,11 @@ export default function NewGiftForm({
     const updatedGift = await getById(id);
     setGift(updatedGift);
     setIsEditing(false);
+  };
+
+  const handleDeleteGift = async () => {
+    await deleteGift(gift.id);
+    navigate('/gifts');
   };
 
   return (
@@ -330,7 +338,7 @@ export default function NewGiftForm({
                 &nbsp;
               </FormHelperText>
             </FormControl>
-            <Flex justifyContent="center">
+            <Flex justifyContent="center" gap="15px">
               <Button
                 onClick={isEditing ? handleEditGift : handleAddGift}
                 size="md"
@@ -339,6 +347,16 @@ export default function NewGiftForm({
               >
                 Save
               </Button>
+              {isEditing && (
+                <Button
+                  onClick={handleDeleteGift}
+                  size="md"
+                  w="75px"
+                  colorScheme="pink"
+                >
+                  Delete
+                </Button>
+              )}
             </Flex>
           </Stack>
         </Flex>

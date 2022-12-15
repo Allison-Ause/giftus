@@ -2,7 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './reset.css';
 import './global.css';
-import Layout from './layout';
 import {
   Route,
   BrowserRouter as Router,
@@ -28,24 +27,16 @@ root.render(
       <UserProvider>
         <Router>
           <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/auth/:type" element={<AuthPage />} />
-              <Route
-                path="/friends"
-                element={<FriendDisplayPage />}
-              />
-              <Route
-                path="/friends/new"
-                element={<FriendFormPage />}
-              />
-              <Route
-                path="/friends/:id"
-                element={<FriendDetailPage />}
-              />
-              <Route path="/gifts" element={<GiftDisplayPage />} />
-              <Route path="/gifts/:id" element={<GiftDetailPage />} />
-            </Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/auth/:type" element={<AuthPage />} />
+            <Route path="/friends" element={<FriendDisplayPage />} />
+            <Route path="/friends/new" element={<FriendFormPage />} />
+            <Route
+              path="/friends/:id"
+              element={<FriendDetailPage />}
+            />
+            <Route path="/gifts" element={<GiftDisplayPage />} />
+            <Route path="/gifts/:id" element={<GiftDetailPage />} />
           </Routes>
         </Router>
       </UserProvider>
