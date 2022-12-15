@@ -27,7 +27,7 @@ import { useEffect } from 'react';
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
-  const { friends, friendsLoading } = useFriends();
+  const { friends, friendsLoading } = useFriends(null, user);
   const toast = useToast();
   const oneHourInMS = 60 * 60 * 1000;
 

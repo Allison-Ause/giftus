@@ -21,7 +21,7 @@ export default function useFriends(id, user) {
   }, [user]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || !id) return;
     const fetchData = async () => {
       const singleFriend = await getFriendById(id);
       setFriend(singleFriend);
