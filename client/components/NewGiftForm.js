@@ -23,6 +23,7 @@ import styles from '../global.css';
 import useFriends from '../hooks/useFriends.js';
 import { addFriend } from '../services/friend-utils.js';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/userContext.js';
 
 export default function NewGiftForm({
   gift,
@@ -31,7 +32,8 @@ export default function NewGiftForm({
   isEditing,
   setIsEditing,
 }) {
-  const { friends } = useFriends();
+  const { user } = useUser();
+  const { friends } = useFriends(null, user);
   const [idea, setIdea] = useState(gift.idea || '');
   const [recipient, setRecipient] = useState(gift.friend?.name || '');
   const [link, setLink] = useState(gift.link || '');

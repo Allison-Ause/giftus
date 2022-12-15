@@ -27,12 +27,9 @@ import { useEffect } from 'react';
 export default function HomePage() {
   const { gifts, setGifts } = useGifts();
   const { user, loading } = useUser();
-  const { friends, friendsLoading } = useFriends();
+  const { friends, friendsLoading } = useFriends(null, user);
   const toast = useToast();
   const oneHourInMS = 60 * 60 * 1000;
-
-  if (!loading && !user)
-    return <Navigate to="/auth/sign-in" replace />;
 
   const runOnce = () => {
     checkUpcomingBirthdays(friends).forEach(
@@ -46,6 +43,9 @@ export default function HomePage() {
     const interval = setInterval(runOnce, oneHourInMS);
     return () => clearInterval(interval);
   }, [friendsLoading]);
+
+  if (!loading && !user)
+    return <Navigate to="/auth/sign-in" replace />;
 
   return (
     <>

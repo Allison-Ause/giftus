@@ -23,7 +23,7 @@ import { useState } from 'react';
 
 export default function FriendDisplayPage() {
   const { user, loading } = useUser();
-  const { friends, setFriends } = useFriends();
+  const { friends, setFriends } = useFriends(null, user);
   const [friendSearchTerm, setFriendSearchTerm] = useState('');
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
