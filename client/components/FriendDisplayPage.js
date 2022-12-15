@@ -85,7 +85,8 @@ export default function FriendDisplayPage() {
                           <Flex
                             justifyContent="center"
                             pb="10px"
-                            mt="-20px"
+                            mt="-40px"
+                            ml="-60px"
                           >
                             <Text fontSize="4xl">👤</Text>
                           </Flex>
@@ -95,6 +96,7 @@ export default function FriendDisplayPage() {
                             justifyContent="center"
                             pb="10px"
                             mt="-40px"
+                            mr="20px"
                           >
                             <Text fontSize="4xl">🎂</Text>
                           </Flex>
