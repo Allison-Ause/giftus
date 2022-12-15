@@ -110,7 +110,7 @@ export default function HomePage() {
               rounded="lg"
               bg="#fff9ec"
               w={{ base: '300px', md: '425px' }}
-              h={{ base: '420px', md: '300px' }}
+              h={{ base: '450px', md: '300px' }}
               mt={{ base: '10px', md: '0px' }}
               mb={{ base: '25px', md: '0px' }}
             >

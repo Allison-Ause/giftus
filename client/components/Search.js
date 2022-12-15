@@ -27,6 +27,7 @@ export default function Search({
     <div className={styles.screenOnly}>
       <InputGroup
         w={{ base: '350px', md: '900px' }}
+        mb={{ base: '25px', md: '0px' }}
         autoComplete="new-off"
       >
         <InputLeftElement

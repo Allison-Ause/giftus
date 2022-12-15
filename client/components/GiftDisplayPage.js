@@ -78,7 +78,7 @@ export default function GiftDisplayPage() {
                             justifyContent="center"
                             pb="10px"
                             mt="-40px"
-                            ml="-15px"
+                            ml="-65px"
                           >
                             <Text fontSize="4xl">🎁</Text>
                           </Flex>
@@ -88,6 +88,7 @@ export default function GiftDisplayPage() {
                             justifyContent="center"
                             pb="10px"
                             mt="-40px"
+                            mr="75px"
                           >
                             <Text fontSize="4xl">👤</Text>
                           </Flex>
