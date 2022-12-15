@@ -148,8 +148,6 @@ export default function NewGiftForm({
 
   const handleDeleteGift = async () => {
     await deleteGift(gift.id);
-    // const giftList = await getAllGifts();
-    // setGifts(giftList);
     navigate('/gifts');
   };
 
