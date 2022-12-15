@@ -54,7 +54,7 @@ export default function GiftDisplayPage() {
             p="6"
             rounded="lg"
             bg="#fff9ec"
-            w="900px"
+            w={{ base: '400px', md: '900px' }}
             h="500px"
             overflow="scroll"
           >
@@ -78,7 +78,7 @@ export default function GiftDisplayPage() {
                             justifyContent="center"
                             pb="10px"
                             mt="-40px"
-                            ml="-25px"
+                            ml="-15px"
                           >
                             <Text fontSize="4xl">🎁</Text>
                           </Flex>
@@ -88,7 +88,6 @@ export default function GiftDisplayPage() {
                             justifyContent="center"
                             pb="10px"
                             mt="-40px"
-                            mr="-10px"
                           >
                             <Text fontSize="4xl">👤</Text>
                           </Flex>
