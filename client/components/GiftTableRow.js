@@ -1,7 +1,7 @@
 import { Link, Td, Tr } from '@chakra-ui/react';
 import { Link as RLink } from 'react-router-dom';
 
-export default function GiftTableRow({ gift }) {
+export default function GiftTableRow({ gift, isMobile }) {
   return (
     <Tr>
       <Td>
@@ -14,8 +14,20 @@ export default function GiftTableRow({ gift }) {
           {gift.friend.name}
         </Link>
       </Td>
-      <Td>{gift.price === 0 ? '' : `$${gift.price}`}</Td>
-      <Td>{gift.occasion}</Td>
+      {!isMobile && (
+        <Td>{gift.price === 0 ? '' : `$${gift.price}`}</Td>
+      )}
+      {!isMobile && <Td>{gift.occasion}</Td>}
     </Tr>
   );
 }
+
+// {((isMobile && gift.occasion.toLowerCase() === 'christmas') ||
+//   (isMobile && gift.occasion.toLowerCase() === 'xmas')) && (
+//   <Td>🎄</Td>
+// )}
+// {((isMobile && gift.occasion.toLowerCase() === 'birthday') ||
+//   (isMobile && gift.occasion.toLowerCase() === 'bday')) && (
+//   <Td>🎂</Td>
+// )}
+// {isMobile && gift.occasion === '' && <Td>{''}</Td>}
