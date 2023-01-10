@@ -16,6 +16,7 @@ import GiftDisplayPage from './components/GiftDisplayPage.js';
 import FriendDisplayPage from './components/FriendDisplayPage.js';
 import FriendFormPage from './components/FriendFormPage.js';
 import FriendDetailPage from './components/FriendDetailPage.js';
+import { ThemeProvider } from './context/themeContext';
 
 const container =
   document.getElementById('app') || document.createElement('div');
@@ -25,20 +26,28 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
       <UserProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/auth/:type" element={<AuthPage />} />
-            <Route path="/friends" element={<FriendDisplayPage />} />
-            <Route path="/friends/new" element={<FriendFormPage />} />
-            <Route
-              path="/friends/:id"
-              element={<FriendDetailPage />}
-            />
-            <Route path="/gifts" element={<GiftDisplayPage />} />
-            <Route path="/gifts/:id" element={<GiftDetailPage />} />
-          </Routes>
-        </Router>
+        <ThemeProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/auth/:type" element={<AuthPage />} />
+              <Route
+                path="/friends"
+                element={<FriendDisplayPage />}
+              />
+              <Route
+                path="/friends/new"
+                element={<FriendFormPage />}
+              />
+              <Route
+                path="/friends/:id"
+                element={<FriendDetailPage />}
+              />
+              <Route path="/gifts" element={<GiftDisplayPage />} />
+              <Route path="/gifts/:id" element={<GiftDetailPage />} />
+            </Routes>
+          </Router>
+        </ThemeProvider>
       </UserProvider>
     </ChakraProvider>
   </React.StrictMode>
