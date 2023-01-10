@@ -47,7 +47,6 @@ export default function NewGiftForm({
 
   const price = !cost ? 0 : cost;
   let isFormInvalid = false;
-  // let selectedFriend = gift.friend || {};
 
   const filteredFriends = friends.filter((friend) =>
     friend.name.toLowerCase().includes(recipient.toLowerCase())
@@ -65,19 +64,12 @@ export default function NewGiftForm({
     }
     if (isFormInvalid) return;
 
-    // if (!selectedFriend.id && recipient) {
-    //   const newFriend = await addFriend({ name: recipient });
-    //   selectedFriend = newFriend;
-    // }
-
     let found = friends.find((friend) => friend.name === recipient);
-    found
-      ? (found = found)
-      : (found = await addFriend({ name: recipient }));
+    if (!found) found = await addFriend({ name: recipient });
 
     const newGift = {
       idea,
-      friendId: found.id, // selectedfriend.id
+      friendId: found.id,
       link,
       price,
       occasion,
@@ -91,7 +83,6 @@ export default function NewGiftForm({
     setLink('');
     setCost('');
     setOccasion('');
-    // selectedFriend = {};
     setIsIdeaError(false);
     setIsRecipientError(false);
     isFormInvalid = false;
