@@ -80,6 +80,10 @@ export default function Header() {
                 />
               </FormControl> */}
               <Button
+                w="130px"
+                p="10px"
+                h="28px"
+                fontSize="15px"
                 colorScheme={theme === 'default' ? 'purple' : 'green'}
                 onClick={handleTheme}
               >
