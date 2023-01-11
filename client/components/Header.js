@@ -11,21 +11,30 @@ import {
   MenuItem,
   Button,
   Image,
+  Switch,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
 import styles from '../global.css';
 import { signOutUser } from '../services/user-utils.js';
 import logo from '../public/logo.png';
+import { useTheme } from '../context/themeContext.js';
 
 export default function Header() {
   const { user, setUser } = useUser();
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await signOutUser();
     setUser(null);
   };
+
+  const handleTheme = () => {
+    theme === 'default' ? setTheme('festive') : setTheme('default');
+  };
+
+  console.log('theme:', theme);
 
   return (
     <header className={styles.screenOnly}>
@@ -56,66 +65,73 @@ export default function Header() {
 
         <Flex alignItems="center">
           {user && (
-            <Menu colorScheme="purple">
-              <MenuButton
-                as={Button}
-                mr="10px"
+            <Flex alignItems="center">
+              <Switch
                 colorScheme="purple"
-                variant="ghost"
-              >
-                <HamburgerIcon h="30px" w="30px" />
-              </MenuButton>
-              <MenuList minW="110" p="10px">
-                <MenuItem
-                  color="#482698"
-                  fontWeight="bold"
-                  h="35px"
-                  p="5px"
-                  onClick={() => navigate('/gifts')}
+                mr="10px"
+                onClick={handleTheme}
+              />
+              <Menu colorScheme="purple">
+                <MenuButton
+                  as={Button}
+                  mr="10px"
+                  colorScheme="purple"
+                  variant="ghost"
                 >
-                  View Gifts
-                  <SearchIcon pl="5px" boxSize="5" />
-                </MenuItem>
-                <MenuItem
-                  color="#482698"
-                  fontWeight="bold"
-                  h="35px"
-                  p="5px"
-                  onClick={() => navigate('/friends')}
-                >
-                  View Friends
-                  <SearchIcon pl="5px" boxSize="5" />
-                </MenuItem>
-                <MenuItem
-                  color="#482698"
-                  fontWeight="bold"
-                  h="35px"
-                  p="5px"
-                  onClick={() => navigate('/friends/new')}
-                >
-                  Add Friend
-                  <SmallAddIcon pl="5px" boxSize="6" />
-                </MenuItem>
-                <MenuItem
-                  color="#482698"
-                  fontWeight="bold"
-                  h="35px"
-                  p="5px"
-                  onClick={() => navigate('/')}
-                >
-                  Home
-                </MenuItem>
-                <MenuItem
-                  color="#482698"
-                  fontWeight="bold"
-                  h="35px"
-                  p="5px"
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </MenuItem>
-              </MenuList>
-            </Menu>
+                  <HamburgerIcon h="30px" w="30px" />
+                </MenuButton>
+                <MenuList minW="110" p="10px">
+                  <MenuItem
+                    color="#482698"
+                    fontWeight="bold"
+                    h="35px"
+                    p="5px"
+                    onClick={() => navigate('/gifts')}
+                  >
+                    View Gifts
+                    <SearchIcon pl="5px" boxSize="5" />
+                  </MenuItem>
+                  <MenuItem
+                    color="#482698"
+                    fontWeight="bold"
+                    h="35px"
+                    p="5px"
+                    onClick={() => navigate('/friends')}
+                  >
+                    View Friends
+                    <SearchIcon pl="5px" boxSize="5" />
+                  </MenuItem>
+                  <MenuItem
+                    color="#482698"
+                    fontWeight="bold"
+                    h="35px"
+                    p="5px"
+                    onClick={() => navigate('/friends/new')}
+                  >
+                    Add Friend
+                    <SmallAddIcon pl="5px" boxSize="6" />
+                  </MenuItem>
+                  <MenuItem
+                    color="#482698"
+                    fontWeight="bold"
+                    h="35px"
+                    p="5px"
+                    onClick={() => navigate('/')}
+                  >
+                    Home
+                  </MenuItem>
+                  <MenuItem
+                    color="#482698"
+                    fontWeight="bold"
+                    h="35px"
+                    p="5px"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
           )}
         </Flex>
       </Flex>
