@@ -12,6 +12,8 @@ import {
   Button,
   Image,
   Switch,
+  FormControl,
+  FormLabel,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext.js';
@@ -31,6 +33,7 @@ export default function Header() {
   };
 
   const handleTheme = () => {
+    console.log('firing!');
     theme === 'default' ? setTheme('festive') : setTheme('default');
   };
 
@@ -66,11 +69,24 @@ export default function Header() {
         <Flex alignItems="center">
           {user && (
             <Flex alignItems="center">
-              <Switch
-                colorScheme="purple"
-                mr="10px"
+              {/* <FormControl>
+                <FormLabel htmlFor="theme-toggle" />
+                <Switch
+                  colorScheme={
+                    theme === 'default' ? 'purple' : 'blue'
+                  }
+                  mr="10px"
+                  onClick={handleTheme}
+                />
+              </FormControl> */}
+              <Button
+                colorScheme={theme === 'default' ? 'purple' : 'green'}
                 onClick={handleTheme}
-              />
+              >
+                {theme === 'default'
+                  ? 'Get Festive!'
+                  : 'Normal Theme'}
+              </Button>
               <Menu colorScheme="purple">
                 <MenuButton
                   as={Button}
